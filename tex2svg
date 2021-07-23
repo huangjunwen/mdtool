@@ -76,7 +76,7 @@ var argv = require('yargs')
         },
         styles: {
             boolean: true,
-            default: false,
+            default: true,
             describe: 'include css styles for stand-alone image'
         },
         container: {
@@ -89,7 +89,7 @@ var argv = require('yargs')
         },
         fontCache: {
             boolean: true,
-            default: false,
+            default: true,
             describe: 'whether to use a local font cache or not'
         },
         assistiveMml: {
