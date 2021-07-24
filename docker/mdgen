@@ -2,4 +2,15 @@
 
 import markdown
 
-markdown.markdownFromFile()
+# https://python-markdown.github.io/extensions/
+markdown.markdownFromFile(extensions=[
+    'extra',
+    'admonition',
+    'codehilite',
+    'meta',
+    'nl2br',
+    'sane_lists',
+    'smarty',
+    'toc',
+    'wikilinks',
+])

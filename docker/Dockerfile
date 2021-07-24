@@ -9,7 +9,7 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.13/main" > /etc/apk/repositories &
 RUN npm install -g 'esm@3.2.25' 'mathjax-full@3.2.0' 'yargs@17.0.1'
 
 # 添加 python 依赖
-RUN pip3 install markdown
+RUN pip3 install markdown Pygments
 
 # 添加 bin
 ENV NODE_PATH="/usr/lib/node_modules"
