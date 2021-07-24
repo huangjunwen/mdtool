@@ -14,4 +14,4 @@ RUN pip3 install markdown
 # 添加 bin
 ENV NODE_PATH="/usr/lib/node_modules"
 ADD tex2svg /usr/local/bin/
-ADD md /usr/local/bin/
+ADD mdgen /usr/local/bin/
