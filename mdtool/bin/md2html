@@ -19,11 +19,13 @@ require('get-stream')(process.stdin).then(async (input) => {
     highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         try {
-          return hljs.highlight(str, { language: lang }).value;
+          return `<pre><code class="hljs language-${lang}">` +
+            hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+            '</code></pre>';
         } catch (__) {}
       }
 
-      return ''; // use external default escaping
+      return `<pre><code class="hljs">` + md.utils.escapeHtml(str) + '</code></pre>';
     }
   }).use(
     require('markdown-it-sub')
@@ -38,6 +40,10 @@ require('get-stream')(process.stdin).then(async (input) => {
   ).use(
     require('markdown-it-footnote')
   ).use(
+    require('markdown-it-front-matter'), function (meta) {
+      console.log(meta, typeof(meta))
+    }
+  ).use(
     require('markdown-it-deflist')
   ).use(
     require('markdown-it-dollarmath'), {
@@ -48,6 +54,6 @@ require('get-stream')(process.stdin).then(async (input) => {
     }
   ).use(
     require('markdown-it-abbr')
-  );
+  )
   console.log(md.render(input))
 })
