@@ -39,17 +39,12 @@ require('get-stream')(process.stdin).then(async (input) => {
     require('markdown-it-footnote')
   ).use(
     require('markdown-it-deflist')
-    // ).use(
-    //   require('markdown-it-texmath', {
-    //     engine: require('katex'),
-    //     delimiters: 'dollars'
-    //     // katexOptions: { macros: {"\\RR": "\\mathbb{R}"} }
-    //   })
   ).use(
     require('markdown-it-dollarmath'), {
       renderer: tex2svg,
-      optionsInline: { inline: true },
-      optionsBlock: { inline: false }
+      //renderer: katex.renderToString,
+      optionsInline: { inline: true, container: true },
+      optionsBlock: { inline: false, container: true }
     }
   ).use(
     require('markdown-it-abbr')

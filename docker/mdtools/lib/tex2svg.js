@@ -34,17 +34,6 @@ const defaultWidth = 80 * 16
 //  The default TeX packages to use
 const defaultPackages = 'base, autoload, require, ams, newcommand'
 
-//  Minimal CSS needed for stand-alone image
-const defaultCSS = [
-  'svg a{fill:blue;stroke:blue}',
-  '[data-mml-node="merror"]>g{fill:red;stroke:red}',
-  '[data-mml-node="merror"]>rect[data-background]{fill:yellow;stroke:none}',
-  '[data-frame],[data-line]{stroke-width:70px;fill:none}',
-  '.mjx-dashed{stroke-dasharray:140}',
-  '.mjx-dotted{stroke-linecap:round;stroke-dasharray:0,140}',
-  'use[data-c]{stroke-width:3px}'
-].join('')
-
 async function initTex2Svg ({ packages, fontCache }) {
 
   packages = packages ? packages : defaultPackages
@@ -87,6 +76,5 @@ module.exports = {
   defaultEX,
   defaultWidth,
   defaultPackages,
-  defaultCSS,
   initTex2Svg
 }
