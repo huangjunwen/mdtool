@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+
+const { initTex2Svg } = require('../lib/tex2svg.js')
+
+require('get-stream')(process.stdin).then(async (input) => {
+
+  const hljs = require('highlight.js')
+
+  const tex2svg = await initTex2Svg({
+    fontCache: false
+  })
+
+  // 新建 markdown-it
+  // enable everything
+  var md = require('markdown-it')({
+    html: true,
+    linkify: true,
+    typographer: true,
+    highlight: function (str, lang) {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return hljs.highlight(str, { language: lang }).value;
+        } catch (__) {}
+      }
+
+      return ''; // use external default escaping
+    }
+  }).use(
+    require('markdown-it-sub')
+  ).use(
+    require('markdown-it-sup')
+  ).use(
+    require('markdown-it-ins')
+  ).use(
+    require('markdown-it-mark')
+  ).use(
+    require('markdown-it-emoji')
+  ).use(
+    require('markdown-it-footnote')
+  ).use(
+    require('markdown-it-deflist')
+    // ).use(
+    //   require('markdown-it-texmath', {
+    //     engine: require('katex'),
+    //     delimiters: 'dollars'
+    //     // katexOptions: { macros: {"\\RR": "\\mathbb{R}"} }
+    //   })
+  ).use(
+    require('markdown-it-dollarmath'), {
+      renderer: tex2svg,
+      optionsInline: { inline: true },
+      optionsBlock: { inline: false }
+    }
+  ).use(
+    require('markdown-it-abbr')
+  );
+  console.log(md.render(input))
+})

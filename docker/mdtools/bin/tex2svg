@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+
+const { defaultEM, defaultEX, defaultWidth, defaultPackages, initTex2Svg } = require('../lib/tex2svg.js')
+
+//
+//  Get the command-line arguments
+//
+var argv = require('yargs')
+    .demand(0).strict()
+    .usage('$0 [options]: convert stdin math formula to stdout svg')
+    .options({
+        inline: {
+            boolean: true,
+            describe: "process as inline math"
+        },
+        em: {
+            default: defaultEM,
+            describe: 'em-size in pixels'
+        },
+        ex: {
+            default: defaultEX,
+            describe: 'ex-size in pixels'
+        },
+        width: {
+            default: defaultWidth,
+            describe: 'width of container in pixels'
+        },
+        packages: {
+            default: defaultPackages,
+            describe: 'the packages to use, e.g. "base, ams"; use "*" to represent the default packages, e.g, "*, bbox"'
+        },
+        container: {
+            boolean: true,
+            describe: 'include <mjx-container> element'
+        },
+        fontCache: {
+            boolean: true,
+            default: true,
+            describe: 'whether to use a local font cache or not'
+        }
+    })
+    .argv;
+
+require('get-stream')(process.stdin).then(async (input) => {
+
+  const tex2svg = await initTex2Svg({
+    packages: argv.packages,
+    fontCache: argv.fontCache,
+  })
+
+  console.log(tex2svg(input, {
+    inline: argv.inline,
+    em: argv.em,
+    ex: argv.ex,
+    width: argv.width,
+    container: argv.container,
+    styles: argv.styles
+  }))
+})
