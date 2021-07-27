@@ -42,21 +42,21 @@ async function initTex2Svg ({ packages, fontCache }) {
   const req = require('esm')(module)
 
   const mathjax = await req('mathjax-full').init({
-      options: {
-        enableAssistiveMml: false
-      },
-      loader: {
-        load: ['adaptors/liteDOM', 'tex-svg']
-      },
-      tex: {
-        packages: packages.replace('\*', defaultPackages).split(/\s*,\s*/)
-      },
-      svg: {
-        fontCache
-      },
-      startup: {
-        typeset: false
-      }
+    options: {
+      enableAssistiveMml: false
+    },
+    loader: {
+      load: ['adaptors/liteDOM', 'tex-svg']
+    },
+    tex: {
+      packages: packages.replace('\*', defaultPackages).split(/\s*,\s*/)
+    },
+    svg: {
+      fontCache
+    },
+    startup: {
+      typeset: false
+    }
   })
 
   return (s, { inline, em, ex, width, container }) => {
