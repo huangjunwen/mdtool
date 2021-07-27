@@ -10,31 +10,35 @@ var argv = require('yargs')
     .usage('$0 [options]: convert stdin math formula to stdout svg')
     .options({
         inline: {
-            boolean: true,
+            type: 'boolean',
+            default: true,
             describe: "process as inline math"
         },
         em: {
+            type: 'number',
             default: defaultEM,
             describe: 'em-size in pixels'
         },
         ex: {
+            type: 'number',
             default: defaultEX,
             describe: 'ex-size in pixels'
         },
         width: {
+            type: 'number',
             default: defaultWidth,
             describe: 'width of container in pixels'
+        },
+        container: {
+            type: 'boolean',
+            describe: 'include <mjx-container> element'
         },
         packages: {
             default: defaultPackages,
             describe: 'the packages to use, e.g. "base, ams"; use "*" to represent the default packages, e.g, "*, bbox"'
         },
-        container: {
-            boolean: true,
-            describe: 'include <mjx-container> element'
-        },
         fontCache: {
-            boolean: true,
+            type: 'boolean',
             default: true,
             describe: 'whether to use a local font cache or not'
         }
