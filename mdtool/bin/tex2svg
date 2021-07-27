@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
+const yargs = require('yargs')
+const getStream = require('get-stream')
 const { defaultEM, defaultEX, defaultWidth, defaultPackages, initTex2Svg } = require('../lib/tex2svg.js')
 
-//
-//  Get the command-line arguments
-//
-var argv = require('yargs')
-    .demand(0).strict()
+var argv = yargs
+    .strict()
     .usage('$0 [options]: convert stdin math formula to stdout svg')
     .options({
         inline: {
@@ -45,7 +44,7 @@ var argv = require('yargs')
     })
     .argv;
 
-require('get-stream')(process.stdin).then(async (input) => {
+getStream(process.stdin).then(async (input) => {
 
   const tex2svg = await initTex2Svg({
     packages: argv.packages,
