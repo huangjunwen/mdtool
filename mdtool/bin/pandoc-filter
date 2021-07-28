@@ -1,0 +1,80 @@
+#!/usr/bin/env node
+
+const { init: tex2svgInit } = require('../lib/tex2svg.js')
+const getStream = require('get-stream')
+const assert = require('assert').ok
+
+/////////////////////// 环境变量 ///////////////////////
+
+// 如果 MATHJAX_SERVER_RENDER=1 的话则在服务端渲染, 否则在客户端渲染
+const mjxServerRender = process.env['MATHJAX_SERVER_RENDER'] === '1'
+
+// 指定 cdn url
+const mjxJSUrl = process.env['MATHJAX_JSURL'] || 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js'
+
+// mathjax 的 font cache 设置, server side render 只支持 none/local, client side render 则支持 none/local/global
+const mjxFontCache = process.env['MATHJAX_FONT_CACHE'] || (mjxServerRender ? 'none' : 'global')
+assert(mjxFontCache === 'none' || mjxFontCache === 'local' || (mjxFontCache === 'global' && !mjxServerRender))
+
+/////////////////////////////////////////////////////////
+
+// 用 mathjax 渲染公式, 可以由 MATHJAX_SERVER_RENDER 决定服务端/客户端渲染
+// 参考自
+//   https://graemephi.github.io/posts/static-katex-with-hugo/
+//   https://gist.github.com/graemephi/7c60093f342b6dabf00d976492b6c91f
+async function renderMathJax (data) {
+
+  if (!mjxServerRender) {
+    data.blocks.push({
+      t: 'RawBlock',
+      c: ['html', `<script>
+  window.MathJax = {
+    options: {
+      processHtmlClass: 'math'
+    },
+    svg: {
+      fontCache: '${mjxFontCache}'
+    }
+  }; 
+  (function () {
+    var script = document.createElement('script');
+    script.src = '${mjxJSUrl}';
+    script.async = true;
+    document.head.appendChild(script);
+  })();
+</script>`]
+    })
+    return
+  }
+
+  const { tex2svg, css } = await tex2svgInit({
+    fontCache: mjxFontCache !== 'none'
+  })
+
+  function visitMath (block) {
+    if (block.t === 'Math') {
+      const [{ t: mathType }, value] = block.c
+      const inline = mathType == 'InlineMath'
+      block.t = 'RawInline'
+      block.c = ['html', tex2svg(value, { inline, container: true })]
+      return
+    } 
+    if (Array.isArray(block.c)) {
+      block.c.forEach(visitMath)
+    }
+  }
+  data.blocks.forEach(visitMath)
+  data.blocks.push({
+    t: 'RawBlock',
+    c: ['html', css]
+  })
+
+}
+
+async function main () {
+  let data = JSON.parse(await getStream(process.stdin))
+  await renderMathJax(data)
+  console.log(JSON.stringify(data))
+}
+
+main().then(() => {})
