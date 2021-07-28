@@ -23,7 +23,7 @@ getStream(process.stdin).then(async (input) => {
 
   if (serverSide) {
     const { tex2svg, css } = await tex2svgInit({
-      fontCache: fontCache === 'local',
+      fontCache: fontCache !== 'none',
     })
 
     // 参考自
