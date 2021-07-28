@@ -1,0 +1,77 @@
+#!/usr/bin/env node
+
+/*****************************
+ * 这是一个 pandoc 的 json filter, 使用 mathjax3 渲染, 可以使用服务端渲染模式和客户端渲染模式,
+ * 由环境变量控制
+ */
+
+// 如果 MATHJAX_SERVER_RENDER=1 的话则在服务端渲染, 否则在客户端渲染
+const serverSide = process.env['MATHJAX_SERVER_RENDER'] === '1'
+
+// 指定 cdn url
+const jsURL = process.env['MATHJAX_CLIENT_JSURL'] || 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js'
+
+const fontCache = process.env['MATHJAX_FONT_CACHE'] || 'local'
+
+const getStream = require('get-stream')
+
+const { init: tex2svgInit } = require('../lib/tex2svg.js')
+
+getStream(process.stdin).then(async (input) => {
+
+  let data = JSON.parse(input)
+
+  if (serverSide) {
+    const { tex2svg, css } = await tex2svgInit({
+      fontCache: fontCache === 'local',
+    })
+
+    // 参考自
+    //   https://graemephi.github.io/posts/static-katex-with-hugo/
+    //   https://gist.github.com/graemephi/7c60093f342b6dabf00d976492b6c91f
+    const assert = require('assert').ok
+    function detex(block) {
+      if (block.t === 'Math') {
+        assert(block.c.length === 2);
+        assert((block.c[0].t === 'InlineMath') || (block.c[0].t === 'DisplayMath'));
+        assert(typeof(block.c[1]) === 'string');
+        block.t = 'RawInline';
+        block.c = ['html', tex2svg(block.c[1], { inline: block.c[0].t === 'InlineMath', container: true })]
+      } else if (Array.isArray(block.c)) {
+        block.c.forEach(detex);
+      }
+    }
+    data.blocks.forEach(detex)
+
+    // 添加 css
+    data.blocks.push({
+      t: 'RawBlock',
+      c: ['html', css]
+    })
+
+  } else {
+    // http://docs.mathjax.org/en/latest/web/configuration.html
+    data.blocks.push({
+      t: 'RawBlock',
+      c: ['html', `<script>
+  window.MathJax = {
+    options: {
+      processHtmlClass: 'math'
+    },
+    svg: {
+      fontCache: '${fontCache}'
+    }
+  }; 
+  (function () {
+    var script = document.createElement('script');
+    script.src = '${jsURL}';
+    script.async = true;
+    document.head.appendChild(script);
+  })();
+</script>`]
+    }) 
+  }
+
+  process.stdout.write(JSON.stringify(data))
+
+})

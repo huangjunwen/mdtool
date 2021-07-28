@@ -2,16 +2,21 @@
 
 const yargs = require('yargs')
 const getStream = require('get-stream')
-const { defaultEM, defaultEX, defaultWidth, defaultPackages, initTex2Svg } = require('../lib/tex2svg.js')
+const { defaultEM, defaultEX, defaultWidth, defaultPackages, init: tex2svgInit } = require('../lib/tex2svg.js')
 
 var argv = yargs
   .strict()
   .usage('$0 [options]: convert stdin math formula to stdout svg')
   .options({
+    css: {
+      type: 'boolean',
+      default: false,
+      describe: 'return css instead svg'
+    },
     inline: {
       type: 'boolean',
       default: true,
-      describe: "process as inline math"
+      describe: 'process as inline math'
     },
     em: {
       type: 'number',
@@ -42,15 +47,19 @@ var argv = yargs
       describe: 'whether to use a local font cache or not'
     }
   })
-  .argv;
+  .argv
 
-getStream(process.stdin).then(async (input) => {
+tex2svgInit({
+  packages: argv.packages,
+  fontCache: argv.fontCache
+}).then(async ({ tex2svg, css }) => {
 
-  const tex2svg = await initTex2Svg({
-    packages: argv.packages,
-    fontCache: argv.fontCache,
-  })
+  if (argv.css) {
+    console.log(css)
+    return
+  }
 
+  let input = await getStream(process.stdin)
   console.log(tex2svg(input, {
     inline: argv.inline,
     em: argv.em,
@@ -58,4 +67,5 @@ getStream(process.stdin).then(async (input) => {
     width: argv.width,
     container: argv.container
   }))
+
 })

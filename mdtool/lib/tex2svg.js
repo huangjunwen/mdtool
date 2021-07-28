@@ -34,7 +34,7 @@ const defaultWidth = 80 * 16
 //  The default TeX packages to use
 const defaultPackages = 'base, autoload, require, ams, newcommand'
 
-async function initTex2Svg ({ packages, fontCache }) {
+async function init ({ packages, fontCache }) {
 
   packages = packages ? packages : defaultPackages
   fontCache = fontCache ? 'local' : 'none'
@@ -59,15 +59,20 @@ async function initTex2Svg ({ packages, fontCache }) {
     }
   })
 
-  return (s, { inline, em, ex, width, container }) => {
-    let node = mathjax.tex2svg(s, {
-      display: !inline,
-      em: em ? em : defaultEM,
-      ex: ex ? ex : defaultEX,
-      containerWidth: width ? width : defaultWidth
-    })
-    const adaptor = mathjax.startup.adaptor
-    return container ? adaptor.outerHTML(node) : adaptor.innerHTML(node)
+  const adaptor = mathjax.startup.adaptor
+
+  return {
+    mathjax,
+    css: adaptor.outerHTML(mathjax.svgStylesheet()),
+    tex2svg: function (s, { inline, em, ex, width, container }) {
+      let node = mathjax.tex2svg(s, {
+        display: !inline,
+        em: em ? em : defaultEM,
+        ex: ex ? ex : defaultEX,
+        containerWidth: width ? width : defaultWidth
+      })
+      return container ? adaptor.outerHTML(node) : adaptor.innerHTML(node)
+    }
   }
 }
 
@@ -76,5 +81,5 @@ module.exports = {
   defaultEX,
   defaultWidth,
   defaultPackages,
-  initTex2Svg
+  init
 }
