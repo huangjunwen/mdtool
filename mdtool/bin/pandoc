@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# 这个文件用于覆盖原来的 pandoc, 添加上自定义 filter
+
+ORIGIN_PANDOC=/usr/bin/pandoc
+
+exec $ORIGIN_PANDOC $@ --mathjax --filter pandoc-mathjax-filter
