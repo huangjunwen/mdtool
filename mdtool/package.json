@@ -2,18 +2,6 @@
   "dependencies": {
     "esm": "^3.2.25",
     "get-stream": "^6.0.1",
-    "highlight.js": "^11.1.0",
-    "markdown-it": "^12.1.0",
-    "markdown-it-abbr": "^1.0.4",
-    "markdown-it-deflist": "^2.1.0",
-    "markdown-it-dollarmath": "^0.2.0",
-    "markdown-it-emoji": "^2.0.0",
-    "markdown-it-footnote": "^3.0.3",
-    "markdown-it-front-matter": "^0.2.3",
-    "markdown-it-ins": "^3.0.1",
-    "markdown-it-mark": "^3.0.1",
-    "markdown-it-sub": "^1.0.0",
-    "markdown-it-sup": "^1.0.0",
     "mathjax-full": "^3.2.0",
     "yargs": "^17.0.1"
   }
