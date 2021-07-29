@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+const fs = require('fs')
+const url = require('url')
+const path = require('path')
+const yargs = require('yargs')
+const inlineCSS = require('inline-css')
+const axios = require('axios')
+
+var argv = yargs
+  .strict()
+  .usage('$0 <path or url of the html>: inline css into html. (Note that css links in html must be relative)')
+  .demandCommand(1)
+  .options({})
+  .argv
+
+async function main () {
+  let loc = argv._[0]
+  let content = ''
+  if (!loc.startsWith('http://') && !loc.startsWith('https://')) {
+    loc = path.resolve(loc)
+    content = fs.readFileSync(loc)
+    loc = `file://${loc}`
+  } else {
+    let resp = await axios.get(loc)
+    content = resp.data
+  }
+
+  console.log(await inlineCSS(content, {url: loc}))
+}
+
+main().then(() => {})

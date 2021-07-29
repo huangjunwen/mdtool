@@ -49,17 +49,17 @@ var argv = yargs
   })
   .argv
 
-tex2svgInit({
-  packages: argv.packages,
-  fontCache: argv.fontCache
-}).then(async ({ tex2svg, css }) => {
+async function main () {
+  let input = await getStream(process.stdin)
+  const { tex2svg, css } = await tex2svgInit({
+    packages: argv.packages,
+    fontCache: argv.fontCache
+  })
 
   if (argv.css) {
     console.log(css)
     return
   }
-
-  let input = await getStream(process.stdin)
   console.log(tex2svg(input, {
     inline: argv.inline,
     em: argv.em,
@@ -67,5 +67,6 @@ tex2svgInit({
     width: argv.width,
     container: argv.container
   }))
+}
 
-})
+main().then(() => {})
