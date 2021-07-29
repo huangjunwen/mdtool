@@ -18,8 +18,8 @@ const mjxClientJSUrl = process.env['MATHJAX_CLIENT_JS_URL'] || 'https://cdn.jsde
 const mjxFontCache = process.env['MATHJAX_FONT_CACHE'] || (mjxClientRender ? 'global' : 'none')
 assert(mjxFontCache === 'none' || mjxFontCache === 'local' || (mjxFontCache === 'global' && mjxClientRender))
 
-// 代码高亮 css 主题路径
-const prismThemePath = process.env['PRISM_THEME_PATH'] || require.resolve('prismjs/themes/prism-tomorrow.css')
+// 代码高亮 cdn css url
+const prismThemeCSSUrl = process.env['PRISM_THEME_CSS_URL'] || 'https://cdn.jsdelivr.net/npm/prism-themes@1.8.0/themes/prism-darcula.css'
 
 /////////////////////////////////////////////////////////
 
@@ -120,10 +120,9 @@ async function renderCode(data) {
   }
   data.blocks.forEach(visitCode)
 
-  const css = fs.readFileSync(prismThemePath)
   data.blocks.push({
     t: 'RawBlock',
-    c: ['html', `<style>${css}</style>`]
+    c: ['html', `<link rel="stylesheet" href="${prismThemeCSSUrl}"></link>`]
   })
 }
 

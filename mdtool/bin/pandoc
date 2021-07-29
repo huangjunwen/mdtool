@@ -4,4 +4,5 @@
 
 ORIGIN_PANDOC=/usr/bin/pandoc
 
-exec $ORIGIN_PANDOC $@ --mathjax --filter=pandoc-filter --no-highlight
+# --no-highlight 阻止 pandoc 自带的语法高亮, filter 里会用 prismjs 处理.
+exec $ORIGIN_PANDOC $@ --mathjax --no-highlight --filter=pandoc-filter
