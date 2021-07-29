@@ -39,7 +39,7 @@ async function renderMath (data) {
     svg: {
       fontCache: '${mjxFontCache}'
     }
-  }; 
+  };
   (function () {
     var script = document.createElement('script');
     script.src = '${mjxClientJSUrl}';
@@ -80,12 +80,35 @@ async function renderMath (data) {
 async function renderCode(data) {
 
   function visitCode (block) {
+
     if (block.t === 'CodeBlock') {
-      const [[_id, classes, _attrs], value] = block.c
-      let lang = classes.length > 0 ? classes[0] : ''
+
+      let [[id, classes, attrs], value] = block.c
+      let lang = ''
+      let grammer = null
+      for (const c of classes) {
+        // 尝试确定语言
+        g = prism.languages[c]
+        if (g) {
+          lang = c
+          grammer = g
+          break
+        }
+      }
+      attrs = Object.fromEntries(attrs)
       let langAttr = lang ? ` class="language-${lang}"` : ''
-      let grammer = prism.languages[lang]
+
       let code = grammer ? prism.highlight(value, grammer, lang) : prism.util.encode(value)
+
+      // https://pandoc.org/MANUAL.html#extension-fenced_code_blocks
+      // > The numberLines (or number-lines) class will cause the lines of the code block to be numbered,
+      // > starting with 1 or the value of the startFrom attribute.
+      if (classes.includes('numberLines') || classes.includes('number-lines')) {
+        const start = attrs.startFrom || "1"
+        code = code.split('\n').map((line) => { return `<li>${line}</li>` }).join('')
+        code = `<ol class="linenums" start="${start}">${code}</ol>`
+      }
+
       block.c = ['html', `<pre><code${langAttr}>${code}</code></pre>`]
       block.t = 'RawBlock'
       return
