@@ -98,8 +98,20 @@ async function renderCode(data) {
       attrs = Object.fromEntries(attrs)
       let langAttr = lang ? ` class="language-${lang}"` : ''
 
+      // 着色
       let code = grammer ? prism.highlight(value, grammer, lang) : prism.util.encode(value)
 
+      // 微信公众号会把行头的空格去掉, 但这样会影响 indent, 所以把空格用 span wrap 起来
+      code = code.split('\n').map((line) => {
+        let m = /^\s+/.exec(line)
+        if (!m) {
+          return line
+        }
+        m = m[0] // 行开头的空白
+        return `<span>${m}</span>${line.slice(m.length)}`
+      }).join('\n')
+
+      // 添加 lineno
       // https://pandoc.org/MANUAL.html#extension-fenced_code_blocks
       // > The numberLines (or number-lines) class will cause the lines of the code block to be numbered,
       // > starting with 1 or the value of the startFrom attribute.
