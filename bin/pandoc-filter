@@ -2,7 +2,7 @@
 
 const fs = require('fs')
 const assert = require('assert').ok
-const getStream = require('get-stream')
+const net = require('net')
 const cheerio = require('cheerio')
 const prism = require('prismjs')
 const prismLoadLanguages = require('prismjs/components/')
@@ -173,11 +173,55 @@ async function renderCode(data) {
   data.blocks.forEach(visitCode)
 }
 
-async function main () {
-  let data = JSON.parse(await getStream(process.stdin))
+async function handleInput (input) {
+  let data = JSON.parse(input)
   await renderMath(data)
   await renderCode(data)
-  console.log(JSON.stringify(data))
+  return JSON.stringify(data)
+}
+
+async function main () {
+
+  const sockPath = '/tmp/pandoc-filter-daemon.sock'
+
+  const server = net.createServer({ allowHalfOpen: true }, (c) => {
+    let chunks = []
+    c.on('data', (data) => {
+      chunks.push(data)
+    })
+    c.on('end', async () => {
+      try {
+        c.write(await handleInput(chunks.join('')))
+      } catch (e){
+      } finally {
+        c.end()
+      }
+    })
+  })
+
+  server.on('error', (e) => {
+    if (e.code !== 'EADDRINUSE') {
+      throw e
+    }
+    // EADDRINUSE 有两种情况, 或者是真的有, 或者是退出了但还没有清理 sock,
+    // 我们连接一下试试就知道了
+    // https://stackoverflow.com/a/16502680/157235
+    let c = new net.Socket()
+    c.on('error', (err) => {
+      if (err.code === 'ECONNREFUSED') {
+        fs.unlinkSync(sockPath)
+        server.listen(sockPath, () => {
+          console.log('daemon recovered')
+        })
+      }
+    })
+    c.connect(sockPath, () => {
+      console.log('daemon is already running, exit')
+      process.exit()
+    })
+  })
+  server.listen(sockPath)
+
 }
 
 main().then(() => {})
