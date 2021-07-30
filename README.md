@@ -1,6 +1,6 @@
 ### markdown 工具
 
-用 docker 打包好 (`docker pull jayven/markdown-tool`)
+用 docker 打包好 (`docker pull jayven/mdtool`)
 
 包含:
 
