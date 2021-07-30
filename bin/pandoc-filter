@@ -5,6 +5,8 @@ const assert = require('assert').ok
 const getStream = require('get-stream')
 const cheerio = require('cheerio')
 const prism = require('prismjs')
+const prismLoadLanguages = require('prismjs/components/')
+const prismComponents = require('prismjs/components')
 const { init: tex2svgInit } = require('../lib/tex2svg.js')
 
 /////////////////////// 环境变量 ///////////////////////
@@ -77,30 +79,54 @@ async function renderMath (data) {
 
 async function renderCode(data) {
 
+  // prism 所有支持的 language alias -> language name
+  let languages = {}
+  Object.entries(prismComponents.languages).forEach(([lang, meta]) => {
+    if (lang === 'meta') {
+      return
+    }
+    languages[lang] = lang
+    let alias = meta.alias
+    if (alias) {
+      if (!Array.isArray(alias)) {
+        alias = [alias]
+      }
+      alias.forEach((a) => {
+        languages[a] = lang
+      })
+    }
+  })
+
   function visitCode (block) {
 
-    if (block.t === 'CodeBlock') {
+    if (block.t === 'CodeBlock' || block.t === 'Code') {
 
+      let inline = block.t === 'Code'
       let [[id, classes, attrs], value] = block.c
+      attrs = Object.fromEntries(attrs)
+
+      // 逐个尝试确定语言
       let lang = ''
       let grammer = null
-      // 逐个尝试确定语言
-      for (let i=0; i<classes.length; i++) {
-        let l = classes[i]
-        let g = prism.languages[l]
-        if (g) {
-          lang = l
-          grammer = g
-          break
+      for (let l of classes) {
+        if (!languages[l]) {
+          continue
         }
+        if (!prism.languages[l]) {
+          prismLoadLanguages(languages[l])
+        }
+        assert(prism.languages[l])
+        lang = l
+        grammer = prism.languages[l]
+        break
       }
-      classes.push(`language-${lang}`)  // XXX: 'language-' 也是有效的
-      attrs = Object.fromEntries(attrs)
+      let langClass = `language-${lang ? lang : "none"}`
+      classes.push(langClass)
 
       // 着色
       let code = grammer ? prism.highlight(value, grammer, lang) : prism.util.encode(value)
 
-      // 将所有 text node 中的空格转换为 nbsp
+      // 处理空格, 全部换成 &nbsp;
       {
         let $ = cheerio.load(code)
         let replaceSp = function (el) {
@@ -116,18 +142,27 @@ async function renderCode(data) {
         code = $.html()
       }
 
-      // 添加 lineno
+      // 处理换行 (仅对非 inline 有效), 如果需要 lineno, 则 wrap 到 <li> 中, 否则将 '\n' 换成 <br>
       // https://pandoc.org/MANUAL.html#extension-fenced_code_blocks
       // > The numberLines (or number-lines) class will cause the lines of the code block to be numbered,
       // > starting with 1 or the value of the startFrom attribute.
-      if (classes.includes('numberLines') || classes.includes('number-lines')) {
-        const start = attrs.startFrom || "1"
-        code = code.split('\n').map((line) => { return `<li>${line}</li>` }).join('')
-        code = `<ol start="${start}">${code}</ol>`
+      if (!inline) {
+        if (classes.includes('numberLines') || classes.includes('number-lines')) {
+          const start = attrs.startFrom || "1"
+          code = code.split('\n').map((line) => { return `<li>${line}</li>` }).join('')
+          code = `<ol start="${start}">${code}</ol>`
+        } else {
+          code = code.split('\n').join('<br />')
+        }
       }
 
-      block.c = ['html', `<pre><code class="${classes.join(' ')}">${code}</code></pre>`]
-      block.t = 'RawBlock'
+      // https://prismjs.com/examples.html#different-markup
+      code = `<code class="${classes.join(' ')}">${code}</code>`
+      if (!inline) {
+        code = `<pre class="${langClass}">${code}</pre>`
+      }
+      block.c = ['html', code]
+      block.t = inline ? 'RawInline' : 'RawBlock'
       return
     }
     if (Array.isArray(block.c)) {
