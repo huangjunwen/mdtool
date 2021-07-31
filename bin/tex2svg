@@ -2,7 +2,7 @@
 
 const yargs = require('yargs')
 const getStream = require('get-stream')
-const { defaultEM, defaultEX, defaultWidth, defaultPackages, init: tex2svgInit } = require('../lib/tex2svg.js')
+const tex2svgInit = require('../lib/tex2svg.js')
 
 var argv = yargs
   .strict()
@@ -20,17 +20,14 @@ var argv = yargs
     },
     em: {
       type: 'number',
-      default: defaultEM,
       describe: 'em-size in pixels'
     },
     ex: {
       type: 'number',
-      default: defaultEX,
       describe: 'ex-size in pixels'
     },
     width: {
       type: 'number',
-      default: defaultWidth,
       describe: 'width of container in pixels'
     },
     container: {
@@ -38,7 +35,7 @@ var argv = yargs
       describe: 'include <mjx-container> element'
     },
     packages: {
-      default: defaultPackages,
+      type: 'string',
       describe: 'the packages to use, e.g. "base, ams"; use "*" to represent the default packages, e.g, "*, bbox"'
     },
     fontCache: {
@@ -50,14 +47,16 @@ var argv = yargs
   .argv
 
 async function main () {
+
   let input = await getStream(process.stdin)
-  const { tex2svg, css } = await tex2svgInit({
+
+  const { tex2svg, tex2svgCSS } = await tex2svgInit({
     packages: argv.packages,
     fontCache: argv.fontCache
   })
 
   if (argv.css) {
-    console.log(css)
+    console.log(tex2svgCSS)
     return
   }
   console.log(tex2svg(input, {
