@@ -1,227 +1,85 @@
 #!/usr/bin/env node
 
 const fs = require('fs')
-const assert = require('assert').ok
 const net = require('net')
-const cheerio = require('cheerio')
-const prism = require('prismjs')
-const prismLoadLanguages = require('prismjs/components/')
-const prismComponents = require('prismjs/components')
-const { init: tex2svgInit } = require('../lib/tex2svg.js')
+const child_process = require('child_process')
+const yargs = require('yargs')
+const getStream = require('get-stream')
+const pandocFilterInit = require('../lib/pandoc-filter.js')
 
-/////////////////////// 环境变量 ///////////////////////
+const sockPath = '/tmp/pandoc-filter.sock'
 
-// 如果 MATHJAX_CLIENT_RENDER=1 的话则在客户端渲染, 否则在服务端渲染
-const mjxClientRender = process.env['MATHJAX_CLIENT_RENDER'] === '1'
-
-// 指定客户端 cdn js url
-const mjxClientJSUrl = process.env['MATHJAX_CLIENT_JS_URL'] || 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js'
-
-// mathjax 的 font cache 设置, server side render 只支持 none/local, client side render 则支持 none/local/global
-const mjxFontCache = process.env['MATHJAX_FONT_CACHE'] || (mjxClientRender ? 'global' : 'none')
-assert(mjxFontCache === 'none' || mjxFontCache === 'local' || (mjxFontCache === 'global' && mjxClientRender))
-
-/////////////////////////////////////////////////////////
-
-// 参考自
-//   https://graemephi.github.io/posts/static-katex-with-hugo/
-//   https://gist.github.com/graemephi/7c60093f342b6dabf00d976492b6c91f
-async function renderMath (data) {
-
-  if (mjxClientRender) {
-    data.blocks.push({
-      t: 'RawBlock',
-      c: ['html', `<script>
-  window.MathJax = {
-    options: {
-      processHtmlClass: 'math'
-    },
-    svg: {
-      fontCache: '${mjxFontCache}'
+var argv = yargs
+  .strict()
+  .options({
+    server: {
+      type: 'boolean',
+      default: false,
+      describe: 'run as server'
     }
-  };
-  (function () {
-    var script = document.createElement('script');
-    script.src = '${mjxClientJSUrl}';
-    script.async = true;
-    document.head.appendChild(script);
-  })();
-</script>`]
-    })
-    return
-  }
-
-  const { tex2svg, css } = await tex2svgInit({
-    fontCache: mjxFontCache !== 'none'
   })
+  .argv
 
-  function visitMath (block) {
-    if (block.t === 'Math') {
-      const [{ t: mathType }, value] = block.c
-      const inline = mathType == 'InlineMath'
-      block.t = 'RawInline'
-      block.c = ['html', tex2svg(value, { inline, container: true })]
-      return
-    }
-    if (Array.isArray(block.c)) {
-      block.c.forEach(visitMath)
-      return
-    }
-  }
-  data.blocks.forEach(visitMath)
+async function runAsClient () {
 
-  data.blocks.push({
-    t: 'RawBlock',
-    c: ['html', css]
+  const client = net.createConnection({ path: sockPath, allowHalfOpen: true }, () => {
+    process.stdin.pipe(client)
+    client.pipe(process.stdout)
+  })
+  
+  client.on('error', async (e) => {
+    if (e.code !== 'ECONNREFUSED' && e.code !== 'ENOENT') {
+      throw e
+    }
+    // ECONNREFUSED 表示没有服务端, 所以启动一个 server, 但这一次的就自己处理好了
+    child_process.spawn('pandoc-filter', ['--server'], {
+      stdio: 'ignore',
+      detached: true
+    }).unref()
+
+    const handleInput = await pandocFilterInit()
+    process.stdout.end(handleInput(await getStream(process.stdin)))
+
   })
 
 }
 
-async function renderCode(data) {
+async function runAsServer () {
 
-  // prism 所有支持的 language alias -> language name
-  let languages = {}
-  Object.entries(prismComponents.languages).forEach(([lang, meta]) => {
-    if (lang === 'meta') {
-      return
+  const handleInput = await pandocFilterInit()
+  const server = net.createServer({ allowHalfOpen: true }, async (c) => {
+    try {
+      c.end(handleInput(await getStream(c)))
+    } catch (e) {
+    } finally {
+      c.end()
     }
-    languages[lang] = lang
-    let alias = meta.alias
-    if (alias) {
-      if (!Array.isArray(alias)) {
-        alias = [alias]
-      }
-      alias.forEach((a) => {
-        languages[a] = lang
-      })
-    }
-  })
-
-  function visitCode (block) {
-
-    if (block.t === 'CodeBlock' || block.t === 'Code') {
-
-      let inline = block.t === 'Code'
-      let [[id, classes, attrs], value] = block.c
-      attrs = Object.fromEntries(attrs)
-
-      // 逐个尝试确定语言
-      let lang = ''
-      let grammer = null
-      for (let l of classes) {
-        if (!languages[l]) {
-          continue
-        }
-        if (!prism.languages[l]) {
-          prismLoadLanguages(languages[l])
-        }
-        assert(prism.languages[l])
-        lang = l
-        grammer = prism.languages[l]
-        break
-      }
-      let langClass = `language-${lang ? lang : "none"}`
-      classes.push(langClass)
-
-      // 着色
-      let code = grammer ? prism.highlight(value, grammer, lang) : prism.util.encode(value)
-
-      // 处理空格, 全部换成 &nbsp;
-      {
-        let $ = cheerio.load(code)
-        let replaceSp = function (el) {
-          $(el).contents().filter((i, sub) => {
-            if (sub.type === 'text') {
-              sub.data = sub.data.replaceAll('\u0020', '\u00a0')
-            } else if (sub.type === 'tag') {
-              replaceSp(sub)
-            }
-          })
-        }
-        replaceSp($.root())
-        code = $.html()
-      }
-
-      // 处理换行 (仅对非 inline 有效), 如果需要 lineno, 则 wrap 到 <li> 中, 否则将 '\n' 换成 <br>
-      // https://pandoc.org/MANUAL.html#extension-fenced_code_blocks
-      // > The numberLines (or number-lines) class will cause the lines of the code block to be numbered,
-      // > starting with 1 or the value of the startFrom attribute.
-      if (!inline) {
-        if (classes.includes('numberLines') || classes.includes('number-lines')) {
-          const start = attrs.startFrom || "1"
-          code = code.split('\n').map((line) => { return `<li>${line}</li>` }).join('')
-          code = `<ol start="${start}">${code}</ol>`
-        } else {
-          code = code.split('\n').join('<br />')
-        }
-      }
-
-      // https://prismjs.com/examples.html#different-markup
-      code = `<code class="${classes.join(' ')}">${code}</code>`
-      if (!inline) {
-        code = `<pre class="${langClass}">${code}</pre>`
-      }
-      block.c = ['html', code]
-      block.t = inline ? 'RawInline' : 'RawBlock'
-      return
-    }
-    if (Array.isArray(block.c)) {
-      block.c.forEach(visitCode)
-      return
-    }
-  }
-  data.blocks.forEach(visitCode)
-}
-
-async function handleInput (input) {
-  let data = JSON.parse(input)
-  await renderMath(data)
-  await renderCode(data)
-  return JSON.stringify(data)
-}
-
-async function main () {
-
-  const sockPath = '/tmp/pandoc-filter-daemon.sock'
-
-  const server = net.createServer({ allowHalfOpen: true }, (c) => {
-    let chunks = []
-    c.on('data', (data) => {
-      chunks.push(data)
-    })
-    c.on('end', async () => {
-      try {
-        c.write(await handleInput(chunks.join('')))
-      } catch (e){
-      } finally {
-        c.end()
-      }
-    })
   })
 
   server.on('error', (e) => {
-    if (e.code !== 'EADDRINUSE') {
-      throw e
-    }
     // EADDRINUSE 有两种情况, 或者是真的有, 或者是退出了但还没有清理 sock,
     // 我们连接一下试试就知道了
     // https://stackoverflow.com/a/16502680/157235
+    if (e.code !== 'EADDRINUSE') {
+      throw e
+    }
     let c = new net.Socket()
     c.on('error', (err) => {
       if (err.code === 'ECONNREFUSED') {
         fs.unlinkSync(sockPath)
-        server.listen(sockPath, () => {
-          console.log('daemon recovered')
-        })
+        server.listen(sockPath)
       }
     })
     c.connect(sockPath, () => {
-      console.log('daemon is already running, exit')
       process.exit()
     })
   })
   server.listen(sockPath)
 
+}
+
+async function main () {
+  await (argv.server ? runAsServer() : runAsClient())
 }
 
 main().then(() => {})
