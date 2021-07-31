@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const yargs = require('yargs')
-const getStream = require('get-stream')
+const getStream = require('../lib/get-stream.js')
 const tex2svgInit = require('../lib/tex2svg.js')
 
 var argv = yargs
