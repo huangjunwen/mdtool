@@ -37,8 +37,8 @@ async function runAsClient () {
       detached: true
     }).unref()
 
-    const handleInput = await pandocFilterInit()
-    process.stdout.end(handleInput(await getStream(process.stdin)))
+    const pandocFilter = await pandocFilterInit()
+    process.stdout.end(await pandocFilter(await getStream(process.stdin)))
 
   })
 
@@ -46,10 +46,10 @@ async function runAsClient () {
 
 async function runAsServer () {
 
-  const handleInput = await pandocFilterInit()
+  const pandocFilter = await pandocFilterInit()
   const server = net.createServer({ allowHalfOpen: true }, async (c) => {
     try {
-      c.end(handleInput(await getStream(c)))
+      c.end(await pandocFilter(await getStream(c)))
     } catch (e) {
     } finally {
       c.end()

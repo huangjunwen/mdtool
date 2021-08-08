@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const yargs = require('yargs')
-const getStream = require('../lib/get-stream.js')
+const getStream = require('get-stream')
 const tex2svgInit = require('../lib/tex2svg.js')
 
 var argv = yargs
@@ -59,7 +59,7 @@ async function main () {
     console.log(tex2svgCSS)
     return
   }
-  console.log(tex2svg(input, {
+  console.log(await tex2svg(input, {
     inline: argv.inline,
     em: argv.em,
     ex: argv.ex,
