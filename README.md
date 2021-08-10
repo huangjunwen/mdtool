@@ -22,7 +22,7 @@
         ```
         ````
       - code block (非 inline) 统一生成一个一行两列的 table, 第一列是行号, 第二列是高亮代码,
-        所有 `<pre>` `<code>` 都会带上 `language-*` 类型, `<table>` 带 `code-block-table` (如果带行号, 则还有 `has-lineno`), 例如
+        所有 `<pre>` `<code>` 都会带上 `language-*` 类型, `<table>` 带 `code-block-table`, 例如
         ````html
         <table class="code-block-table">
           <tr>
@@ -31,7 +31,7 @@
           </tr>
         </table>
 
-        <table class="code-block-table has-lineno">
+        <table class="code-block-table">
           <tr>
             <td><pre class="language-js"><code class="language-js"><span>1</span><br/><span>2</span></code></pre></td>
             <td><pre class="language-js"><code class="language-js">....</code></pre></td>
