@@ -6,7 +6,8 @@
 - pandoc (https://pandoc.org/)
   - pandoc-filter
     - 根据环境变量在服务端/客户端使用 MathJax 渲染 tex 公式
-      - 输出 svg, 服务端渲染 font cache 为 none 以便支持微信公众号文章
+      - 语法见 https://pandoc.org/MANUAL.html#extension-tex_math_dollars 说明, 简单说即 `$...$` (math inline) 或者 `$$....$$` (math block)
+      - 输出 svg, 如果使用服务端渲染 (默认), 则 MathJax 设置中的 font cache 为 none, 这样体积会比较大, 但适配场景要广一些 (微信公众号文章不允许 html 元素有 id)
     - 服务端使用 prismjs 渲染语法高亮, 支持添加行号
       - 语法见 https://pandoc.org/MANUAL.html#extension-fenced_code_blocks 说明, 例如
         ````markdown
@@ -20,7 +21,8 @@
         // ....
         ```
         ````
-      - code block (非 inline) 统一生成一个一行两列的 table, 第一列是行号, 第二列是高亮代码, 例如
+      - code block (非 inline) 统一生成一个一行两列的 table, 第一列是行号, 第二列是高亮代码,
+        所有 `<pre>` `<code>` 都会带上 `language-*` 类型, `<table>` 带 `code-block-table` (如果带行号, 则还有 `has-lineno`), 例如
         ````html
         <table class="code-block-table">
           <tr>
