@@ -11,7 +11,7 @@
       - 语法见 https://pandoc.org/MANUAL.html#extension-fenced_code_blocks 说明, 例如
         ````markdown
         语法高亮
-        ```js
+        ```python
         // ...
         ```
 
@@ -23,6 +23,13 @@
       - code block (非 inline) 统一生成一个一行两列的 table, 第一列是行号, 第二列是高亮代码, 例如
         ````html
         <table class="code-block-table">
+          <tr>
+            <td></td>
+            <td><pre class="language-python"><code class="language-python">....</code></pre></td>
+          </tr>
+        </table>
+
+        <table class="code-block-table has-lineno">
           <tr>
             <td><pre class="language-js"><code class="language-js"><span>1</span><br/><span>2</span></code></pre></td>
             <td><pre class="language-js"><code class="language-js">....</code></pre></td>
