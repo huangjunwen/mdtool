@@ -1,0 +1,38 @@
+.markdown-body {
+  padding: 10px 10px;
+}
+.markdown-body table {
+  /* https://stackoverflow.com/a/62451601/157235 */
+  display: block;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  margin: 15px auto;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.code-block-table {
+  border-radius: 8px;
+  box-shadow: -2px 0px 10px 0px rgba(0, 0, 0, 0.55);
+}
+.code-block-table td {
+  padding: 0px;
+  border: none;
+}
+.code-block-table td:first-child {
+  /* 公众号不支持
+  position: -webkit-sticky;
+  position: sticky;
+  left: -12px;
+  */
+  border-right: 1px solid rgba(182, 173, 155, 0.3);
+}
+.code-block-table td:last-child {
+  /* https://stackoverflow.com/a/17014884/157235 */
+  width: 100%;
+}
+.code-block-table code[class*="language-"] {
+  font-size: 0.8rem;
+  line-height: 1.4rem;
+  border: none;
+}

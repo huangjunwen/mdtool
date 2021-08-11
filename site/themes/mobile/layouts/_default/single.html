@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div>
+  {{ $js := resources.Get "js/main.js" | js.Build }}
+  <script type="text/javascript" src="{{ $js.Permalink }}"></script>
+  <button style="position: fixed;" id="copy-wechat">拷贝到微信<br>公众号</button>
+</div>
+<div id="markdown-main" style="width: 375px; margin: auto; border: dotted;">
+  <!-- 将 style 放到 markdown-main 中以便 juice 处理 -->
+  <style>
+    {{ (resources.Get "css/mweb-bear-default.css").Content | safeCSS }}
+  </style>
+  <style>
+    {{ (resources.Get "css/single.css").Content | safeCSS }}
+  </style>
+  <section class="markdown-body">
+  {{ .Content }}
+  </section>
+</div>
+{{ end }}
+
