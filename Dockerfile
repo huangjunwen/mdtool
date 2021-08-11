@@ -10,7 +10,7 @@ ADD package.json package-lock.json /opt/mdtool/
 RUN cd /opt/mdtool && npm install
 
 # 路径
-ENV PATH="/opt/mdtool/bin:${PATH}"
+ENV PATH="/opt/mdtool/bin:/opt/mdtool/node_modules/.bin:${PATH}"
 WORKDIR /opt/mdtool/site
 
 # 其他文件
