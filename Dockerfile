@@ -16,4 +16,4 @@ WORKDIR /opt/mdtool/site
 # 其他文件
 ADD lib /opt/mdtool/lib
 ADD bin /opt/mdtool/bin
-
+ADD site /opt/mdtool/site
