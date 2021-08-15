@@ -1,0 +1,28 @@
+/* 参考 https://highlightjs.org/static/demo::gruvbox-light-soft */
+
+:root {
+  --prism-foreground: #504945;
+  --prism-background: #f2e5bc;
+
+  --prism-comment: #bdae93;
+  --prism-string: #79740e;
+  --prism-literal: #af3a03;
+  --prism-keyword: #8f3f71;
+  --prism-function: #076678;
+  --prism-deleted: #9d0006;
+  --prism-class: #b57614;
+  --prism-builtin: #427b58;
+  --prism-property: #af3a03;
+  --prism-namespace: #b57614;
+  --prism-punctuation: #504945;
+
+  --prism-decorator: #d65d0e;
+  --prism-variable: #504945;
+  --prism-regex: #427b58;
+  --prism-tag: #9d0006;
+  --prism-inserted: #79740e;
+}
+
+.token.operator {
+  opacity: .7;
+}
