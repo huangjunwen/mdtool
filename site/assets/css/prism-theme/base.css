@@ -41,13 +41,9 @@
   --prism-url-decoration: underline;
 
   /* Extension */
-  --prism-line-number: #a5a5a5;
-  --prism-line-number-gutter: #333333;
-  --prism-line-highlight-background: #eeeeee;
   --prism-selection-background: #aaaaaa;
-  --prism-marker-color: var(--prism-foreground);
-  --prism-marker-opacity: 0.4;
-  --prism-marker-font-size: 0.8em;
+  --prism-lineno: var(--prism-comment);
+  --prism-lineno-seperator: var(--prism-lineno);
 
   /* Font */
   --prism-font-size: 1em;
@@ -61,12 +57,15 @@
   
   --prism-block-padding-x: 1em;
   --prism-block-padding-y: 1em;
-  --prism-block-margin-x: 0;
-  --prism-block-margin-y: 0.5em;
-  --prism-block-radius: 0.3em;
+  --prism-block-margin-x: auto;
+  --prism-block-margin-y: 1em;
+  --prism-block-radius: 0.5em;
   --prism-inline-padding-x: 0.3em;
   --prism-inline-padding-y: 0.1em;
   --prism-inline-radius: 0.3em;
+
+  /* Style */
+  --prism-block-shadow: -2px 0px 10px 0px rgba(0, 0, 0, 0.55);
 }
 
 pre[class*='language-'],
@@ -85,15 +84,14 @@ code[class*='language-'] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  color: var(--prism-foreground) !important;
+  color: var(--prism-foreground);
 }
 
 /* Code blocks */
 pre[class*='language-'] {
   font-size: var(--prism-block-font-size);
   padding: var(--prism-block-padding-y) var(--prism-block-padding-x);
-  margin: var(--prism-block-margin-y) var(--prism-block-margin-x);
-  border-radius: var(--prism-block-radius);
+  margin: 0;
   overflow: auto;
   background: var(--prism-background);
 }
@@ -245,20 +243,39 @@ code[class*='language-'] ::-moz-selection {
   color: var(--prism-decorator);
 }
 
-/* overrides color-values for the Line Numbers plugin
- * http://prismjs.com/plugins/line-numbers/
- */
-.line-numbers .line-numbers-rows {
-  border-right-color: var(--prism-line-number);
+/* code-block-table */
+.code-block-table {
+  border-spacing: 0;
+  border-radius: var(--prism-block-radius);
+  box-shadow: var(--prism-block-shadow);
+  /* https://stackoverflow.com/a/62451601/157235 */
+  display: block;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  margin: var(--prism-block-margin-y) var(--prism-block-margin-x);
+  overflow-x: auto;
 }
 
-.line-numbers-rows > span:before {
-  color: var(--prism-line-number-gutter);
+.code-block-table td {
+  border: none;
+  padding: 0;
 }
 
-/* overrides color-values for the Line Highlight plugin
-  * http://prismjs.com/plugins/line-highlight/
-  */
-.line-highlight {
-  background: var(--prism-line-highlight-background);
+.code-block-table td:first-child pre[class*="language-"] {
+  border-right: 1px solid var(--prism-lineno-seperator);
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.code-block-table td:first-child code[class*="language-"] {
+  color: var(--prism-lineno);
+}
+
+.code-block-table td:last-child {
+  /* https://stackoverflow.com/a/17014884/157235 */
+  width: 100%;
 }

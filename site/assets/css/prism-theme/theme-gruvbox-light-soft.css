@@ -18,6 +18,8 @@
 
   --prism-decorator: #d65d0e;
   --prism-variable: #504945;
+  --prism-inline-background: #fbf1c7;
+
   --prism-regex: #427b58;
   --prism-tag: #9d0006;
   --prism-inserted: #79740e;
