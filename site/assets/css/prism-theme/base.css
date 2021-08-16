@@ -92,7 +92,6 @@ pre[class*='language-'] {
   font-size: var(--prism-block-font-size);
   padding: var(--prism-block-padding-y) var(--prism-block-padding-x);
   margin: 0;
-  overflow: auto;
   background: var(--prism-background);
 }
 
@@ -303,3 +302,27 @@ code[class*='language-'] ::-moz-selection {
   color: var(--prism-lineno);
 }
 
+/*************************
+ * tex 公式也着相同的颜色
+ *************************/
+
+mjx-container[jax="SVG"] svg {
+  color: var(--prism-foreground);
+  cursor: pointer;
+}
+
+/* Tex block */
+mjx-container[jax="SVG"][display="true"] {
+  overflow-x: auto;
+  padding: var(--prism-block-padding-y) var(--prism-block-padding-x);
+  border-radius: var(--prism-block-radius);
+  box-shadow: var(--prism-block-shadow);
+  background: var(--prism-background);
+}
+
+/* Inline tex */
+mjx-container[jax="SVG"]:not([display="true"]) svg {
+  padding: var(--prism-inline-padding-y) var(--prism-inline-padding-x);
+  border-radius: var(--prism-inline-radius);
+  background: var(--prism-inline-background);
+}
