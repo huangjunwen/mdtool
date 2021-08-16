@@ -1,9 +1,10 @@
 const juice = require('juice/client')
+const declassify = require('declassify')
 
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log('doc loaded')
   document.getElementById('copy-wechat').addEventListener('click', e => {
-    let text = juice(document.getElementById('markdown-main').innerHTML)
+    let text = declassify.process(juice(document.getElementById('markdown-main').innerHTML))
 
     const type = 'text/plain'
     const blob = new Blob([text], { type })
