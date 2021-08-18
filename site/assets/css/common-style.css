@@ -13,7 +13,7 @@
   --inline-radius:          0.3em;
 
   /* Block Style */
-  --block-padding:          0.1em 0.6em;
+  --block-padding:          1.5em 1.2em;
   --block-margin:           1em auto;
   --block-radius:           0.5em;
   --block-shadow:           -2px 0px 10px 0px rgba(0, 0, 0, 0.55);
@@ -22,7 +22,7 @@
   --code-font-size:         1em;
   --code-inline-font-size:  var(--code-font-size);
   --code-block-font-size:   var(--code-font-size);
-  --code-font-family:       monospace;
+  --code-font-family:       "Operator Mono", Consolas, Monaco, Menlo, monospace;
   --code-line-height:       1.5em;
 
   --code-tab-size: 2;
@@ -175,6 +175,7 @@
 .markdown-body .code-block-table pre {
   font-size: var(--code-block-font-size);
   padding: var(--code-block-padding);
+  margin: 0;
 }
 
 /* Tokens */
