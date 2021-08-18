@@ -82,7 +82,7 @@
   --code-url-decoration:    underline;
 
   /* Tex Style */
-  --tex-bg:                 var(--color-bg);
+  --tex-fg:                 var(--color-fg);
   --tex-inline-bg:          var(--inline-bg);
   --tex-block-bg:           var(--block-bg);
 
@@ -266,6 +266,7 @@
 .markdown-body mjx-container[jax="SVG"]:not([display="true"]) > svg {
   height: var(--tex-inline-height);
   padding: var(--tex-inline-padding);
+  color: var(--tex-fg);
   background-color: var(--tex-inline-bg);
   border-radius: var(--tex-inline-radius);
 }
@@ -276,6 +277,7 @@
   overflow-x: auto;
   margin: var(--tex-block-margin);
   padding: var(--tex-block-padding);
+  color: var(--tex-fg);
   background-color: var(--tex-block-bg);
   border-radius: var(--tex-block-radius);
   box-shadow: var(--tex-block-shadow);
