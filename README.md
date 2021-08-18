@@ -55,4 +55,6 @@
 - https://github.com/PrismJS/prism-themes
 - https://github.com/imageslr/mweb-themes
 - https://github.com/mdnice/markdown-nice
+- https://github.com/highlightjs/highlight.js
+- https://github.com/antfu/prism-theme-vars
 
