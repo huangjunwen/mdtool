@@ -1,8 +1,0 @@
-{{/* config 中可以添加 params.prismTheme, 指向 assets/css/prism-theme 目录下的 css 名字 */}}
-{{ $base := resources.Get "css/prism-theme/base.css" }}
-{{ $themeName := index .Site.Params "prismTheme" | default "gruvbox-light-soft" }}
-{{ $theme := resources.Get (printf "css/prism-theme/theme-%s.css" $themeName) }}
-{{ $css := slice $base $theme | resources.Concat "css/prism-theme.css" | resources.PostCSS (dict "use" "postcss-css-variables") }}
-<style data-theme="{{ $themeName }}">
-{{ $css.Content | safeCSS }}
-</style>

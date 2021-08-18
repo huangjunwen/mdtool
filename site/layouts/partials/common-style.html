@@ -1,0 +1,8 @@
+{{- /* config 中可以添加 params.colorScheme, 指向 assets/css/color-scheme 目录下的 css 名字 */ -}}
+{{- $base := resources.Get "css/common-style.css" -}}
+{{- $colorSchemeName := index .Site.Params "colorScheme" | default "gruvbox-light-soft" -}}
+{{- $colorScheme := resources.Get (printf "css/color-scheme/%s.css" $colorSchemeName) -}}
+{{- $css := slice $base $colorScheme | resources.Concat "css/common-style.css" | resources.PostCSS (dict "use" "postcss-css-variables") -}}
+<style>
+{{ $css.Content | safeCSS }}
+</style>

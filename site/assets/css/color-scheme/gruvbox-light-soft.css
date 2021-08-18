@@ -1,0 +1,56 @@
+:root {
+  /* From: https://github.com/highlightjs/highlight.js/blob/main/src/styles/base16/gruvbox-light-soft.css */
+  /*!
+  Theme: Gruvbox light, soft
+  Author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
+  License: ~ MIT (or more permissive) [via base16-schemes-source]
+  Maintainer: @highlightjs/core-team
+  Version: 2021.05.0
+  */
+  --color-base00:           #f2e5bc;  /* Default Background */
+  --color-base01:           #ebdbb2;  /* Lighter Background (Used for status bars, line number and folding marks) */
+  --color-base02:           #d5c4a1;  /* Selection Background */
+  --color-base03:           #bdae93;  /* Comments, Invisibles, Line Highlighting */
+  --color-base04:           #665c54;  /* Dark Foreground (Used for status bars) */
+  --color-base05:           #504945;  /* Default Foreground, Caret, Delimiters, Operators */
+  --color-base06:           #3c3836;  /* Light Foreground (Not often used) */
+  --color-base07:           #282828;  /* Light Background (Not often used) */
+  --color-base08:           #9d0006;  /* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
+  --color-base09:           #af3a03;  /* Integers, Boolean, Constants, XML Attributes, Markup Link Url */
+  --color-base0A:           #b57614;  /* Classes, Markup Bold, Search Text Background */
+  --color-base0B:           #79740e;  /* Strings, Inherited Class, Markup Code, Diff Inserted */
+  --color-base0C:           #427b58;  /* Support, Regular Expressions, Escape Characters, Markup Quotes */
+  --color-base0D:           #076678;  /* Functions, Methods, Attribute IDs, Headings */
+  --color-base0E:           #8f3f71;  /* Keywords, Storage, Selector, Markup Italic, Diff Changed */
+  --color-base0F:           #d65d0e;  /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
+
+  --color-fg:               var(--color-base05);
+  --color-bg:               var(--color-base00);
+  --color-selection-bg:     var(--color-base02);
+
+  --code-lineno-bg:         var(--color-base01);
+
+  --code-tok-comment:       var(--color-base03);
+  --code-tok-keyword:       var(--color-base0E);
+  --code-tok-builtin:       var(--color-base0A);
+  --code-tok-function:      var(--color-base0D);
+  --code-tok-class-name:    var(--color-base0A);
+  --code-tok-string:        var(--color-base0B);
+  --code-tok-variable:      var(--color-base08);
+  --code-tok-constant:      var(--color-base09);
+  --code-tok-property:      var(--color-base09);
+  --code-tok-namespace:     var(--color-base0A);
+
+  --code-tok-annotation:    var(--color-base0F);
+  --code-tok-regex:         var(--color-base0C);
+  --code-tok-boolean:       var(--code-tok-keyword);
+
+  --code-tok-doctype:       var(--color-base0F);
+  --code-tok-tag:           var(--color-base08);
+  --code-tok-attr-name:     var(--color-base09);
+
+  --code-tok-shebang:       var(--color-base0F);
+
+  --code-tok-deleted:       var(--color-base08);
+  --code-tok-inserted:      var(--color-base0B);
+}

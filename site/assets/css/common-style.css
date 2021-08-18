@@ -4,38 +4,80 @@
 
 :root {
   /* Color */
-  --color-fg: #6e6e6e;
-  --color-bg: #f4f4f4;
+  --color-fg:               #6e6e6e;
+  --color-bg:               #f4f4f4;
+  --color-selection-bg:     #aaaaaa;
 
   /* Inline Style */
-  --inline-padding: 0.1em 0.3em;
-  --inline-radius: 0.3em;
+  --inline-padding:         0.1em 0.3em;
+  --inline-radius:          0.3em;
 
   /* Block Style */
-  --block-padding: 0.1em 0.6em;
-  --block-margin: 1em auto;
-  --block-radius: 0.5em;
-  --block-shadow: -2px 0px 10px 0px rgba(0, 0, 0, 0.55);
+  --block-padding:          0.1em 0.6em;
+  --block-margin:           1em auto;
+  --block-radius:           0.5em;
+  --block-shadow:           -2px 0px 10px 0px rgba(0, 0, 0, 0.55);
 
   /* Code Style */
-  --code-fg: var(--color-fg);
-  --code-bg: var(--color-bg);
-  --code-inline-bg: var(--code-bg);
-  --code-block-bg: var(--code-bg);
-
-  --code-font-size: 1em;
-  --code-inline-font-size: var(--code-font-size);
-  --code-block-font-size: var(--code-font-size);
-  --code-font-family: monospace;
-  --code-line-height: 1.5em;
+  --code-font-size:         1em;
+  --code-inline-font-size:  var(--code-font-size);
+  --code-block-font-size:   var(--code-font-size);
+  --code-font-family:       monospace;
+  --code-line-height:       1.5em;
 
   --code-tab-size: 2;
-  --code-inline-padding: var(--inline-padding);
-  --code-inline-radius: var(--inline-radius);
-  --code-block-padding: var(--block-padding);
-  --code-block-margin: var(--block-margin);
-  --code-block-radius: var(--block-radius);
-  --code-block-shadow: var(--block-shadow);
+  --code-inline-padding:    var(--inline-padding);
+  --code-inline-radius:     var(--inline-radius);
+  --code-block-padding:     var(--block-padding);
+  --code-block-margin:      var(--block-margin);
+  --code-block-radius:      var(--block-radius);
+  --code-block-shadow:      var(--block-shadow);
+
+  --code-fg:                var(--color-fg);
+  --code-bg:                var(--color-bg);
+  --code-inline-bg:         var(--code-bg);
+  --code-block-bg:          var(--code-bg);
+  --code-selection-bg:      var(--color-selection-bg);
+  --code-lineno-bg:         var(--code-bg);
+
+  --code-tok-comment:       var(--color-fg); /* general token */
+  --code-tok-operator:      var(--color-fg);
+  --code-tok-keyword:       var(--color-fg);
+  --code-tok-builtin:       var(--color-fg);
+  --code-tok-function:      var(--color-fg);
+  --code-tok-class-name:    var(--color-fg);
+  --code-tok-string:        var(--color-fg);
+  --code-tok-variable:      var(--color-fg);
+  --code-tok-constant:      var(--color-fg);
+  --code-tok-property:      var(--color-fg);
+  --code-tok-namespace:     var(--color-fg);
+
+  --code-tok-annotation:    var(--code-tok-function); /* general token derived */
+  --code-tok-punctuation:   var(--code-tok-operator);
+  --code-tok-regex:         var(--code-tok-string);
+  --code-tok-number:        var(--code-tok-constant);
+  --code-tok-boolean:       var(--code-tok-constant);
+  --code-tok-interpolation: var(--code-tok-constant);
+  --code-tok-symbol:        var(--code-tok-constant);
+  --code-tok-url:           var(--code-tok-constant);
+
+  --code-tok-doctype:       var(--code-tok-comment); /* mainly used by xml/html */
+  --code-tok-cdata:         var(--code-tok-comment);
+  --code-tok-tag:           var(--code-tok-builtin);
+  --code-tok-attr-name:     var(--code-tok-property);
+  --code-tok-attr-value:    var(--code-tok-string);
+
+  --code-tok-shebang:       var(--code-fg); /* mainly used by shell */
+
+  --code-tok-selector:      var(--code-tok-keyword); /* mainly used by css */
+  --code-tok-atrule:        var(--code-tok-keyword);
+
+  --code-tok-coord:         var(--code-tok-class-name); /* mainly used by diff */
+  --code-tok-deleted:       var(--code-fg);
+  --code-tok-inserted:      var(--code-fg);
+
+  --code-comment-style:     italic;
+  --code-url-decoration:    underline;
 }
 
 /********
@@ -65,6 +107,13 @@
   color: var(--code-fg);
 }
 
+.markdown-body code[class*='language-']::selection,
+.markdown-body code[class*='language-'] *::selection,
+.markdown-body code[class*='language-']::-moz-selection,
+.markdown-body code[class*='language-'] *::-moz-selection {
+  background: var(--code-selection-bg);
+}
+
 /* Inline */
 
 .markdown-body :not(pre) > code[class*='language-'] {
@@ -89,7 +138,6 @@
   */
 
   margin: var(--code-block-margin);
-  font-size: var(--code-block-font-size);
   border-radius: var(--code-block-radius);
   background: var(--code-block-bg);
   box-shadow: var(--code-block-shadow);
@@ -98,10 +146,6 @@
 .markdown-body .code-block-table tbody {
   display: table;
   width: 100%;
-}
-
-.markdown-body .code-block-table pre {
-  padding: var(--code-block-padding);
 }
 
 .code-block-table td {
@@ -120,6 +164,7 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  background-color: var(--code-lineno-bg);
 }
 
 .markdown-body .code-block-table td:last-child {
@@ -127,6 +172,71 @@
   width: 100%;
 }
 
-.markdown-body .code-block-table td:first-child pre {
-  border-right: 1px solid var(--code-fg);
+.markdown-body .code-block-table pre {
+  font-size: var(--code-block-font-size);
+  padding: var(--code-block-padding);
+}
+
+/* Tokens */
+.markdown-body .token.comment {
+  color: var(--code-tok-comment);
+  font-style: var(--code-tok-comment-style);
+}
+
+.markdown-body .token.operator { color: var(--code-tok-operator); }
+.markdown-body .token.keyword { color: var(--code-tok-keyword); }
+.markdown-body .token.builtin { color: var(--code-tok-builtin); }
+.markdown-body .token.function { color: var(--code-tok-function); }
+.markdown-body .token.class-name { color: var(--code-tok-class-name); }
+.markdown-body .token.string { color: var(--code-tok-string); }
+.markdown-body .token.variable { color: var(--code-tok-variable); }
+.markdown-body .token.constant { color: var(--code-tok-constant); }
+.markdown-body .token.property { color: var(--code-tok-property); }
+.markdown-body .token.namespace { color: var(--code-tok-namespace); }
+
+.markdown-body .token.annotation,
+.markdown-body .language-python .token.decorator { color: var(--code-tok-annotation); }
+.markdown-body .token.punctuation { color: var(--code-tok-punctuation); }
+.markdown-body .token.regex { color: var(--code-tok-regex); }
+.markdown-body .token.number { color: var(--code-tok-number); }
+.markdown-body .token.boolean { color: var(--code-tok-boolean); }
+.markdown-body .token.interpolation { color: var(--code-tok-interpolation); }
+.markdown-body .token.symbol { color: var(--code-tok-symbol); }
+.markdown-body .token.url { color: var(--code-tok-url); }
+
+.markdown-body .token.doctype { color: var(--code-tok-doctype); }
+.markdown-body .token.cdata { color: var(--code-tok-cdata); }
+.markdown-body .token.tag { color: var(--code-tok-tag); }
+.markdown-body .token.attr-name { color: var(--code-tok-attr-name); }
+.markdown-body .token.attr-value { color: var(--code-tok-attr-value); }
+
+.markdown-body .token.shebang { color: var(--code-tok-shebang); }
+
+.markdown-body .token.selector { color: var(--code-tok-selector); }
+.markdown-body .token.atrule { color: var(--code-tok-atrule); }
+
+.markdown-body .token.coord { color: var(--code-tok-coord); }
+.markdown-body .token.deleted { color: var(--code-tok-deleted); }
+.markdown-body .token.inserted { color: var(--code-tok-inserted); }
+
+.markdown-body .token.comment {
+  font-style: var(--code-comment-style);
+}
+
+.markdown-body .token.url {
+  text-decoration: var(--code-url-decoration);
+}
+
+.markdown-body .token.important,
+.markdown-body .token.bold {
+  font-weight: bold;
+}
+
+.markdown-body .token.italic {
+  font-style: italic;
+}
+
+.markdown-body .token.operator,
+.markdown-body .token.punctuation {
+  opacity: 0.7;
 }
