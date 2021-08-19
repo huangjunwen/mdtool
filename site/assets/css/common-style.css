@@ -95,9 +95,32 @@
   --tex-block-shadow:       var(--block-shadow);
 }
 
+/****************
+ * Table Common *
+ ****************/
+
+/* https://stackoverflow.com/a/62451601
+ * https://stackoverflow.com/a/30423904 */
+.markdown-body table {
+  display: block;
+  overflow-x: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  /*
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  */
+}
+
+.markdown-body table > tbody {
+  display: table;
+  width: 100%;
+}
+
 /********
  * Code *
- *******/
+ ********/
 
 /* Common */
 
@@ -140,31 +163,14 @@
 
 /* Block */
 
-/* https://stackoverflow.com/a/62451601
- * https://stackoverflow.com/a/30423904 */
 .markdown-body .code-block-table {
-  display: block;
-  overflow-x: auto;
-  border-spacing: 0;
-  /*
-  max-width: -webkit-fit-content;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
-  */
-
   margin: var(--code-block-margin);
   background: var(--code-block-bg);
   border-radius: var(--code-block-radius);
   box-shadow: var(--code-block-shadow);
 }
 
-.markdown-body .code-block-table tbody {
-  display: table;
-  width: 100%;
-}
-
 .code-block-table td {
-  border: none;
   padding: 0;
 }
 
@@ -194,6 +200,7 @@
 }
 
 /* Tokens */
+
 .markdown-body .token.comment {
   color: var(--code-tok-comment);
   font-style: var(--code-tok-comment-style);
@@ -259,7 +266,7 @@
 
 /*******
  * Tex *
- ******/
+ *******/
 
 /* Inline */
 
