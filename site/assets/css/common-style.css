@@ -104,18 +104,11 @@
 .markdown-body table {
   display: block;
   overflow-x: auto;
-  border-collapse: collapse;
-  border-spacing: 0;
   /*
   max-width: -webkit-fit-content;
   max-width: -moz-fit-content;
   max-width: fit-content;
   */
-}
-
-.markdown-body table > tbody {
-  display: table;
-  width: 100%;
 }
 
 /********
@@ -166,6 +159,8 @@
 .markdown-body .code-block-table {
   margin: var(--code-block-margin);
   background: var(--code-block-bg);
+  border-collapse: collapse;
+  border-spacing: 0;
   border-radius: var(--code-block-radius);
   box-shadow: var(--code-block-shadow);
 }
