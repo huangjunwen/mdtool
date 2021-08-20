@@ -48,8 +48,6 @@ var argv = yargs
 
 async function main () {
 
-  let input = await getStream(process.stdin)
-
   const { tex2svg, tex2svgCSS } = await tex2svgInit({
     packages: argv.packages,
     fontCache: argv.fontCache
@@ -59,6 +57,9 @@ async function main () {
     console.log(tex2svgCSS)
     return
   }
+
+  let input = await getStream(process.stdin)
+
   console.log(await tex2svg(input, {
     inline: argv.inline,
     em: argv.em,
