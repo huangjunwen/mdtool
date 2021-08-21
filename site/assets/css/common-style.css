@@ -10,12 +10,12 @@
 
   /* Inline Style */
   --inline-padding-x:       0.3em;
-  --inline-padding-y:       0.1em;
+  --inline-padding-y:       0.2em;
   --inline-radius:          0.3em;
 
   /* Block Style */
-  --block-padding-x:        1.3em;
-  --block-padding-y:        1.3em;
+  --block-padding-x:        1.8em;
+  --block-padding-y:        1.8em;
   --block-margin-x:         auto;
   --block-margin-y:         1em;
   --block-radius:           0.5em;
@@ -152,6 +152,7 @@
   overflow-x: auto;
   color: var(--code-block-fg);
   background-color: var(--code-block-bg);
+  font-size: var(--code-block-font-size);
   margin: var(--code-block-margin-y) var(--code-block-margin-x);
   padding: 0;
   border-radius: var(--code-block-radius);
@@ -159,11 +160,15 @@
 }
 
 .markdown-body .code-container table {
-  font-size: var(--code-block-font-size);
+  border: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
   border-collapse: collapse;
 }
 
 .markdown-body .code-container td {
+  border: 0;
   margin: 0;
   padding: 0;
 }
