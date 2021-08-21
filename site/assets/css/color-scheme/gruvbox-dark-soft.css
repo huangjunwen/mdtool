@@ -26,8 +26,9 @@
 
   --color-fg:               var(--color-base05);
   --color-bg:               var(--color-base00);
-  --color-default-fg:       var(--color-base00);
+  --color-body-fg:          var(--color-base00);
   --color-selection-bg:     var(--color-base02);
+  --color-url:              var(--color-base09);
 
   --table-fg:               var(--color-base05);
   --table-bg:               var(--color-base00);

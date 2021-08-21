@@ -3,11 +3,13 @@
  */
 
 :root {
-  /* Color */
+  /* Common */
   --color-fg:               #6e6e6e;
   --color-bg:               #f4f4f4;
-  --color-default-fg:       #6e6e6e;
+  --color-body-fg:          #6e6e6e;
+  --color-body-bg:          unset;
   --color-selection-bg:     #aaaaaa;
+  --color-url:              var(--color-fg);
 
   /* Inline Style */
   --inline-padding-x:       0.3em;
@@ -124,12 +126,17 @@
  **********/
 
 .markdown-body {
-  color: var(--color-default-fg);
+  color: var(--color-body-fg);
+  background-color: var(--color-body-bg);
 }
 
 .markdown-body::selection,
 .markdown-body *::selection {
-  background: var(--code-selection-bg);
+  background-color: var(--code-selection-bg);
+}
+
+.markdown-body a {
+  color: var(--color-url);
 }
 
 /*********
