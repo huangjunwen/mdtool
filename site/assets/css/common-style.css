@@ -21,6 +21,24 @@
   --block-radius:           0.5em;
   --block-shadow:           -2px 0px 10px 0px rgba(0, 0, 0, 0.55);
 
+  /* Table Style */
+  --table-fg:               var(--color-fg);
+  --table-bg:               var(--color-bg);
+  --table-head-bg:          var(--table-bg);
+  --table-max-width:        fit-content;
+  --table-white-space:      nowrap;
+  --table-margin-x:         var(--block-margin-x);
+  --table-margin-y:         var(--block-margin-y);
+  --table-cell-padding-x:   0.5em;
+  --table-cell-padding-y:   0.3em;
+  --table-border-collapse:  collapse;
+  --table-border-spacing:   0.5px;
+  --table-border-width:     1.5px;
+  --table-border-style:     solid;
+  --table-border-color:     var(--color-fg);
+  --table-radius:           var(--block-radius);
+  --table-shadow:           var(--block-shadow);
+
   /* Code Style */
   --code-font-family:       "Operator Mono", Consolas, Monaco, Menlo, monospace;
   --code-line-height:       1.5em;
@@ -104,13 +122,43 @@
  * Common *
  **********/
 
-.markdown-body {
-  color: var(--color-fg);
-}
-
 .markdown-body::selection,
 .markdown-body *::selection {
   background: var(--code-selection-bg);
+}
+
+/*********
+ * Table *
+ *********/
+
+.markdown-body .table-container {
+  display: block;
+  overflow-x: auto;
+  max-width: var(--table-max-width);
+  white-space: var(--table-white-space);
+  color: var(--table-fg);
+  background-color: var(--table-bg);
+  margin: var(--table-margin-y) var(--table-margin-x);
+  border-radius: var(--table-radius);
+  box-shadow: var(--table-shadow);
+}
+
+.markdown-body .table-container table {
+  margin: 0 auto;
+  border-collapse: var(--table-border-collapse);
+  border: 0;
+}
+
+.markdown-body .table-container thead th {
+  background-color: var(--table-head-bg);
+}
+
+.markdown-body .table-container th,
+.markdown-body .table-container td {
+  border-width: var(--table-border-width);
+  border-style: var(--table-border-style);
+  border-color: var(--table-border-color);
+  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
 }
 
 /********

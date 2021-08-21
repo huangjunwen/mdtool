@@ -28,8 +28,12 @@
   --color-bg:               var(--color-base00);
   --color-selection-bg:     var(--color-base02);
 
-  --code-block-ln-bg:       var(--color-base01);
+  --table-fg:               var(--color-base05);
+  --table-bg:               var(--color-base00);
+  --table-head-bg:          var(--color-base01);
+  --table-border-color:     var(--color-base01);
 
+  --code-block-ln-bg:       var(--color-base01);
   --code-tok-comment:       var(--color-base03);
   --code-tok-keyword:       var(--color-base0E);
   --code-tok-builtin:       var(--color-base0A);
