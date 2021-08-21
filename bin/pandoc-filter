@@ -21,6 +21,8 @@ var argv = yargs
   })
   .argv
 
+const nospawn = process.env['PD_FILTER_NO_SPAWN']
+
 async function runAsClient () {
 
   const client = net.createConnection({ path: sockPath, allowHalfOpen: true }, () => {
@@ -32,15 +34,18 @@ async function runAsClient () {
     if (e.code !== 'ECONNREFUSED' && e.code !== 'ENOENT') {
       throw e
     }
-    // ECONNREFUSED 表示没有服务端, 所以启动一个 server, 但这一次的就自己处理好了
-    child_process.spawn('pandoc-filter', ['--server'], {
-      stdio: 'ignore',
-      detached: true
-    }).unref()
 
+    // ECONNREFUSED/ENOENT 表示没有服务端, 除非 nospawn 否则启动一个 server
+    if (!nospawn) {
+      child_process.spawn('pandoc-filter', ['--server'], {
+        stdio: 'ignore',
+        detached: true
+      }).unref()
+    }
+
+    // 这一次的自己处理
     const pandocFilter = await pandocFilterInit()
     process.stdout.end(await pandocFilter(await getStream(process.stdin)))
-
   })
 
 }
