@@ -100,6 +100,19 @@
   --math-block-shadow:      var(--block-shadow);
 }
 
+/**********
+ * Common *
+ **********/
+
+.markdown-body {
+  color: var(--color-fg);
+}
+
+.markdown-body::selection,
+.markdown-body *::selection {
+  background: var(--code-selection-bg);
+}
+
 /********
  * Code *
  ********/
@@ -123,13 +136,6 @@
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-}
-
-.markdown-body code[class*='language-']::selection,
-.markdown-body code[class*='language-'] *::selection,
-.markdown-body code[class*='language-']::-moz-selection,
-.markdown-body code[class*='language-'] *::-moz-selection {
-  background: var(--code-selection-bg);
 }
 
 /* Inline */
