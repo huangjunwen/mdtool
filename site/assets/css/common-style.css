@@ -9,37 +9,42 @@
   --color-selection-bg:     #aaaaaa;
 
   /* Inline Style */
-  --inline-bg:              var(--color-bg);
-  --inline-padding:         0.1em 0.3em;
+  --inline-padding-x:       0.3em;
+  --inline-padding-y:       0.1em;
   --inline-radius:          0.3em;
 
   /* Block Style */
-  --block-bg:               var(--color-bg);
-  --block-padding:          1.5em 1.2em;
-  --block-margin:           1em auto;
+  --block-padding-x:        1.3em;
+  --block-padding-y:        1.3em;
+  --block-margin-x:         auto;
+  --block-margin-y:         1em;
   --block-radius:           0.5em;
   --block-shadow:           -2px 0px 10px 0px rgba(0, 0, 0, 0.55);
 
   /* Code Style */
-  --code-inline-font-size:  0.85em;
-  --code-block-font-size:   0.65em;
   --code-font-family:       "Operator Mono", Consolas, Monaco, Menlo, monospace;
   --code-line-height:       1.5em;
+  --code-tab-size:          2;
+  --code-selection-bg:      var(--color-selection-bg);
 
-  --code-tab-size: 2;
-  --code-inline-padding:    var(--inline-padding);
+  --code-inline-fg:         var(--color-fg);
+  --code-inline-bg:         var(--color-bg);
+  --code-inline-font-size:  0.85em;
+  --code-inline-padding-x:  var(--inline-padding-x);
+  --code-inline-padding-y:  var(--inline-padding-y);
   --code-inline-radius:     var(--inline-radius);
-  --code-block-padding:     var(--block-padding);
-  --code-block-margin:      var(--block-margin);
+
+  --code-block-fg:          var(--color-fg);
+  --code-block-bg:          var(--color-bg);
+  --code-block-font-size:   0.65em;
+  --code-block-padding-x:   var(--block-padding-x);
+  --code-block-padding-y:   var(--block-padding-y);
+  --code-block-margin-x:    var(--block-margin-x);
+  --code-block-margin-y:    var(--block-margin-y);
   --code-block-radius:      var(--block-radius);
   --code-block-shadow:      var(--block-shadow);
-
-  --code-fg:                var(--color-fg);
-  --code-bg:                var(--color-bg);
-  --code-inline-bg:         var(--inline-bg);
-  --code-block-bg:          var(--block-bg);
-  --code-selection-bg:      var(--color-selection-bg);
-  --code-lineno-bg:         var(--code-bg);
+  --code-block-ln-bg:       var(--color-bg);
+  --code-block-ln-padding:  0.6em;
 
   --code-tok-comment:       var(--color-fg); /* general token */
   --code-tok-operator:      var(--color-fg);
@@ -80,34 +85,19 @@
   --code-comment-style:     italic;
   --code-url-decoration:    underline;
 
-  /* Tex Style */
-  --tex-fg:                 var(--color-fg);
-  --tex-inline-bg:          var(--inline-bg);
-  --tex-block-bg:           var(--block-bg);
+  /* Math Style */
+  --math-inline-fg:         var(--color-fg);
+  --math-inline-bg:         var(--color-bg);
+  --math-inline-height:     1.5em;
+  --math-inline-padding:    var(--inline-padding-y) var(--inline-padding-x);
+  --math-inline-radius:     var(--inline-radius);
 
-  --tex-inline-padding:     var(--inline-padding);
-  --tex-inline-radius:      var(--inline-radius);
-  --tex-inline-height:      1.5em;
-  --tex-block-padding:      var(--block-padding);
-  --tex-block-margin:       var(--block-margin);
-  --tex-block-radius:       var(--block-radius);
-  --tex-block-shadow:       var(--block-shadow);
-}
-
-/****************
- * Table Common *
- ****************/
-
-/* https://stackoverflow.com/a/62451601
- * https://stackoverflow.com/a/30423904 */
-.markdown-body table {
-  display: block;
-  overflow-x: auto;
-  /*
-  max-width: -webkit-fit-content;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
-  */
+  --math-block-fg:          var(--color-fg);
+  --math-block-bg:          var(--color-bg);
+  --math-block-margin:      var(--block-margin-y) var(--block-margin-x);
+  --math-block-padding:     var(--block-padding-y) var(--block-padding-x);
+  --math-block-radius:      var(--block-radius);
+  --math-block-shadow:      var(--block-shadow);
 }
 
 /********
@@ -133,7 +123,6 @@
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  color: var(--code-fg);
 }
 
 .markdown-body code[class*='language-']::selection,
@@ -146,36 +135,40 @@
 /* Inline */
 
 .markdown-body :not(pre) > code[class*='language-'] {
-  padding: var(--code-inline-padding);
-  font-size: var(--code-inline-font-size);
-  border-radius: var(--code-inline-radius);
+  color: var(--code-inline-fg);
   background: var(--code-inline-bg);
+  font-size: var(--code-inline-font-size);
+  padding: var(--code-inline-padding-y) var(--code-inline-padding-x);
+  border-radius: var(--code-inline-radius);
 }
 
 /* Block */
 
-.markdown-body .code-block-table {
-  margin: var(--code-block-margin);
-  background: var(--code-block-bg);
-  border-width: 0;
-  border-collapse: collapse;
-  border-spacing: 0;
+.markdown-body .code-container {
+  /*
+  max-width: fit-content;
+  */
+  display: block;
+  overflow-x: auto;
+  color: var(--code-block-fg);
+  background-color: var(--code-block-bg);
+  margin: var(--code-block-margin-y) var(--code-block-margin-x);
+  padding: 0;
   border-radius: var(--code-block-radius);
   box-shadow: var(--code-block-shadow);
 }
 
-.code-block-table td {
-  border-width: 0;
+.markdown-body .code-container table {
+  font-size: var(--code-block-font-size);
+  border-collapse: collapse;
+}
+
+.markdown-body .code-container td {
+  margin: 0;
   padding: 0;
 }
 
-.markdown-body .code-block-table pre {
-  font-size: var(--code-block-font-size);
-  padding: var(--code-block-padding);
-  margin: 0;
-}
-
-.markdown-body .code-block-table td:first-child {
+.markdown-body .code-container td:first-child {
   /*
   position: -webkit-sticky;
   position: sticky;
@@ -186,12 +179,22 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  background-color: var(--code-lineno-bg);
+  background-color: var(--code-block-ln-bg);
 }
 
-.markdown-body .code-block-table td:last-child {
+.markdown-body .code-container td:last-child {
   /* https://stackoverflow.com/a/17014884 */
   width: 100%;
+}
+
+.markdown-body .code-container td:first-child pre {
+  margin: 0;
+  padding: var(--code-block-padding-y) var(--code-block-ln-padding);
+}
+
+.markdown-body .code-container td:last-child pre {
+  margin: 0;
+  padding: var(--code-block-padding-y) var(--code-block-padding-x);
 }
 
 /* Tokens */
@@ -259,28 +262,28 @@
   opacity: 0.7;
 }
 
-/*******
- * Tex *
- *******/
+/********
+ * Math *
+ ********/
 
 /* Inline */
 
 .markdown-body mjx-container[jax="SVG"]:not([display="true"]) > svg {
-  height: var(--tex-inline-height);
-  padding: var(--tex-inline-padding);
-  color: var(--tex-fg);
-  background-color: var(--tex-inline-bg);
-  border-radius: var(--tex-inline-radius);
+  color: var(--math-inline-fg);
+  background-color: var(--math-inline-bg);
+  height: var(--math-inline-height);
+  padding: var(--math-inline-padding);
+  border-radius: var(--math-inline-radius);
 }
 
 /* Block */
 
 .markdown-body mjx-container[jax="SVG"][display="true"] {
   overflow-x: auto;
-  margin: var(--tex-block-margin);
-  padding: var(--tex-block-padding);
-  color: var(--tex-fg);
-  background-color: var(--tex-block-bg);
-  border-radius: var(--tex-block-radius);
-  box-shadow: var(--tex-block-shadow);
+  color: var(--math-block-fg);
+  background-color: var(--math-block-bg);
+  margin: var(--math-block-margin);
+  padding: var(--math-block-padding);
+  border-radius: var(--math-block-radius);
+  box-shadow: var(--math-block-shadow);
 }

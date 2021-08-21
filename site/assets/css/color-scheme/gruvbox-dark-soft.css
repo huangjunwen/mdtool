@@ -28,7 +28,7 @@
   --color-bg:               var(--color-base00);
   --color-selection-bg:     var(--color-base02);
 
-  --code-lineno-bg:         var(--color-base01);
+  --code-block-ln-bg:       var(--color-base01);
 
   --code-tok-comment:       var(--color-base03);
   --code-tok-keyword:       var(--color-base0E);
