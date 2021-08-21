@@ -109,7 +109,6 @@
   /* Math Style */
   --math-inline-fg:         var(--color-fg);
   --math-inline-bg:         var(--color-bg);
-  --math-inline-height:     1.5em;
   --math-inline-padding:    var(--inline-padding-y) var(--inline-padding-x);
   --math-inline-radius:     var(--inline-radius);
 
@@ -342,7 +341,6 @@
 .markdown-body mjx-container[jax="SVG"]:not([display="true"]) > svg {
   color: var(--math-inline-fg);
   background-color: var(--math-inline-bg);
-  height: var(--math-inline-height);
   padding: var(--math-inline-padding);
   border-radius: var(--math-inline-radius);
 }
