@@ -1,3 +1,10 @@
+### 快速使用
+
+```bash
+$ docker run --rm -it -v"/path/to/hugo/content:/opt/mdtool/site/content" --network=host jayven/mdtool hugo server -D
+
+```
+
 ### markdown 工具
 
 包含:
@@ -52,6 +59,9 @@
   - juice https://github.com/Automattic/juice
   - ...
 
+### Hugo site
+
+docker 镜像中 `/opt/mdtool/site` 下是一个 hugo site, 默认使用的 theme 是 weixin
 
 ### 参考
 
