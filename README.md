@@ -1,7 +1,16 @@
 ### 快速使用
 
+写作
+
 ```bash
-$ docker run --rm -it -v"/path/to/hugo/content:/opt/mdtool/site/content" --network=host jayven/mdtool hugo server -D
+$ docker run --rm -it -v"/path/to/content:/opt/mdtool/site/content" --network=host jayven/mdtool hugo server -D
+
+```
+
+生成最终页面
+
+```bash
+$ docker run --rm -it -v"/path/to/content:/opt/mdtool/site/content" -v"/path/to/public:/opt/mdtool/site/public" jayven/mdtool hugo
 
 ```
 
