@@ -1,7 +1,7 @@
 baseURL = "http://127.0.0.1:1313"
 languageCode = "zh-cn"
 title = "MDTool"
-theme = "mobile"
+theme = "weixin"
 assetDir = "assets"
 
 [params]
