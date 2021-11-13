@@ -29,6 +29,7 @@
   --color-body-fg:          var(--color-base05);
   --color-selection-bg:     var(--color-base02);
   --color-url:              var(--color-base09);
+  --color-blockquote:       var(--color-base03);
 
   --table-fg:               var(--color-base05);
   --table-bg:               var(--color-base00);
