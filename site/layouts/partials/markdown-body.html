@@ -1,9 +1,9 @@
 {{- /* config 中可以添加 params.colorScheme, 指向 assets/css/color-scheme 目录下的 css 名字 */ -}}
-{{- $base := resources.Get "css/common-style.css" -}}
-{{- $tex2svg := resources.Get "css/tex2svg.css" -}}
+{{- $base := resources.Get "css/markdown-body-base.css" -}}
 {{- $colorSchemeName := index .Site.Params "colorScheme" | default "gruvbox-light-soft" -}}
 {{- $colorScheme := resources.Get (printf "css/color-scheme/%s.css" $colorSchemeName) -}}
-{{- $css := slice $base $tex2svg $colorScheme | resources.Concat "css/common-style.css" | resources.PostCSS (dict "use" "postcss-css-variables") -}}
+{{- $tex2svg := resources.Get "css/tex2svg.css" -}}
+{{- $css := slice $base $colorScheme $tex2svg | resources.Concat "css/markdown-body.css" | resources.PostCSS (dict "use" "postcss-css-variables") -}}
 <style>
 {{ $css.Content | safeCSS }}
 </style>
