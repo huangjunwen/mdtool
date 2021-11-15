@@ -44,6 +44,7 @@
   --color-fg:               var(--color-base05);
   --color-bg:               var(--color-base00);
   --color-body-fg:          var(--color-base05);
+  /* --color-body-bg:          var(--color-base01); */
   --color-selection-bg:     var(--color-base02);
   --color-url:              var(--color-base09);
   --color-blockquote-bar:   rgba(var(--color-base05-rgb), 0.3);
@@ -53,8 +54,6 @@
   --block-shadow-color:     rgba(var(--color-base05-rgb), 0.5);
 
   /* Table Style */
-  --table-fg:               var(--color-base05);
-  --table-bg:               var(--color-base00);
   --table-head-bg:          var(--color-base01);
   --table-border-color:     var(--color-base01);
 
