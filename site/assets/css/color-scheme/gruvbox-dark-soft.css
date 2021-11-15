@@ -7,36 +7,62 @@
   Maintainer: @highlightjs/core-team
   Version: 2021.05.0
   */
-  --color-base00:           #32302f;  /* Default Background */
-  --color-base01:           #3c3836;  /* Lighter Background (Used for status bars, line number and folding marks) */
-  --color-base02:           #504945;  /* Selection Background */
-  --color-base03:           #665c54;  /* Comments, Invisibles, Line Highlighting */
-  --color-base04:           #bdae93;  /* Dark Foreground (Used for status bars) */
-  --color-base05:           #d5c4a1;  /* Default Foreground, Caret, Delimiters, Operators */
-  --color-base06:           #ebdbb2;  /* Light Foreground (Not often used) */
-  --color-base07:           #fbf1c7;  /* Light Background (Not often used) */
-  --color-base08:           #fb4934;  /* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
-  --color-base09:           #fe8019;  /* Integers, Boolean, Constants, XML Attributes, Markup Link Url */
-  --color-base0A:           #fabd2f;  /* Classes, Markup Bold, Search Text Background */
-  --color-base0B:           #b8bb26;  /* Strings, Inherited Class, Markup Code, Diff Inserted */
-  --color-base0C:           #8ec07c;  /* Support, Regular Expressions, Escape Characters, Markup Quotes */
-  --color-base0D:           #83a598;  /* Functions, Methods, Attribute IDs, Headings */
-  --color-base0E:           #d3869b;  /* Keywords, Storage, Selector, Markup Italic, Diff Changed */
-  --color-base0F:           #d65d0e;  /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
+  --color-base00-rgb:       50, 48, 47;     /* Default Background */
+  --color-base00:           rgb(var(--color-base00-rgb)); /* #32302f */
+  --color-base01-rgb:       60, 56, 54;     /* Lighter Background (Used for status bars, line number and folding marks) */
+  --color-base01:           rgb(var(--color-base01-rgb)); /* #3c3836 */
+  --color-base02-rgb:       80, 73, 69;     /* Selection Background */
+  --color-base02:           rgb(var(--color-base02-rgb)); /* #504945 */
+  --color-base03-rgb:       102, 92, 84;    /* Comments, Invisibles, Line Highlighting */
+  --color-base03:           rgb(var(--color-base03-rgb)); /* #665c54 */
+  --color-base04-rgb:       189, 174, 147;  /* Dark Foreground (Used for status bars) */
+  --color-base04:           rgb(var(--color-base04-rgb)); /* #bdae93 */
+  --color-base05-rgb:       213, 196, 161;  /* Default Foreground, Caret, Delimiters, Operators */
+  --color-base05:           rgb(var(--color-base05-rgb)); /* #d5c4a1 */
+  --color-base06-rgb:       235, 219, 178;  /* Light Foreground (Not often used) */
+  --color-base06:           rgb(var(--color-base06-rgb)); /* #ebdbb2 */
+  --color-base07-rgb:       251, 241, 199;  /* Light Background (Not often used) */
+  --color-base07:           rgb(var(--color-base07-rgb)); /* #fbf1c7 */
+  --color-base08-rgb:       251, 73, 52;    /* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
+  --color-base08:           rgb(var(--color-base08-rgb)); /* #fb4934 */
+  --color-base09-rgb:       254, 128, 25;   /* Integers, Boolean, Constants, XML Attributes, Markup Link Url */
+  --color-base09:           rgb(var(--color-base09-rgb)); /* #fe8019 */
+  --color-base0A-rgb:       250, 189, 47;   /* Classes, Markup Bold, Search Text Background */
+  --color-base0A:           rgb(var(--color-base0A-rgb)); /* #fabd2f */
+  --color-base0B-rgb:       184, 187, 38;   /* Strings, Inherited Class, Markup Code, Diff Inserted */
+  --color-base0B:           rgb(var(--color-base0B-rgb)); /* #b8bb26 */
+  --color-base0C-rgb:       142, 192, 124;  /* Support, Regular Expressions, Escape Characters, Markup Quotes */
+  --color-base0C:           rgb(var(--color-base0C-rgb)); /* #8ec07c */
+  --color-base0D-rgb:       131, 165, 152;  /* Functions, Methods, Attribute IDs, Headings */
+  --color-base0D:           rgb(var(--color-base0D-rgb)); /* #83a598 */
+  --color-base0E-rgb:       211, 134, 155;  /* Keywords, Storage, Selector, Markup Italic, Diff Changed */
+  --color-base0E:           rgb(var(--color-base0E-rgb)); /* #d3869b */
+  --color-base0F-rgb:       214, 93, 14;    /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
+  --color-base0F:           rgb(var(--color-base0F-rgb)); /* #d65d0e */
 
+  /* Common */
   --color-fg:               var(--color-base05);
-  --color-bg:               var(--color-base00);
-  --color-body-fg:          var(--color-base00);
+  --color-bg:               var(--color-base01);
+  --color-body-fg:          var(--color-base05);
+  --color-body-bg:          var(--color-base00);
   --color-selection-bg:     var(--color-base02);
   --color-url:              var(--color-base09);
-  --color-blockquote:       var(--color-base03);
+  --color-blockquote-bar:   rgba(var(--color-base05-rgb), 0.3);
+  --color-blockquote:       rgba(var(--color-base05-rgb), 0.8);
 
+  /* Block Style */
+  --block-shadow:           unset;
+
+  /* Table Style */
   --table-fg:               var(--color-base05);
-  --table-bg:               var(--color-base00);
-  --table-head-bg:          var(--color-base01);
-  --table-border-color:     var(--color-base01);
+  --table-bg:               var(--color-base01);
+  --table-head-bg:          var(--color-base02);
+  --table-border-color:     var(--color-base02);
 
-  --code-block-ln-bg:       var(--color-base01);
+  /* Code Style */
+  --code-inline-bg:         var(--color-base01);
+  --code-block-bg:          var(--color-base01);
+  --code-block-ln-bg:       var(--color-base02);
   --code-tok-comment:       var(--color-base03);
   --code-tok-keyword:       var(--color-base0E);
   --code-tok-builtin:       var(--color-base0A);
@@ -47,17 +73,13 @@
   --code-tok-constant:      var(--color-base09);
   --code-tok-property:      var(--color-base09);
   --code-tok-namespace:     var(--color-base0A);
-
   --code-tok-annotation:    var(--color-base0F);
   --code-tok-regex:         var(--color-base0C);
   --code-tok-boolean:       var(--code-tok-keyword);
-
   --code-tok-doctype:       var(--color-base0F);
   --code-tok-tag:           var(--color-base08);
   --code-tok-attr-name:     var(--color-base09);
-
   --code-tok-shebang:       var(--color-base0F);
-
   --code-tok-deleted:       var(--color-base08);
   --code-tok-inserted:      var(--color-base0B);
 }

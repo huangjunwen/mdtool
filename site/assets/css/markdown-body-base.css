@@ -11,6 +11,7 @@
   --color-body-bg:          unset;
   --color-selection-bg:     #aaaaaa;
   --color-url:              var(--color-fg);
+  --color-blockquote-bar:   var(--color-fg);
   --color-blockquote:       var(--color-fg);
 
   /* Inline Style */
@@ -24,7 +25,8 @@
   --block-margin-x:         auto;
   --block-margin-y:         1em;
   --block-radius:           0.5em;
-  --block-shadow:           -2px 0px 10px 0px rgba(0, 0, 0, 0.55);
+  --block-shadow-color:     rgba(0, 0, 0, 0.55);
+  --block-shadow:           -2px 0px 10px 0px var(--block-shadow-color);
 
   /* Table Style */
   --table-fg:               var(--color-fg);
@@ -212,7 +214,7 @@
 .markdown-body blockquote {
   margin: 0;
   padding: 0 1em;
-  border-left: 3px solid var(--color-blockquote);
+  border-left: 3px solid var(--color-blockquote-bar);
   color: var(--color-blockquote);
 }
 
