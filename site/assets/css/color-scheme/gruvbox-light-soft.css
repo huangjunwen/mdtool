@@ -44,7 +44,7 @@
   --color-fg:               var(--color-base05);
   --color-bg:               var(--color-base00);
   --color-body-fg:          var(--color-base05);
-  /* --color-body-bg:          var(--color-base01); */
+  --color-body-bg:          rgba(var(--color-base01-rgb), 0.3);
   --color-selection-bg:     var(--color-base02);
   --color-url:              var(--color-base09);
   --color-blockquote-bar:   rgba(var(--color-base05-rgb), 0.3);

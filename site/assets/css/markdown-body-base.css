@@ -5,11 +5,11 @@
 
 :root {
   /* Common */
-  --color-fg:               #6e6e6e;
-  --color-bg:               #f4f4f4;
-  --color-body-fg:          #6e6e6e;
-  --color-body-bg:          unset;
-  --color-selection-bg:     #aaaaaa;
+  --color-fg:               #6e6e6e;           /* 主前景色 */
+  --color-bg:               #f4f4f4;           /* 主背景色 */
+  --color-body-fg:          var(--color-fg);   /* body 的前景色 */
+  --color-body-bg:          var(--color-bg);   /* body 的背景色 */
+  --color-selection-bg:     #aaaaaa;           /* 选择背景色 */
   --color-url:              var(--color-fg);
   --color-blockquote-bar:   var(--color-fg);
   --color-blockquote:       var(--color-fg);
@@ -32,6 +32,7 @@
   --table-fg:               var(--color-fg);
   --table-bg:               var(--color-bg);
   --table-head-bg:          var(--table-bg);
+  --table-border-color:     var(--table-head-bg);
   --table-max-width:        fit-content;
   --table-white-space:      nowrap;
   --table-margin-x:         var(--block-margin-x);
@@ -39,11 +40,9 @@
   --table-cell-padding-x:   0.5em;
   --table-cell-padding-y:   0.3em;
   --table-border-collapse:  collapse;
-  --table-border-spacing:   0.5px;
-  --table-border-width:     1.5px;
+  --table-border-spacing:   0;
+  --table-border-width:     1;
   --table-border-style:     solid;
-  --table-border-color:     var(--color-fg);
-  --table-radius:           var(--block-radius);
   --table-shadow:           var(--block-shadow);
 
   /* Code Style */
@@ -61,14 +60,13 @@
 
   --code-block-fg:          var(--color-fg);
   --code-block-bg:          var(--color-bg);
+  --code-block-ln-bg:       var(--color-bg);
   --code-block-font-size:   0.65em;
   --code-block-padding-x:   var(--block-padding-x);
   --code-block-padding-y:   var(--block-padding-y);
   --code-block-margin-x:    var(--block-margin-x);
   --code-block-margin-y:    var(--block-margin-y);
-  --code-block-radius:      var(--block-radius);
   --code-block-shadow:      var(--block-shadow);
-  --code-block-ln-bg:       var(--color-bg);
   --code-block-ln-padding:  0.6em;
 
   --code-tok-comment:       var(--color-fg); /* general token */
@@ -120,7 +118,6 @@
   --math-block-bg:          var(--color-bg);
   --math-block-margin:      var(--block-margin-y) var(--block-margin-x);
   --math-block-padding:     var(--block-padding-y) var(--block-padding-x);
-  --math-block-radius:      var(--block-radius);
   --math-block-shadow:      var(--block-shadow);
 }
 
@@ -239,10 +236,10 @@
   max-width: var(--table-max-width);
   white-space: var(--table-white-space);
   color: var(--table-fg);
-  background-color: var(--table-bg);
+  background-color: var(--table-head-bg);
   margin: var(--table-margin-y) var(--table-margin-x);
-  border-radius: var(--table-radius);
   box-shadow: var(--table-shadow);
+  border-radius: var(--block-radius);
 }
 
 /* 隐藏 scrollbar: https://stackoverflow.com/a/63950078 */
@@ -252,11 +249,8 @@
 .markdown-body .table-container table {
   margin: 0 auto;
   border-collapse: var(--table-border-collapse);
+  border-spacing: var(--table-border-spacing);
   border: 0;
-}
-
-.markdown-body .table-container thead th {
-  background-color: var(--table-head-bg);
 }
 
 .markdown-body .table-container th,
@@ -265,6 +259,14 @@
   border-style: var(--table-border-style);
   border-color: var(--table-border-color);
   padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+}
+
+.markdown-body .table-container th {
+  background-color: var(--table-head-bg);
+}
+
+.markdown-body .table-container td {
+  background-color: var(--table-bg);
 }
 
 /********
@@ -311,11 +313,11 @@
   display: block;
   overflow-x: auto;
   color: var(--code-block-fg);
-  background-color: var(--code-block-bg);
+  background-color: var(--code-block-ln-bg);
   font-size: var(--code-block-font-size);
   margin: var(--code-block-margin-y) var(--code-block-margin-x);
   padding: 0;
-  border-radius: var(--code-block-radius);
+  border-radius: var(--block-radius);
   box-shadow: var(--code-block-shadow);
 }
 
@@ -351,6 +353,7 @@
 }
 
 .markdown-body .code-container td:last-child {
+  background-color: var(--code-block-bg);
   /* https://stackoverflow.com/a/17014884 */
   width: 100%;
 }
@@ -451,7 +454,7 @@
   background-color: var(--math-block-bg);
   margin: var(--math-block-margin);
   padding: var(--math-block-padding);
-  border-radius: var(--math-block-radius);
+  border-radius: var(--block-radius);
   box-shadow: var(--math-block-shadow);
 }
 
