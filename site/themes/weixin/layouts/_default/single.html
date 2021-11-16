@@ -2,7 +2,7 @@
 <div>
   {{ $js := resources.Get "js/single.js" | js.Build }}
   <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
-  <button style="position: fixed; padding: 10px;" id="copy-wechat">拷贝到微信<br>公众号</button>
+  <button style="position: fixed; padding: 10px; z-index: 9999;" id="copy-wechat">拷贝到微信<br>公众号</button>
 </div>
 <div id="markdown-main" style="width: 375px; margin: auto; border: dotted;">
   {{- partial "markdown-body.html" . -}}
