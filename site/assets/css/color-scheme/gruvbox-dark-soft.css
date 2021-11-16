@@ -49,6 +49,7 @@
   --color-url:              var(--color-base09);
   --color-blockquote-bar:   rgba(var(--color-base05-rgb), 0.3);
   --color-blockquote:       rgba(var(--color-base05-rgb), 0.8);
+  --color-ruler:            rgba(var(--color-base05-rgb), 0.5);
 
   /* Block Style */
   --block-shadow:           unset;
