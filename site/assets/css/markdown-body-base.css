@@ -26,7 +26,6 @@
   --block-padding-y:        1.8em;
   --block-margin-x:         auto;
   --block-margin-y:         1em;
-  --block-radius:           0.5em;
   --block-shadow-color:     rgba(0, 0, 0, 0.55);
   --block-shadow:           -2px 0px 10px 0px var(--block-shadow-color);
 
@@ -34,6 +33,7 @@
   --table-fg:               var(--color-fg);
   --table-bg:               var(--color-bg);
   --table-head-bg:          var(--table-bg);
+  --table-cont-bg:          var(--table-head-bg);  /* table 容器背景色 */
   --table-border-color:     var(--table-head-bg);
   --table-max-width:        fit-content;
   --table-white-space:      nowrap;
@@ -63,6 +63,7 @@
   --code-block-fg:          var(--color-fg);
   --code-block-bg:          var(--color-bg);
   --code-block-ln-bg:       var(--color-bg);
+  --code-block-cont-bg:     var(--code-block-ln-bg);  /* code block 容器背景色 */
   --code-block-font-size:   0.65em;
   --code-block-padding-x:   var(--block-padding-x);
   --code-block-padding-y:   var(--block-padding-y);
@@ -247,10 +248,9 @@
   max-width: var(--table-max-width);
   white-space: var(--table-white-space);
   color: var(--table-fg);
-  background-color: var(--table-head-bg);
+  background-color: var(--table-cont-bg);
   margin: var(--table-margin-y) var(--table-margin-x);
   box-shadow: var(--table-shadow);
-  border-radius: var(--block-radius);
 }
 
 /* 隐藏 scrollbar: https://stackoverflow.com/a/63950078 */
@@ -324,11 +324,10 @@
   display: block;
   overflow-x: auto;
   color: var(--code-block-fg);
-  background-color: var(--code-block-ln-bg);
+  background-color: var(--code-block-cont-bg);
   font-size: var(--code-block-font-size);
   margin: var(--code-block-margin-y) var(--code-block-margin-x);
   padding: 0;
-  border-radius: var(--block-radius);
   box-shadow: var(--code-block-shadow);
 }
 
@@ -465,7 +464,6 @@
   background-color: var(--math-block-bg);
   margin: var(--math-block-margin);
   padding: var(--math-block-padding);
-  border-radius: var(--block-radius);
   box-shadow: var(--math-block-shadow);
 }
 

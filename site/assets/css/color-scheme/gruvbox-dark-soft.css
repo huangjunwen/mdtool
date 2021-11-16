@@ -57,9 +57,11 @@
   /* Table Style */
   --table-head-bg:          var(--color-base02);
   --table-border-color:     var(--color-base02);
+  --table-cont-bg:          unset;
 
   /* Code Style */
   --code-block-ln-bg:       var(--color-base02);
+  --code-block-cont-bg:     unset;
   --code-tok-comment:       var(--color-base03);
   --code-tok-keyword:       var(--color-base0E);
   --code-tok-builtin:       var(--color-base0A);
