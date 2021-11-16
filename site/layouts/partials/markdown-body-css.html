@@ -10,14 +10,4 @@
 {{- $colorScheme := resources.Get (printf "css/color-scheme/%s.css" $colorSchemeName) -}}
 {{- $tex2svg := resources.Get "css/tex2svg.css" -}}
 {{- $css := slice $base $colorScheme $tex2svg | resources.Concat "css/markdown-body.css" -}}
-{{- if .replaceCSSVar -}}
-  {{ $css = $css | resources.PostCSS (dict "use" "postcss-css-variables") }}
-{{- end -}}
-{{ $css = $css | resources.Minify }}
-{{- if .inlineStyle -}}
-<style>
-{{ $css.Content | safeCSS }}
-</style>
-{{- else -}}
-<link rel="stylesheet" href="{{ $css.RelPermalink }}"></link>
-{{- end -}}
+{{- .Scratch.Set "markdownBodyCSS" $css -}}

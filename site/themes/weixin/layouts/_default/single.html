@@ -9,11 +9,15 @@
   <small>{{ .Date.Format "Jan 2, 2006" }}</small>
 </div>
 <div id="markdown-main" style="width: 375px; margin: auto; border: dotted;">
-  {{- partial "markdown-body-css.html" (dict "replaceCSSVar" 1 "inlineStyle" 1) -}}
+  {{- partial "markdown-body-css.html" . -}}
+  {{ $css := .Scratch.Get "markdownBodyCSS" | resources.PostCSS (dict "use" "postcss-css-variables") | resources.Minify }}
   <style>
   .markdown-body {
     padding: 10px;
   }
+  </style>
+  <style>
+  {{ $css.Content | safeCSS }}
   </style>
   <section class="markdown-body">
   {{ .Content }}
