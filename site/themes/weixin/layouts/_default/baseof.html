@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
   {{- partial "head.html" . -}}
+  <style>
+  /* https://stackoverflow.com/questions/3226001/some-font-sizes-rendered-larger-on-safari-iphone */
+  body{
+    -webkit-text-size-adjust: none;
+  }
+  </style>
   <body>
     {{- partial "header.html" . -}}
     {{- block "main" . }}{{- end }}
