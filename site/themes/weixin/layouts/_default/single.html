@@ -4,6 +4,10 @@
   <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
   <button style="position: fixed; padding: 10px; z-index: 9999;" id="copy-wechat">拷贝到微信<br>公众号</button>
 </div>
+<div style="text-align: center;">
+  <h1>{{ .Title }}</h1>
+  <small>{{ .Date.Format "Jan 2, 2006" }}</small>
+</div>
 <div id="markdown-main" style="width: 375px; margin: auto; border: dotted;">
   {{- partial "markdown-body-css.html" (dict "replaceCSSVar" 1 "inlineStyle" 1) -}}
   <style>
