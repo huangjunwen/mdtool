@@ -4,7 +4,7 @@
 name = "Weixin"
 license = "MIT"
 licenselink = ""
-description = ""
+description = "用于微信公众号文章"
 homepage = ""
 tags = []
 features = []
