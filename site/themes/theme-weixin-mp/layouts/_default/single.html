@@ -11,7 +11,7 @@
   <h1>{{ .Title }}</h1>
   <small>{{ .Date.Format "Jan 2, 2006" }}</small>
 </div>
-<div id="markdown-main" style="width: 98%; max-width: 400px; margin: auto; border: dotted;">
+<article id="markdown-main" style="width: 98%; max-width: 400px; margin: auto; border: dotted;">
   <style>
   .markdown-body {
     padding: 10px;
@@ -25,5 +25,5 @@
   <section class="markdown-body">
   {{ .Content }}
   </section>
-</div>
+</article>
 {{ end }}

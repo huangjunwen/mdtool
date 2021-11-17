@@ -158,6 +158,11 @@
   line-height: 1.25;
 }
 
+.markdown-body h1 {
+  padding-bottom: .3em;
+  font-size: 1.75em;
+}
+
 .markdown-body h2 {
   padding-bottom: .3em;
   font-size: 1.5em;
