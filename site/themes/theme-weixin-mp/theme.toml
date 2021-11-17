@@ -1,7 +1,7 @@
 # theme.toml template for a Hugo theme
 # See https://github.com/gohugoio/hugoThemes#themetoml for an example
 
-name = "Weixin"
+name = "Weixin 公众号"
 license = "MIT"
 licenselink = ""
 description = "用于微信公众号文章"
@@ -13,9 +13,3 @@ min_version = ""
 [author]
   name = ""
   homepage = ""
-
-# If porting an existing theme
-[original]
-  name = ""
-  homepage = ""
-  repo = ""

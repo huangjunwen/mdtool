@@ -1,6 +1,6 @@
 {{ define "main" }}
 <ul>
-  {{- range site.RegularPages }}
+  {{- range sort site.RegularPages "Date" "desc" }}
   <li>
     <a href="{{ .RelPermalink }}">
       {{ .Title }}
