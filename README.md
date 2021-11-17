@@ -1,17 +1,66 @@
+### 简介
+
+**mdtool** 实际上是个人使用的 docker 封装的一套 hugo 环境，用于将内容 (markdown) 转换为不同平台的页面：
+
+  - 普通网站
+  - 微信公众号
+  - ...
+
+这里使用 pandoc 作为处理引擎而非 hugo 默认使用的 Goldmark, 这是因为 pandoc 有更丰富的 markdown 扩展，
+以及其可定制的 filter 机制. 不过代价就是生成页面的速度慢了许多.
+
 ### 快速使用
+
+安装：只要将 `mdtool` (一个 bash 文件) 放置在 `PATH` 即可，并且需要有 docker 安装好.
+
+`mdtool` 运行时均会将当前目录视为 hugo 的 `content` 目录.
+
+新建内容
+
+```bash
+$ cd my-blog
+$ tree
+.
+└── posts
+    ├── first.md
+    └── second.md
+$ mdtool new posts/third.md
+$ tree
+.
+└── posts
+    ├── first.md
+    ├── second.md
+    └── third.md
+```
 
 写作
 
 ```bash
-$ docker run --rm -it -v"/path/to/content:/opt/mdtool/site/content" --network=host jayven/mdtool hugo server -D
+$ cd my-blog
+$ mdtool serve -D
+Start building sites …
+hugo v0.86.0-41C6C52E+extended linux/amd64 BuildDate=2021-07-21T09:53:14Z VendorInfo=gohugoio
 
+                   | EN
+-------------------+-----
+  Pages            | 15
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     |  0
+  Processed images |  0
+  Aliases          |  0
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Built in 4322 ms
+...
 ```
 
 生成最终页面
 
 ```bash
-$ docker run --rm -it -v"/path/to/content:/opt/mdtool/site/content" -v"/path/to/public:/opt/mdtool/site/public" jayven/mdtool hugo
-
+$ cd my-blog
+$ mdtool pub ../my-blog-pub
 ```
 
 ### markdown 工具
@@ -68,9 +117,10 @@ $ docker run --rm -it -v"/path/to/content:/opt/mdtool/site/content" -v"/path/to/
   - juice https://github.com/Automattic/juice
   - ...
 
-### Hugo site
+### Site
 
-docker 镜像中 `/opt/mdtool/site` 下是一个 hugo site, 默认使用的 theme 是 weixin
+docker 镜像中 `/opt/mdtool/site` 下是一个 hugo site, 默认使用的 theme 是 `theme-weixin-mp`, 即构建输出到微信公众号的页面,
+可以通过命令行参数 `-t` 修改
 
 ### 参考
 
