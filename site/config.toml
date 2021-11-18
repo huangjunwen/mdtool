@@ -4,9 +4,6 @@ title = "MDTool"
 theme = "theme-weixin-mp"
 assetDir = "assets"
 
-[params]
-  #colorScheme="gruvbox-dark-soft"
-
 [module]
 [[module.imports]]
   path = "module-markdown-body-css"

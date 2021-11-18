@@ -134,6 +134,8 @@
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
   font-size: var(--body-font-size);
   line-height: 1.5;
+  /* https://stackoverflow.com/questions/3226001/some-font-sizes-rendered-larger-on-safari-iphone */
+  -webkit-text-size-adjust: none;
 }
 
 .markdown-body::selection,

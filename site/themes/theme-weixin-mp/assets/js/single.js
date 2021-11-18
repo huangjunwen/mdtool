@@ -29,12 +29,22 @@ function copyToClipboard(textToCopy) {
 }
 
 document.addEventListener("DOMContentLoaded", function(event) {
-  console.log('doc loaded')
-  document.getElementById('copy-wechat').addEventListener('click', e => {
-    let text = declassify.process(juice(document.getElementById('markdown-main').innerHTML))
 
+  const colorSchemeNames = document.getElementById('color-scheme-names')
+  const colorSchemeStyles = document.getElementById('color-scheme-styles')
+  const markdownBodyCSS = document.getElementById('markdown-body-style')
+  colorSchemeNames.addEventListener('change', e => {
+    markdownBodyCSS.innerText = colorSchemeStyles.children[colorSchemeNames.selectedIndex].innerText
+  })
+  colorSchemeNames.dispatchEvent(new Event('change'))
+
+  const copyWechat = document.getElementById('copy-wechat')
+  const markdownMain = document.getElementById('markdown-main')
+  copyWechat.addEventListener('click', e => {
+    let text = declassify.process(juice(markdownMain.innerHTML))
     copyToClipboard(text)
       .then(() => { alert('拷贝成功, 请使用 chrome/firefox inspect 替换大法粘帖到公众号') })
       .catch((e) => { alert(`拷贝失败 ${e}`) })
   })
+
 })

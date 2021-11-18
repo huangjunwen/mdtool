@@ -1,11 +1,13 @@
-{{- /* 本 partial 用于给 .markdown-body 添加样式，
-     * site.Params.colorScheme 指定颜色主题 (默认是 gruvbox-light-soft)，
-     * 调用者可以从 .Scratch.Get "markdownBodyCSS" 获得 css 以进一步处理
+{{- /* 本 partial 用于生成 .markdown-body 样式列表，
+     * 列表中的每一项都是一种 color scheme 下的样式，
+     * 调用者可以从 .Scratch.Get "markdownBodyCSSs" 获得该列表
      */
 -}}
-{{- $base := resources.Get "css/markdown-body-base.css" -}}
-{{- $colorSchemeName := index site.Params "colorScheme" | default "gruvbox-light-soft" -}}
-{{- $colorScheme := resources.Get (printf "css/color-scheme/%s.css" $colorSchemeName) -}}
 {{- $tex2svg := resources.Get "css/tex2svg.css" -}}
-{{- $css := slice $base $colorScheme $tex2svg | resources.Concat "css/markdown-body.css" -}}
-{{- .Scratch.Set "markdownBodyCSS" $css -}}
+{{- $base := resources.Get "css/markdown-body-base.css" }}
+{{- $scratch := .Scratch }}
+{{- range $i, $colorSchemeName := slice "gruvbox-light-soft" "gruvbox-dark-soft" }}
+  {{- $colorScheme := resources.Get (printf "css/color-scheme/%s.css" $colorSchemeName) -}}
+  {{- $css := slice $base $colorScheme $tex2svg | resources.Concat (printf "css/markdown-body.%s.css" $colorSchemeName) -}}
+  {{- $scratch.Add "markdownBodyCSSs" (slice $css) -}}
+{{- end }}

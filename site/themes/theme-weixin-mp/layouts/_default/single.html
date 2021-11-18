@@ -1,27 +1,40 @@
 {{ define "main" }}
-<div style="position: fixed; padding: 10px; z-index: 9999; border: dotted; background-color: white">
-  <div><a href="/">Home</a></div>
-  <div style="padding-top: 20px;">
-    {{ $js := resources.Get "js/single.js" | js.Build }}
-    <script type="text/javascript" src="{{ $js.RelPermalink }}"></script>
+<link rel="stylesheet" href="{{ (resources.Get "css/single.css" | resources.Minify).RelPermalink }}"></link>
+<script type="text/javascript" src="{{ (resources.Get "js/single.js" | js.Build | resources.Minify).RelPermalink }}"></script>
+
+<div id="panel">
+  <div><a id="home" href="/">Home</a></div>
+  <div>
+    <select id="color-scheme-names">
+      {{- partial "markdown-body-css.html" . -}}
+      {{- range $css := .Scratch.Get "markdownBodyCSSs" -}}
+        {{- $cssName := strings.TrimSuffix ".css" (strings.TrimPrefix "css/markdown-body." $css.Name) }}
+        <option id="{{ $cssName }}" value="{{ $cssName }}">{{ $cssName }}</option>
+      {{- end }}
+    </select>
+    <div id="color-scheme-styles" style="display:none">
+      {{- range $css := .Scratch.Get "markdownBodyCSSs" }}
+        <text>{{ ($css | resources.PostCSS (dict "use" "postcss-css-variables") | resources.Minify).Content | safeCSS }}</text>
+      {{- end }}
+    </div>
+  </div>
+  <div>
     <button id="copy-wechat">拷贝到微信<br>公众号</button>
   </div>
 </div>
-<div style="text-align: center;">
+
+<div id="markdown-title">
   <h1>{{ .Title }}</h1>
   <small>{{ .Date.Format "Jan 2, 2006" }}</small>
 </div>
-<article id="markdown-main" style="width: 98%; max-width: 400px; margin: auto; border: dotted;">
+
+<article id="markdown-main">
   <style>
   .markdown-body {
     padding: 10px;
   }
   </style>
-  {{- partial "markdown-body-css.html" . -}}
-  {{ $css := .Scratch.Get "markdownBodyCSS" | resources.PostCSS (dict "use" "postcss-css-variables") | resources.Minify }}
-  <style>
-  {{ $css.Content | safeCSS }}
-  </style>
+  <style id="markdown-body-style"></style>
   <section class="markdown-body">
   {{ .Content }}
   </section>

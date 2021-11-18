@@ -1,0 +1,44 @@
+#panel {
+  position: fixed;
+  padding: 10px;
+  z-index: 9999;
+  border: dotted;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#panel div {
+  padding-bottom: 20px;
+}
+
+#home {
+  text-decoration: none;
+  font-weight: bold;
+  color: grey;
+}
+
+#home:hover {
+  text-decoration: underline;
+}
+
+#color-scheme-names {
+  color: grey;
+}
+
+#markdown-title {
+  text-align: center;
+}
+
+#markdown-main {
+  width: 98%;
+  max-width: 400px;
+  margin: auto;
+  border: dotted;
+}
+
+#copy-wechat {
+  color: grey;
+}
