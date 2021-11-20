@@ -3,8 +3,8 @@
      * 调用者可以从 .Scratch.Get "markdownBodyCSSs" 获得该列表
      */
 -}}
-{{- $tex2svg := resources.Get "css/tex2svg.css" -}}
 {{- $base := resources.Get "css/markdown-body-base.css" }}
+{{- $tex2svg := resources.Get "css/markdown-body-tex2svg.css" -}}
 {{- $scratch := .Scratch }}
 {{- range $i, $colorSchemeName := slice "gruvbox-light-soft" "gruvbox-dark-soft" }}
   {{- $colorScheme := resources.Get (printf "css/color-scheme/%s.css" $colorSchemeName) -}}
