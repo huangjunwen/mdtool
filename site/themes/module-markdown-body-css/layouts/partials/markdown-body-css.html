@@ -4,7 +4,7 @@
      */
 -}}
 {{- $base := resources.Get "css/markdown-body-base.css" }}
-{{- $tex2svg := resources.Get "css/markdown-body-tex2svg.css" -}}
+{{- $tex2svg := resources.Get "css/markdown-body-tex2svg.scss" | toCSS -}}
 {{- $scratch := .Scratch }}
 {{- range $i, $colorSchemeName := slice "gruvbox-light-soft" "gruvbox-dark-soft" }}
   {{- $colorScheme := resources.Get (printf "css/color-scheme/%s.css" $colorSchemeName) -}}

@@ -1,2 +1,2 @@
-markdown-body-tex2svg.css:
-	tex2svg --css > $@
+markdown-body-tex2svg.scss:
+	echo ".markdown-body {" > $@ && tex2svg --css >> $@ && echo "}" >> $@

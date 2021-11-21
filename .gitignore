@@ -1,0 +1,5 @@
+node_modules/
+site/content/
+site/public/
+site/resources/
+site/themes/module-markdown-body-css/assets/css/markdown-body-tex2svg.scss
