@@ -1,14 +1,14 @@
-{{- /* 本 partial 用于生成 .markdown-body 样式列表，
-     * 列表中的每一项都是一种 color scheme 下的样式，
-     * 调用者可以从 .Scratch.Get "markdownBodyCSSs" 获得该列表
+{{- /* 本 partial 用于返回 .markdown-body 样式列表，
+     * 列表中的每一项都是一种 color scheme 下的样式
      */
 -}}
-{{- $base := resources.Get "css/markdown-body-base.css" }}
-{{- $vars := resources.Get "css/markdown-body-vars.css" }}
+{{- $vars := resources.Get "css/markdown-body-vars.css" -}}
+{{- $base := resources.Get "css/markdown-body-base.css" -}}
 {{- $tex2svg := resources.Get "css/markdown-body-tex2svg.scss" | toCSS -}}
-{{- $scratch := .Scratch }}
-{{- range $colorSchemeName := slice "gruvbox-light-soft" "gruvbox-dark-soft" }}
-  {{- $colorScheme := resources.Get (printf "css/schemes/%s.css" $colorSchemeName) -}}
-  {{- $css := slice $vars $colorScheme $base $tex2svg | resources.Concat (printf "css/markdown-body.%s.css" $colorSchemeName) -}}
-  {{- $scratch.Add "markdownBodyCSSs" (slice $css) -}}
-{{- end }}
+{{- $ret := slice -}}
+{{- range $schemeName := slice "gruvbox-light-soft" "gruvbox-dark-soft" -}}
+  {{- $scheme := resources.Get (printf "css/schemes/%s.css" $schemeName) -}}
+  {{- $css := slice $vars $scheme $base $tex2svg | resources.Concat (printf "css/markdown-body.%s.css" $schemeName) -}}
+  {{- $ret = $ret | append $css -}}
+{{- end -}}
+{{- return $ret -}}

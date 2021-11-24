@@ -6,14 +6,14 @@
   <div><a id="home" href="/">Home</a></div>
   <div>
     <select id="color-scheme-names">
-      {{- partial "markdown-body-css.html" . -}}
-      {{- range $css := .Scratch.Get "markdownBodyCSSs" -}}
+      {{- $styles := partial "markdown-body-css.html" . -}}
+      {{- range $css := $styles -}}
         {{- $cssName := strings.TrimSuffix ".css" (strings.TrimPrefix "css/markdown-body." $css.Name) }}
         <option id="{{ $cssName }}" value="{{ $cssName }}">{{ $cssName }}</option>
       {{- end }}
     </select>
     <div id="color-scheme-styles" style="display:none">
-      {{- range $css := .Scratch.Get "markdownBodyCSSs" }}
+      {{- range $css := $styles }}
         <text>{{ ($css | resources.PostCSS (dict "use" "postcss-css-variables") | resources.Minify).Content | safeCSS }}</text>
       {{- end }}
     </div>
