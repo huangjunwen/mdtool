@@ -1,0 +1,78 @@
+/* 参考自 
+ *   https://github.com/antfu/prism-theme-vars
+ *   https://highlightjs.org/static/demo/
+ *   https://github.com/xz/new.css
+ *   https://github.com/sindresorhus/github-markdown-css
+ */
+
+:root {
+  --mdt-body-fg:                #6e6e6e;                                 /* body 前景色 */
+  --mdt-body-bg:                #f4f4f4;                                 /* body 背景色 */
+  --mdt-body-sel-bg:            #aaaaaa;                                 /* body 选择背景色 */
+
+  --mdt-head-fg:                var(--mdt-body-fg);                      /* head 前景色 */
+  --mdt-quote-fg:               var(--mdt-body-fg);                      /* blockquote 前景色 */
+  --mdt-quote-bar:              var(--mdt-body-fg);                      /* blockquote bar 颜色 */
+  --mdt-link-fg:                var(--mdt-body-fg);                      /* 链接前景色 */
+  --mdt-sep-fg:                 var(--mdt-body-fg);                      /* 分割线前景色 */
+
+  --mdt-block-shadow:           -2px 0px 10px 0px var(--mdt-body-fg);    /* 块元素阴影 */
+
+  --mdt-tab-fg:                 var(--mdt-body-fg);                      /* 表前景色 */
+  --mdt-tab-bg:                 var(--mdt-body-bg);                      /* 表背景色 */
+  --mdt-tab-hd-fg:              var(--mdt-body-fg);                      /* 表头前景色 */
+  --mdt-tab-hd-bg:              var(--mdt-body-bg);                      /* 表头背景色 */
+  --mdt-tab-cont-bg:            var(--mdt-body-bg);                      /* 表容器背景色 */
+  --mdt-tab-border-color:       var(--mdt-body-bg);                      /* 表边界颜色 */
+
+  --mdt-code-inline-fg:         var(--mdt-body-fg);
+  --mdt-code-inline-bg:         var(--mdt-body-bg);
+  --mdt-code-block-fg:          var(--mdt-body-fg);
+  --mdt-code-block-bg:          var(--mdt-body-bg);
+  --mdt-code-block-ln-fg:       var(--mdt-body-fg);
+  --mdt-code-block-ln-bg:       var(--mdt-body-bg);
+  --mdt-code-block-cont-bg:     var(--mdt-body-bg);
+
+  --mdt-code-tok-comment:       var(--mdt-code-block-fg);                /* general tokens */
+  --mdt-code-tok-operator:      var(--mdt-code-block-fg);
+  --mdt-code-tok-keyword:       var(--mdt-code-block-fg);
+  --mdt-code-tok-builtin:       var(--mdt-code-block-fg);
+  --mdt-code-tok-function:      var(--mdt-code-block-fg);
+  --mdt-code-tok-class-name:    var(--mdt-code-block-fg);
+  --mdt-code-tok-string:        var(--mdt-code-block-fg);
+  --mdt-code-tok-variable:      var(--mdt-code-block-fg);
+  --mdt-code-tok-constant:      var(--mdt-code-block-fg);
+  --mdt-code-tok-property:      var(--mdt-code-block-fg);
+  --mdt-code-tok-namespace:     var(--mdt-code-block-fg);
+
+  --mdt-code-tok-annotation:    var(--mdt-code-tok-function);            /* general derived tokens */
+  --mdt-code-tok-punctuation:   var(--mdt-code-tok-operator);
+  --mdt-code-tok-regex:         var(--mdt-code-tok-string);
+  --mdt-code-tok-number:        var(--mdt-code-tok-constant);
+  --mdt-code-tok-boolean:       var(--mdt-code-tok-constant);
+  --mdt-code-tok-interpolation: var(--mdt-code-tok-constant);
+  --mdt-code-tok-symbol:        var(--mdt-code-tok-constant);
+  --mdt-code-tok-url:           var(--mdt-code-tok-constant);
+
+  --mdt-code-tok-doctype:       var(--mdt-code-tok-comment);             /* xml/html tokens */
+  --mdt-code-tok-cdata:         var(--mdt-code-tok-comment);
+  --mdt-code-tok-tag:           var(--mdt-code-tok-builtin);
+  --mdt-code-tok-attr-name:     var(--mdt-code-tok-property);
+  --mdt-code-tok-attr-value:    var(--mdt-code-tok-string);
+
+  --mdt-code-tok-shebang:       var(--mdt-code-block-fg);                /* shell tokens */
+
+  --mdt-code-tok-selector:      var(--mdt-code-tok-keyword);             /* css tokens */
+  --mdt-code-tok-atrule:        var(--mdt-code-tok-keyword);
+
+  --mdt-code-tok-coord:         var(--mdt-code-tok-class-name);          /* diff tokens */
+  --mdt-code-tok-deleted:       var(--mdt-code-block-fg);
+  --mdt-code-tok-inserted:      var(--mdt-code-block-fg);
+
+  --mdt-math-inline-fg:         var(--mdt-body-fg);
+  --mdt-math-inline-bg:         var(--mdt-body-bg);
+  --mdt-math-block-fg:          var(--mdt-body-fg);
+  --mdt-math-block-bg:          var(--mdt-body-bg);
+}
+
+

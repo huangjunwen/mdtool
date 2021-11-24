@@ -1,152 +1,22 @@
-/* 参考自 
- *   https://github.com/antfu/prism-theme-vars
- *   https://github.com/sindresorhus/github-markdown-css
- */
-
-:root {
-  /* Common */
-  --color-fg:               #6e6e6e;           /* 主前景色 */
-  --color-bg:               #f4f4f4;           /* 主背景色 */
-  --color-body-fg:          var(--color-fg);   /* body 的前景色 */
-  --color-body-bg:          var(--color-bg);   /* body 的背景色 */
-  --color-selection-bg:     #aaaaaa;           /* 选择背景色 */
-  --color-url:              var(--color-fg);
-  --color-blockquote-bar:   var(--color-fg);
-  --color-blockquote:       var(--color-fg);
-  --color-ruler:            var(--color-fg);
-  --body-font-size:         16px;
-
-  /* Inline Style */
-  --inline-padding-x:       0.3em;
-  --inline-padding-y:       0.2em;
-  --inline-radius:          0.3em;
-
-  /* Block Style */
-  --block-padding-x:        1.8em;
-  --block-padding-y:        1.8em;
-  --block-margin-x:         auto;
-  --block-margin-y:         1em;
-  --block-shadow-color:     rgba(0, 0, 0, 0.55);
-  --block-shadow:           -2px 0px 10px 0px var(--block-shadow-color);
-
-  /* Table Style */
-  --table-fg:               var(--color-fg);
-  --table-bg:               var(--color-bg);
-  --table-head-bg:          var(--table-bg);
-  --table-cont-bg:          var(--table-head-bg);  /* table 容器背景色 */
-  --table-border-color:     var(--table-head-bg);
-  --table-max-width:        fit-content;
-  --table-white-space:      nowrap;
-  --table-margin-x:         var(--block-margin-x);
-  --table-margin-y:         var(--block-margin-y);
-  --table-cell-padding-x:   0.5em;
-  --table-cell-padding-y:   0.3em;
-  --table-border-collapse:  collapse;
-  --table-border-spacing:   0;
-  --table-border-width:     1;
-  --table-border-style:     solid;
-  --table-shadow:           var(--block-shadow);
-
-  /* Code Style */
-  --code-font-family:       "Operator Mono", Consolas, Monaco, Menlo, monospace;
-  --code-line-height:       1.5em;
-  --code-tab-size:          2;
-  --code-selection-bg:      var(--color-selection-bg);
-
-  --code-inline-fg:         var(--color-fg);
-  --code-inline-bg:         var(--color-bg);
-  --code-inline-font-size:  0.85em;
-  --code-inline-padding-x:  var(--inline-padding-x);
-  --code-inline-padding-y:  var(--inline-padding-y);
-  --code-inline-radius:     var(--inline-radius);
-
-  --code-block-fg:          var(--color-fg);
-  --code-block-bg:          var(--color-bg);
-  --code-block-ln-bg:       var(--color-bg);
-  --code-block-cont-bg:     var(--code-block-ln-bg);  /* code block 容器背景色 */
-  --code-block-font-size:   0.65em;
-  --code-block-padding-x:   var(--block-padding-x);
-  --code-block-padding-y:   var(--block-padding-y);
-  --code-block-margin-x:    var(--block-margin-x);
-  --code-block-margin-y:    var(--block-margin-y);
-  --code-block-shadow:      var(--block-shadow);
-  --code-block-ln-padding:  0.6em;
-
-  --code-tok-comment:       var(--color-fg); /* general token */
-  --code-tok-operator:      var(--color-fg);
-  --code-tok-keyword:       var(--color-fg);
-  --code-tok-builtin:       var(--color-fg);
-  --code-tok-function:      var(--color-fg);
-  --code-tok-class-name:    var(--color-fg);
-  --code-tok-string:        var(--color-fg);
-  --code-tok-variable:      var(--color-fg);
-  --code-tok-constant:      var(--color-fg);
-  --code-tok-property:      var(--color-fg);
-  --code-tok-namespace:     var(--color-fg);
-
-  --code-tok-annotation:    var(--code-tok-function); /* general token derived */
-  --code-tok-punctuation:   var(--code-tok-operator);
-  --code-tok-regex:         var(--code-tok-string);
-  --code-tok-number:        var(--code-tok-constant);
-  --code-tok-boolean:       var(--code-tok-constant);
-  --code-tok-interpolation: var(--code-tok-constant);
-  --code-tok-symbol:        var(--code-tok-constant);
-  --code-tok-url:           var(--code-tok-constant);
-
-  --code-tok-doctype:       var(--code-tok-comment); /* mainly used by xml/html */
-  --code-tok-cdata:         var(--code-tok-comment);
-  --code-tok-tag:           var(--code-tok-builtin);
-  --code-tok-attr-name:     var(--code-tok-property);
-  --code-tok-attr-value:    var(--code-tok-string);
-
-  --code-tok-shebang:       var(--code-fg); /* mainly used by shell */
-
-  --code-tok-selector:      var(--code-tok-keyword); /* mainly used by css */
-  --code-tok-atrule:        var(--code-tok-keyword);
-
-  --code-tok-coord:         var(--code-tok-class-name); /* mainly used by diff */
-  --code-tok-deleted:       var(--code-fg);
-  --code-tok-inserted:      var(--code-fg);
-
-  --code-comment-style:     italic;
-  --code-url-decoration:    underline;
-
-  /* Math Style */
-  --math-inline-fg:         var(--color-fg);
-  --math-inline-bg:         var(--color-bg);
-  --math-inline-padding:    var(--inline-padding-y) var(--inline-padding-x);
-  --math-inline-radius:     var(--inline-radius);
-
-  --math-block-fg:          var(--color-fg);
-  --math-block-bg:          var(--color-bg);
-  --math-block-margin:      var(--block-margin-y) var(--block-margin-x);
-  --math-block-padding:     var(--block-padding-y) var(--block-padding-x);
-  --math-block-shadow:      var(--block-shadow);
-}
-
-/**********
- * Common *
- **********/
+/* Body */
 
 .markdown-body {
-  color: var(--color-body-fg);
-  background-color: var(--color-body-bg);
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-  font-size: var(--body-font-size);
+  margin: 0 auto;
+  max-width: 750px;
+  color: var(--mdt-body-fg);
+  background-color: var(--mdt-body-bg);
   line-height: 1.5;
+  font-family: var(--mdt-font-sans);
   /* https://stackoverflow.com/questions/3226001/some-font-sizes-rendered-larger-on-safari-iphone */
   -webkit-text-size-adjust: none;
 }
 
 .markdown-body::selection,
 .markdown-body *::selection {
-  background-color: var(--code-selection-bg);
+  background-color: var(--mdt-body-sel-bg);
 }
 
-.markdown-body p {
-  margin-top: 1em;
-  margin-bottom: 1em;
-}
+/* Headings */
 
 .markdown-body h1,
 .markdown-body h2,
@@ -154,19 +24,20 @@
 .markdown-body h4,
 .markdown-body h5,
 .markdown-body h6 {
-  margin-top: 24px;
-  margin-bottom: 16px;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
   font-weight: 600;
   line-height: 1.25;
+  color: var(--mdt-head-fg);
 }
 
 .markdown-body h1 {
-  padding-bottom: .3em;
+  padding-top: 0.25em;
   font-size: 1.75em;
 }
 
 .markdown-body h2 {
-  padding-bottom: .3em;
+  padding-top: 0.25em;
   font-size: 1.5em;
 }
 
@@ -185,6 +56,24 @@
 .markdown-body h6 {
   font-size: .85em;
 }
+
+/* Paragraph */
+ 
+.markdown-body p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+/* Blockquotes */
+
+.markdown-body blockquote {
+  margin: 0;
+  padding: 0 1em;
+  border-left: 3px solid var(--mdt-quote-bar);
+  color: var(--mdt-quote-fg);
+}
+
+/* Lists */
 
 .markdown-body ul,
 .markdown-body ol {
@@ -213,9 +102,11 @@
   margin-top: .25em;
 }
 
+/* Links */
+
 .markdown-body a {
   background-color: transparent;
-  color: var(--color-url);
+  color: var(--mdt-link-fg);
   text-decoration: none;
 }
 
@@ -223,12 +114,7 @@
   text-decoration: underline;
 }
 
-.markdown-body blockquote {
-  margin: 0;
-  padding: 0 1em;
-  border-left: 3px solid var(--color-blockquote-bar);
-  color: var(--color-blockquote);
-}
+/* Images */
 
 .markdown-body img {
   border-style: none;
@@ -236,28 +122,27 @@
   box-sizing: content-box;
 }
 
+/* Seperators */
+
 .markdown-body hr {
   box-sizing: content-box;
   overflow: hidden;
   border: 0;
   height: 0.15em;
-  background-color: var(--color-ruler);
+  background-color: var(--mdt-sep-fg);
   margin: 2.5em 0;
 }
 
-/*********
- * Table *
- *********/
+/* Tables */
 
 .markdown-body .table-container {
   display: block;
   overflow-x: auto;
-  max-width: var(--table-max-width);
-  white-space: var(--table-white-space);
-  color: var(--table-fg);
-  background-color: var(--table-cont-bg);
-  margin: var(--table-margin-y) var(--table-margin-x);
-  box-shadow: var(--table-shadow);
+  max-width: fit-content;
+  white-space: nowrap;
+  background-color: var(--mdt-tab-cont-bg);
+  margin: var(--mdt-block-margin-y) var(--mdt-block-margin-x);
+  box-shadow: var(--mdt-block-shadow);
 }
 
 /* 隐藏 scrollbar: https://stackoverflow.com/a/63950078 */
@@ -266,36 +151,35 @@
 
 .markdown-body .table-container table {
   margin: 0 auto;
-  border-collapse: var(--table-border-collapse);
-  border-spacing: var(--table-border-spacing);
+  border-collapse: collapse;
+  border-spacing: 0;
   border: 0;
 }
 
 .markdown-body .table-container th,
 .markdown-body .table-container td {
-  border-width: var(--table-border-width);
-  border-style: var(--table-border-style);
-  border-color: var(--table-border-color);
-  padding: var(--table-cell-padding-y) var(--table-cell-padding-x);
+  border-width: 1;
+  border-style: solid;
+  border-color: var(--mdt-tab-border-color);
+  padding: var(--mdt-tab-cell-padding-y) var(--mdt-tab-cell-padding-x);
+  font-size: 0.9em;
 }
 
 .markdown-body .table-container th {
-  background-color: var(--table-head-bg);
+  color: var(--mdt-tab-hd-fg);
+  background-color: var(--mdt-tab-hd-bg);
 }
 
 .markdown-body .table-container td {
-  background-color: var(--table-bg);
+  color: var(--mdt-tab-fg);
+  background-color: var(--mdt-tab-bg);
 }
 
-/********
- * Code *
- ********/
-
-/* Common */
+/* Code */
 
 .markdown-body code[class*='language-'] {
-  font-family: var(--code-font-family);
-  line-height: var(--code-line-height);
+  font-family: var(--mdt-font-mono);
+  line-height: 1.5;
   /*
   direction: ltr;
   text-align: left;
@@ -303,26 +187,22 @@
   word-spacing: normal;
   word-break: normal;
   */
-  -moz-tab-size: var(--code-tab-size);
-  -o-tab-size: var(--code-tab-size);
-  tab-size: var(--code-tab-size);
+  -moz-tab-size: 2;
+  -o-tab-size: 2;
+  tab-size: 2;
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
 }
 
-/* Inline */
-
 .markdown-body :not(pre) > code[class*='language-'] {
-  color: var(--code-inline-fg);
-  background: var(--code-inline-bg);
-  font-size: var(--code-inline-font-size);
-  padding: var(--code-inline-padding-y) var(--code-inline-padding-x);
-  border-radius: var(--code-inline-radius);
+  color: var(--mdt-code-inline-fg);
+  background: var(--mdt-code-inline-bg);
+  font-size: 0.85em;
+  padding: var(--mdt-inline-padding-y) var(--mdt-inline-padding-x);
+  border-radius: var(--mdt-inline-radius);
 }
-
-/* Block */
 
 .markdown-body .code-container {
   /*
@@ -330,12 +210,10 @@
   */
   display: block;
   overflow-x: auto;
-  color: var(--code-block-fg);
-  background-color: var(--code-block-cont-bg);
-  font-size: var(--code-block-font-size);
-  margin: var(--code-block-margin-y) var(--code-block-margin-x);
-  padding: 0;
-  box-shadow: var(--code-block-shadow);
+  background-color: var(--mdt-code-block-cont-bg);
+  font-size: 0.65em;
+  margin: var(--mdt-block-margin-y) var(--mdt-block-margin-x);
+  box-shadow: var(--mdt-block-shadow);
 }
 
 .markdown-body .code-container::-webkit-scrollbar { display: none; }
@@ -356,7 +234,8 @@
 }
 
 .markdown-body .code-container td:first-child {
-  background-color: var(--code-block-ln-bg);
+  color: var(--mdt-code-block-ln-fg);
+  background-color: var(--mdt-code-block-ln-bg);
   /* 行号固定 */
   position: -webkit-sticky;
   position: sticky;
@@ -370,108 +249,83 @@
 }
 
 .markdown-body .code-container td:last-child {
-  background-color: var(--code-block-bg);
+  color: var(--mdt-code-block-fg);
+  background-color: var(--mdt-code-block-bg);
   /* https://stackoverflow.com/a/17014884 */
   width: 100%;
 }
 
 .markdown-body .code-container td:first-child pre {
   margin: 0;
-  padding: var(--code-block-padding-y) var(--code-block-ln-padding);
+  padding: var(--mdt-block-padding-y) var(--mdt-block-half-padding-x);
 }
 
 .markdown-body .code-container td:last-child pre {
   margin: 0;
-  padding: var(--code-block-padding-y) var(--code-block-padding-x);
+  padding: var(--mdt-block-padding-y) var(--mdt-block-padding-x);
 }
 
-/* Tokens */
-
-.markdown-body .token.comment {
-  color: var(--code-tok-comment);
-  font-style: var(--code-tok-comment-style);
-}
-
-.markdown-body .token.operator { color: var(--code-tok-operator); }
-.markdown-body .token.keyword { color: var(--code-tok-keyword); }
-.markdown-body .token.builtin { color: var(--code-tok-builtin); }
-.markdown-body .token.function { color: var(--code-tok-function); }
-.markdown-body .token.class-name { color: var(--code-tok-class-name); }
-.markdown-body .token.string { color: var(--code-tok-string); }
-.markdown-body .token.variable { color: var(--code-tok-variable); }
-.markdown-body .token.constant { color: var(--code-tok-constant); }
-.markdown-body .token.property { color: var(--code-tok-property); }
-.markdown-body .token.namespace { color: var(--code-tok-namespace); }
+.markdown-body .token.comment { color: var(--mdt-code-tok-comment);  }
+.markdown-body .token.operator { color: var(--mdt-code-tok-operator); }
+.markdown-body .token.keyword { color: var(--mdt-code-tok-keyword); }
+.markdown-body .token.builtin { color: var(--mdt-code-tok-builtin); }
+.markdown-body .token.function { color: var(--mdt-code-tok-function); }
+.markdown-body .token.class-name { color: var(--mdt-code-tok-class-name); }
+.markdown-body .token.string { color: var(--mdt-code-tok-string); }
+.markdown-body .token.variable { color: var(--mdt-code-tok-variable); }
+.markdown-body .token.constant { color: var(--mdt-code-tok-constant); }
+.markdown-body .token.property { color: var(--mdt-code-tok-property); }
+.markdown-body .token.namespace { color: var(--mdt-code-tok-namespace); }
 
 .markdown-body .token.annotation,
-.markdown-body .language-python .token.decorator { color: var(--code-tok-annotation); }
-.markdown-body .token.punctuation { color: var(--code-tok-punctuation); }
-.markdown-body .token.regex { color: var(--code-tok-regex); }
-.markdown-body .token.number { color: var(--code-tok-number); }
-.markdown-body .token.boolean { color: var(--code-tok-boolean); }
-.markdown-body .token.interpolation { color: var(--code-tok-interpolation); }
-.markdown-body .token.symbol { color: var(--code-tok-symbol); }
-.markdown-body .token.url { color: var(--code-tok-url); }
+.markdown-body .language-python .token.decorator { color: var(--mdt-code-tok-annotation); }
+.markdown-body .token.punctuation { color: var(--mdt-code-tok-punctuation); }
+.markdown-body .token.regex { color: var(--mdt-code-tok-regex); }
+.markdown-body .token.number { color: var(--mdt-code-tok-number); }
+.markdown-body .token.boolean { color: var(--mdt-code-tok-boolean); }
+.markdown-body .token.interpolation { color: var(--mdt-code-tok-interpolation); }
+.markdown-body .token.symbol { color: var(--mdt-code-tok-symbol); }
+.markdown-body .token.url { color: var(--mdt-code-tok-url); }
 
-.markdown-body .token.doctype { color: var(--code-tok-doctype); }
-.markdown-body .token.cdata { color: var(--code-tok-cdata); }
-.markdown-body .token.tag { color: var(--code-tok-tag); }
-.markdown-body .token.attr-name { color: var(--code-tok-attr-name); }
-.markdown-body .token.attr-value { color: var(--code-tok-attr-value); }
+.markdown-body .token.doctype { color: var(--mdt-code-tok-doctype); }
+.markdown-body .token.cdata { color: var(--mdt-code-tok-cdata); }
+.markdown-body .token.tag { color: var(--mdt-code-tok-tag); }
+.markdown-body .token.attr-name { color: var(--mdt-code-tok-attr-name); }
+.markdown-body .token.attr-value { color: var(--mdt-code-tok-attr-value); }
 
-.markdown-body .token.shebang { color: var(--code-tok-shebang); }
+.markdown-body .token.shebang { color: var(--mdt-code-tok-shebang); }
 
-.markdown-body .token.selector { color: var(--code-tok-selector); }
-.markdown-body .token.atrule { color: var(--code-tok-atrule); }
+.markdown-body .token.selector { color: var(--mdt-code-tok-selector); }
+.markdown-body .token.atrule { color: var(--mdt-code-tok-atrule); }
 
-.markdown-body .token.coord { color: var(--code-tok-coord); }
-.markdown-body .token.deleted { color: var(--code-tok-deleted); }
-.markdown-body .token.inserted { color: var(--code-tok-inserted); }
+.markdown-body .token.coord { color: var(--mdt-code-tok-coord); }
+.markdown-body .token.deleted { color: var(--mdt-code-tok-deleted); }
+.markdown-body .token.inserted { color: var(--mdt-code-tok-inserted); }
 
-.markdown-body .token.comment {
-  font-style: var(--code-comment-style);
-}
-
-.markdown-body .token.url {
-  text-decoration: var(--code-url-decoration);
-}
-
+.markdown-body .token.comment { font-style: italic; }
+.markdown-body .token.url { text-decoration: underline; }
 .markdown-body .token.important,
-.markdown-body .token.bold {
-  font-weight: bold;
-}
-
-.markdown-body .token.italic {
-  font-style: italic;
-}
-
+.markdown-body .token.bold { font-weight: bold; }
+.markdown-body .token.italic { font-style: italic; }
 .markdown-body .token.operator,
-.markdown-body .token.punctuation {
-  opacity: 0.7;
-}
+.markdown-body .token.punctuation { opacity: 0.7; }
 
-/********
- * Math *
- ********/
-
-/* Inline */
+/* Math */
 
 .markdown-body mjx-container[jax="SVG"]:not([display="true"]) > svg {
-  color: var(--math-inline-fg);
-  background-color: var(--math-inline-bg);
-  padding: var(--math-inline-padding);
-  border-radius: var(--math-inline-radius);
+  color: var(--mdt-math-inline-fg);
+  background-color: var(--mdt-math-inline-bg);
+  padding: var(--mdt-inline-padding-y) var(--mdt-inline-padding-x);
+  border-radius: var(--mdt-inline-radius);
 }
-
-/* Block */
 
 .markdown-body mjx-container[jax="SVG"][display="true"] {
   overflow-x: auto;
-  color: var(--math-block-fg);
-  background-color: var(--math-block-bg);
-  margin: var(--math-block-margin);
-  padding: var(--math-block-padding);
-  box-shadow: var(--math-block-shadow);
+  color: var(--mdt-math-block-fg);
+  background-color: var(--mdt-math-block-bg);
+  margin: var(--mdt-block-margin-y) var(--mdt-block-margin-x);
+  padding: var(--mdt-block-padding-y) var(--mdt-block-padding-x);
+  box-shadow: var(--mdt-block-shadow);
 }
 
 .markdown-body mjx-container[jax="SVG"][display="true"]::-webkit-scrollbar { display: none; }
