@@ -116,18 +116,23 @@
 /* Images */
 
 .markdown-body img {
+  /* 图片其实是可以 inline 到诸如 <p> <a> 里头的，但这里都统一成 block */
   display: block;
   max-width: 100%;
   margin: var(--mdt-block-margin-y) var(--mdt-block-margin-x);
 }
 
 .markdown-body figure {
-  display: inline-block;
+  display: block;
+  margin: 0 auto;
 }
 
 .markdown-body figure figcaption {
   text-align: center;
+  font-size: 0.7em;
   font-style: italic;
+  font-weight: bold;
+  opacity: 0.5;
 }
 
 /* Seperators */
@@ -217,7 +222,7 @@
   display: block;
   overflow-x: auto;
   background-color: var(--mdt-code-block-cont-bg);
-  font-size: 0.65em;
+  font-size: 0.7em;
   margin: var(--mdt-block-margin-y) var(--mdt-block-margin-x);
   box-shadow: var(--mdt-block-shadow);
 }
