@@ -1,28 +1,24 @@
 #!/bin/env bash
 
+DIR=$(pwd)
 SUB_CMD=$1
 shift
 
 case $SUB_CMD in
   new)
-    CONTENT_DIR=$(pwd)
-    docker run --rm -it -v"$CONTENT_DIR:/opt/mdtool/site/content" jayven/mdtool hugo new $@
+    docker run --rm -it -v"$DIR/content:/opt/mdtool/site/content" jayven/mdtool hugo new $@
     ;;
   serve)
-    CONTENT_DIR=$(pwd)
-    docker run --rm -it -v"$CONTENT_DIR:/opt/mdtool/site/content" --network=host jayven/mdtool hugo serve $@
+    docker run --rm -it -v"$DIR:/opt/mdtool/site/themes/site-content" --network=host jayven/mdtool hugo serve $@
     ;;
   pub)
-    CONTENT_DIR=$(pwd)
-    PUBLIC_DIR=$(realpath $1)
-    shift
-    docker run --rm -it -v"$CONTENT_DIR:/opt/mdtool/site/content" -v"$PUBLIC_DIR:/opt/mdtool/site/public" jayven/mdtool hugo $@
+    docker run --rm -it -v"$DIR:/opt/mdtool/site/themes/site-content" jayven/mdtool hugo $@
     ;;
   *)
     echo "Invalid sub command. Valid sub commands are:"
-    echo "  'mdtool new':              run 'hugo new' (pwd as content dir)"
-    echo "  'mdtool serve':            run 'hugo serve' (pwd as content dir)"
-    echo "  'mdtool pub <public_dir>': run 'hugo' (pwd as content dir and output to <public_dir>)"
+    echo "  'mdtool new':      run 'hugo new' under current working dir"
+    echo "  'mdtool serve':    run 'hugo serve' under current working dir"
+    echo "  'mdtool pub':      run 'hugo' under current working dir"
     exit 1
     ;;
 esac
