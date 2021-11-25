@@ -1,8 +1,8 @@
 ### 简介
 
-**mdtool** 实际上是个人使用的 docker 封装的一套 hugo 环境，用于将内容 (markdown) 转换为不同平台的页面：
+**mdtool** 是个人使用的一套 hugo 环境 (docker 封装)，用于将内容 (markdown) 转换为不同平台的页面：
 
-  - 普通网站
+  - 个人博客
   - 微信公众号
   - ...
 
@@ -13,27 +13,39 @@
 
 安装：只要将 `mdtool` (一个 bash 文件) 放置在 `PATH` 即可，并且需要有 docker 安装好.
 
-`mdtool` 运行时均会将当前目录视为 hugo 的 `content` 目录.
+`mdtool` 运行时会将**当前目录** (e.g. `./`) [mount](https://docs.docker.com/storage/bind-mounts/) 为 hugo 的一个 [module](https://gohugo.io/hugo-modules/) 目录.
 
-新建内容
+内容应当放置在 `./content` 下，额外配置应当放置在 `./config` 下 (见 https://gohugo.io/getting-started/configuration/#configuration-directory),
+
+最终生成输出到 `./public` 下.
+
+#### 新建内容
 
 ```bash
 $ cd my-blog
 $ tree
 .
-└── posts
-    ├── first.md
-    └── second.md
+├── config
+│   └── _default
+│       └── config.toml
+└── content
+    └── posts
+        ├── second.md
+        └── first.md
 $ mdtool new posts/third.md
 $ tree
 .
-└── posts
-    ├── first.md
-    ├── second.md
-    └── third.md
+├── config
+│   └── _default
+│       └── config.toml
+└── content
+    └── posts
+        ├── third.md
+        ├── second.md
+        └── first.md
 ```
 
-写作
+#### 写作
 
 ```bash
 $ cd my-blog
@@ -56,11 +68,11 @@ Built in 4322 ms
 ...
 ```
 
-生成最终页面
+#### 生成最终页面
 
 ```bash
 $ cd my-blog
-$ mdtool pub ../my-blog-pub
+$ mdtool pub
 ```
 
 ### markdown 工具
@@ -70,9 +82,9 @@ $ mdtool pub ../my-blog-pub
 - hugo (https://gohugo.io/), 主要的工具
 - pandoc (https://pandoc.org/)
   - pandoc-filter
-    - 根据环境变量在服务端/客户端使用 MathJax 渲染 tex 公式
+    - 服务端使用 MathJax 渲染 tex 公式
       - 语法见 https://pandoc.org/MANUAL.html#extension-tex_math_dollars 说明, 简单说即 `$...$` (math inline) 或者 `$$....$$` (math block)
-      - 输出 svg, 如果使用服务端渲染 (默认), 则 MathJax 设置中的 font cache 为 none, 这样体积会比较大, 但适配场景要广一些 (微信公众号文章不允许 html 元素有 id)
+      - 输出 svg, MathJax 设置中的 font cache 为 none, 这样体积会比较大, 但适配场景要广一些 (微信公众号文章不允许 html 元素有 id)
     - 服务端使用 prismjs 渲染语法高亮, 支持添加行号
       - 语法见 https://pandoc.org/MANUAL.html#extension-fenced_code_blocks 说明, 例如
         ````markdown
@@ -119,7 +131,7 @@ $ mdtool pub ../my-blog-pub
 
 ### Site
 
-docker 镜像中 `/opt/mdtool/site` 下是一个 hugo site, 默认使用的 theme 是 `theme-weixin-mp`, 即构建输出到微信公众号的页面,
+镜像中 `/opt/mdtool/site` 下是一个 hugo site, 默认使用的 theme 是 `theme-weixin-mp`, 即构建输出到微信公众号的页面,
 可以通过命令行参数 `-t` 修改
 
 ### 参考
