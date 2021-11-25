@@ -116,16 +116,23 @@
 /* Images */
 
 .markdown-body img {
-  border-style: none;
+  display: block;
   max-width: 100%;
-  box-sizing: content-box;
+  margin: var(--mdt-block-margin-y) var(--mdt-block-margin-x);
+}
+
+.markdown-body figure {
+  display: inline-block;
+}
+
+.markdown-body figure figcaption {
+  text-align: center;
+  font-style: italic;
 }
 
 /* Seperators */
 
 .markdown-body hr {
-  box-sizing: content-box;
-  overflow: hidden;
   border: 0;
   height: 0.15em;
   background-color: var(--mdt-sep-fg);
