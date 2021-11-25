@@ -2,7 +2,6 @@
 
 .markdown-body {
   margin: 0 auto;
-  max-width: 750px;
   color: var(--mdt-body-fg);
   background-color: var(--mdt-body-bg);
   line-height: 1.5;
