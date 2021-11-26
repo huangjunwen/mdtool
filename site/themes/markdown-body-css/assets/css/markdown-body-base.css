@@ -68,7 +68,7 @@
 .markdown-body blockquote {
   margin: 0;
   padding: 0 1em;
-  border-left: 3px solid var(--mdt-quote-bar);
+  border-left: 0.15em solid var(--mdt-quote-bar);
   color: var(--mdt-quote-fg);
 }
 
@@ -250,7 +250,7 @@
   /* 行号固定 */
   position: -webkit-sticky;
   position: sticky;
-  left: 0px;
+  left: 0;
   /* 不可选 */
   -webkit-user-select: none;
   -webkit-touch-callout: none;
