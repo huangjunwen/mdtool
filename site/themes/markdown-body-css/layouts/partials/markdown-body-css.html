@@ -3,12 +3,12 @@
      */
 -}}
 {{- $vars := resources.Get "css/markdown-body-vars.css" -}}
-{{- $base := resources.Get "css/markdown-body-base.css" -}}
 {{- $tex2svg := resources.Get "css/markdown-body-tex2svg.scss" | toCSS -}}
+{{- $base := resources.Get "css/markdown-body-base.css" -}}
 {{- $ret := slice -}}
 {{- range $schemeName := slice "gruvbox-light-soft" "gruvbox-dark-soft" -}}
   {{- $scheme := resources.Get (printf "css/schemes/%s.css" $schemeName) -}}
-  {{- $css := slice $vars $scheme $base $tex2svg | resources.Concat (printf "css/markdown-body.%s.css" $schemeName) -}}
+  {{- $css := slice $vars $scheme $tex2svg $base | resources.Concat (printf "css/markdown-body.%s.css" $schemeName) -}}
   {{- $ret = $ret | append $css -}}
 {{- end -}}
 {{- return $ret -}}
