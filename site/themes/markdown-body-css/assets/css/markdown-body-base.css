@@ -195,7 +195,7 @@
 
 .markdown-body .table-container th,
 .markdown-body .table-container td {
-  border-width: 1;
+  border-width: 1px;
   border-style: solid;
   border-color: var(--mdt-tab-border-color);
   padding: var(--mdt-tab-cell-padding-y) var(--mdt-tab-cell-padding-x);
@@ -260,15 +260,18 @@
   width: 100%;
 }
 
-.markdown-body .code-container td:first-child pre {
+.markdown-body .code-container pre {
   margin: 0;
-  padding: var(--mdt-block-padding-y) var(--mdt-block-half-padding-x);
+  line-height: 1.6;
+}
+
+.markdown-body .code-container td:first-child pre {
+  padding: var(--mdt-block-padding-y) var(--mdt-block-padding-x);
   color: var(--mdt-code-block-ln-fg);
   background-color: var(--mdt-code-block-ln-bg);
 }
 
 .markdown-body .code-container td:last-child pre {
-  margin: 0;
   padding: var(--mdt-block-padding-y) var(--mdt-block-padding-x);
   color: var(--mdt-code-block-fg);
   background-color: var(--mdt-code-block-bg);
@@ -277,7 +280,6 @@
 .markdown-body code[class*='language-'] {
   font-family: var(--mdt-font-mono);
   font-size: 0.8rem;
-  line-height: normal;
   /*
   direction: ltr;
   text-align: left;
