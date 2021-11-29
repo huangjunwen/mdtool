@@ -1,11 +1,12 @@
 /* Body */
 
 .markdown-body {
+  font-family: var(--mdt-font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
   margin: 0 auto;
   color: var(--mdt-body-fg);
   background-color: var(--mdt-body-bg);
-  line-height: 1.5;
-  font-family: var(--mdt-font-sans);
   /* https://stackoverflow.com/questions/3226001/some-font-sizes-rendered-larger-on-safari-iphone */
   -webkit-text-size-adjust: none;
 }
@@ -65,7 +66,12 @@
 
 .markdown-body strong {
   color: inherit;
-  font-weight: 700;
+  font-weight: bold;
+}
+
+.markdown-body em {
+  color: inherit;
+  font-style: italic;
 }
 
 /* Blockquotes */
@@ -262,6 +268,7 @@
 
 .markdown-body .code-container pre {
   margin: 0;
+  font-size: 0.8rem;
   line-height: 1.6;
 }
 
