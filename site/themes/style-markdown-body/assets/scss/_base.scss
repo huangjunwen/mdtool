@@ -2,57 +2,52 @@
  * 常用 x/y margin/padding 类型 *
  ********************************/
 
+@mixin _margin-y($selector, $margin) {
+  #{$selector} {
+    margin-top: $margin;
+    margin-bottom: $margin;
+  }
+}
+
+@mixin _margin-x($selector, $margin) {
+  #{$selector} {
+    margin-left: $margin;
+    margin-right: $margin;
+  }
+}
+
+@mixin _padding-y($selector, $padding) {
+  #{$selector} {
+    padding-top: $padding;
+    padding-bottom: $padding;
+  }
+}
+
+@mixin _padding-x($selector, $padding) {
+  #{$selector} {
+    padding-left: $padding;
+    padding-right: $padding;
+  }
+}
+
 @for $i from 0 through 2 {
-  .mdb-margin-y-#{$i} {
-    margin-top: #{$i}rem;
-    margin-bottom: #{$i}rem;
-  }
-
-  .mdb-margin-x-#{$i} {
-    margin-left: #{$i}rem;
-    margin-right: #{$i}rem;
-  }
-
-  .mdb-padding-y-#{$i} {
-    padding-top: #{$i}rem;
-    padding-bottom: #{$i}rem;
-  }
-
-  .mdb-padding-x-#{$i} {
-    padding-left: #{$i}rem;
-    padding-right: #{$i}rem;
-  }
+  @include _margin-y(".mdb-margin-y-#{$i}", #{$i}rem);
+  @include _margin-y(".mdb-margin-y-#{$i}-5", unquote("#{$i}.5rem"));
+  @include _margin-x(".mdb-margin-x-#{$i}", #{$i}rem);
+  @include _margin-x(".mdb-margin-x-#{$i}-5", unquote("#{$i}.5rem"));
+  @include _padding-y(".mdb-padding-y-#{$i}", #{$i}rem);
+  @include _padding-y(".mdb-padding-y-#{$i}-5", unquote("#{$i}.5rem"));
+  @include _padding-x(".mdb-padding-x-#{$i}", #{$i}rem);
+  @include _padding-x(".mdb-padding-x-#{$i}-5", unquote("#{$i}.5rem"));
 }
 
-.mdb-margin-y-auto {
-  margin-top: auto;
-  margin-bottom: auto;
-}
+@include _margin-y(".mdb-margin-y-auto", auto);
+@include _margin-x(".mdb-margin-x-auto", auto);
+@include _padding-y(".mdb-padding-y-px", 1px);
+@include _padding-x(".mdb-padding-x-px", 1px);
 
-.mdb-margin-x-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.mdb-padding-y-px {
-  padding-top: 1px;
-  padding-bottom: 1px;
-}
-
-.mdb-padding-x-px {
-  padding-left: 1px;
-  padding-right: 1px;
-}
-
-.mdb-inline-padding-y {
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
-}
-
-.mdb-inline-padding-x {
-  padding-left: 0.8rem;
-  padding-right: 0.8rem;
-}
+@include _padding-y(".mdb-inline-padding-y", 0.3rem);
+@include _padding-x(".mdb-inline-padding-x", 0.8rem);
 
 /****************
  * 常用字体类型 *
@@ -82,16 +77,29 @@
   font-size: 0.85rem;
 }
 
-/**********
- * radius *
- **********/
+/***********************
+ * 常用 block 元素类型 *
+ ***********************/
+
+.mdb-block-container {
+  display: block;
+  overflow-x: auto;
+}
+
+/************************
+ * 常用 inline 元素类型 *
+ ************************/
 
 .mdb-inline-border-radius {
   border-radius: 0.5rem;
 }
 
+/***********
+ * helpers *
+ ***********/
+
 /* 隐藏滚动条 */
-@mixin no-scrollbar {
+@mixin _no-scrollbar {
   & {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -118,6 +126,7 @@
   @for $i from 1 through 6 {
     h#{$i} {
       @extend .mdb-heading-#{$i}-font;
+      /* 距离上边远一些 */
       margin-top: 2rem;
       margin-bottom: 1rem;
     }
@@ -144,7 +153,7 @@
   /* Blockquotes */
 
   blockquote {
-    @extend .mdb-margin-x-1;
+    @extend .mdb-margin-x-0;
     @extend .mdb-margin-y-1;
     @extend .mdb-padding-x-1;
     @extend .mdb-padding-y-px;
@@ -156,8 +165,8 @@
     padding-left: 2rem;
   }
 
-  li {
-    @extend .mdb-margin-y-1;
+  li, li > p {
+    @extend .mdb-margin-y-0-5;
   }
 
   /* Horizontal Rules */
@@ -190,13 +199,14 @@
   }
 
   figure {
-    display: block;
-    margin: 0 auto;
+    @extend .mdb-block-container;
+    @extend .mdb-margin-x-auto;
+    @extend .mdb-margin-y-0;
   }
 
   figure figcaption {
     text-align: center;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     font-style: italic;                                                                                                                                 
     font-weight: bold;
     opacity: 0.5;
@@ -205,14 +215,13 @@
   /* Code */
 
   .code-container {    
-    @include no-scrollbar;
-    display: block;    
-    overflow-x: auto;    
+    @include _no-scrollbar;
+    @extend .mdb-block-container;
+    @extend .mdb-margin-x-auto;
+    @extend .mdb-margin-y-1;
     /*    
     max-width: fit-content;    
      */    
-    @extend .mdb-margin-x-auto;
-    @extend .mdb-margin-y-1;
 
     table {
       @extend .mdb-margin-x-0;
@@ -302,13 +311,12 @@
   /* Tables */
 
   .table-container {
-    @include no-scrollbar;
-    display: block;
-    overflow-x: auto;
-    max-width: fit-content;
-    white-space: nowrap;
+    @include _no-scrollbar;
+    @extend .mdb-block-container;
     @extend .mdb-margin-x-auto;
     @extend .mdb-margin-y-1;
+    max-width: fit-content;
+    white-space: nowrap;
 
     table {
       @extend .mdb-margin-x-auto;
@@ -328,14 +336,13 @@
 
   mjx-container[jax="SVG"] {
     &[display="true"] {
-      @include no-scrollbar;
-      display: block;
-      overflow-x: auto;
-      text-align: center;
+      @include _no-scrollbar;
+      @extend .mdb-block-container;
       @extend .mdb-margin-x-auto;
       @extend .mdb-margin-y-1;
       @extend .mdb-padding-x-2;
       @extend .mdb-padding-y-2;
+      text-align: center;
 
     }
 

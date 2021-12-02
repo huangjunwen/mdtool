@@ -43,7 +43,7 @@ $light-block-box-shadow: -2px 0px 10px 0px color.mix($light-color-base05, #fff, 
   heading-bg-color:       transparent,
   blockquote-fg-color:    currentcolor,
   blockquote-bg-color:    rgba($light-color-base00, 0.3),
-  link-fg-color:          $light-color-base08,
+  link-fg-color:          $light-color-base0F,
   link-bg-color:          transparent,
   hr-fg-color:            currentcolor,
   hr-bg-color:            $light-color-derived00,
@@ -52,7 +52,7 @@ $light-block-box-shadow: -2px 0px 10px 0px color.mix($light-color-base05, #fff, 
   block-fg-color:         $light-color-base05,
   block-bg-color:         $light-color-base00,
   block-header-fg-color:  $light-color-base05,
-  block-header-bg-color:  $light-color-base02,
+  block-header-bg-color:  $light-color-base01,
 
   code-tok-comment:       $light-color-base03,
   code-tok-operator:      $light-color-base05,
@@ -114,10 +114,15 @@ $light-block-box-shadow: -2px 0px 10px 0px color.mix($light-color-base05, #fff, 
       font-weight: bold;
     }
 
+
     .table-container {
       th, td {
-        border: 1px solid $light-color-base02;
+        border: 1px solid $light-color-base01;
       }
+    }
+
+    .code-container, .table-container {
+      background-color: $light-color-base01;
     }
 
     .code-container, .table-container, mjx-container[jax="SVG"][display="true"] {

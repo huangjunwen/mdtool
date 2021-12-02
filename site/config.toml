@@ -9,7 +9,7 @@ publishDir = "themes/site-content/public"
   path = "site-content"
 
 [[module.imports]]
-  path = "markdown-body-css"
+  path = "style-markdown-body"
 
 [[module.imports]]
   path = "bulma-css"
