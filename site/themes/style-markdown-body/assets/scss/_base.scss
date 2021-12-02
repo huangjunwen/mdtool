@@ -1,6 +1,6 @@
-/********************************
- * 常用 x/y margin/padding 类型 *
- ********************************/
+/****************************
+ * 常用 margin/padding 类型 *
+ ****************************/
 
 @mixin _margin-y($selector, $margin) {
   #{$selector} {
@@ -46,9 +46,6 @@
 @include _padding-y(".mdb-padding-y-px", 1px);
 @include _padding-x(".mdb-padding-x-px", 1px);
 
-@include _padding-y(".mdb-inline-padding-y", 0.3rem);
-@include _padding-x(".mdb-inline-padding-x", 0.8rem);
-
 /****************
  * 常用字体类型 *
  ****************/
@@ -84,22 +81,8 @@
 .mdb-block-container {
   display: block;
   overflow-x: auto;
-}
 
-/************************
- * 常用 inline 元素类型 *
- ************************/
-
-.mdb-inline-border-radius {
-  border-radius: 0.5rem;
-}
-
-/***********
- * helpers *
- ***********/
-
-/* 隐藏滚动条 */
-@mixin _no-scrollbar {
+  /* 隐藏滚动条 */
   & {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -107,6 +90,19 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+/************************
+ * 常用 inline 元素类型 *
+ ************************/
+
+@include _padding-y(".mdb-inline-padding-y", 0.3rem);
+@include _padding-x(".mdb-inline-padding-x", 0.8rem);
+@include _margin-y(".mdb-inline-margin-y", 0.2rem);
+@include _margin-x(".mdb-inline-margin-x", 0.2rem);
+
+.mdb-inline-border-radius {
+  border-radius: 0.3rem;
 }
 
 /*****************
@@ -215,7 +211,6 @@
   /* Code */
 
   .code-container {    
-    @include _no-scrollbar;
     @extend .mdb-block-container;
     @extend .mdb-margin-x-auto;
     @extend .mdb-margin-y-1;
@@ -288,8 +283,10 @@
   }
 
   :not(pre) > code[class*='language-'] {
-    @extend .mdb-inline-padding-x;
     @extend .mdb-inline-padding-y;
+    @extend .mdb-inline-padding-x;
+    @extend .mdb-inline-margin-y;
+    @extend .mdb-inline-margin-x;
     @extend .mdb-inline-border-radius;
   }
 
@@ -311,7 +308,6 @@
   /* Tables */
 
   .table-container {
-    @include _no-scrollbar;
     @extend .mdb-block-container;
     @extend .mdb-margin-x-auto;
     @extend .mdb-margin-y-1;
@@ -336,7 +332,6 @@
 
   mjx-container[jax="SVG"] {
     &[display="true"] {
-      @include _no-scrollbar;
       @extend .mdb-block-container;
       @extend .mdb-margin-x-auto;
       @extend .mdb-margin-y-1;
@@ -350,6 +345,8 @@
       display: inline-block;
       @extend .mdb-inline-padding-x;
       @extend .mdb-inline-padding-y;
+      @extend .mdb-inline-margin-x;
+      @extend .mdb-inline-margin-y;
       @extend .mdb-inline-border-radius;
     }
 

@@ -1,0 +1,3 @@
+{{- $options := dict "transpiler" "dartsass" "outputStyle" "compressed" "targetPath" "css/markdown-body.css" -}}
+{{- $style := resources.Get "scss/markdown-body.scss" | resources.ToCSS $options -}}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}"></link>
