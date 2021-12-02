@@ -1,0 +1,249 @@
+@use "sass:color";
+@use "../theme";
+
+/* From: https://github.com/highlightjs/highlight.js/blob/main/src/styles/base16/gruvbox-light-soft.css */
+/*!
+Theme: Gruvbox light, soft
+Author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
+License: ~ MIT (or more permissive) [via base16-schemes-source]
+Maintainer: @highlightjs/core-team
+Version: 2021.05.0
+*/
+
+$light-color-base00:  #f2e5bc;  /* Default Background*/
+$light-color-base01:  #ebdbb2;  /* Lighter Background (Used for status bars, line number and folding marks)*/
+$light-color-base02:  #d5c4a1;  /* Selection Background*/
+$light-color-base03:  #bdae93;  /* Comments, Invisibles, Line Highlighting*/
+$light-color-base04:  #665c54;  /* Dark Foreground (Used for status bars)*/
+$light-color-base05:  #504945;  /* Default Foreground, Caret, Delimiters, Operators*/
+$light-color-base06:  #3c3836;  /* Light Foreground (Not often used)*/
+$light-color-base07:  #282828;  /* Light Background (Not often used)*/
+$light-color-base08:  #9d0006;  /* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted*/
+$light-color-base09:  #af3a03;  /* Integers, Boolean, Constants, XML Attributes, Markup Link Url*/
+$light-color-base0A:  #b57614;  /* Classes, Markup Bold, Search Text Background*/
+$light-color-base0B:  #79740e;  /* Strings, Inherited Class, Markup Code, Diff Inserted*/
+$light-color-base0C:  #427b58;  /* Support, Regular Expressions, Escape Characters, Markup Quotes*/
+$light-color-base0D:  #076678;  /* Functions, Methods, Attribute IDs, Headings*/
+$light-color-base0E:  #8f3f71;  /* Keywords, Storage, Selector, Markup Italic, Diff Changed*/
+$light-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>*/
+
+$light-color-derived00: color.mix($light-color-base05, $light-color-base00, 30%);
+
+$light-block-box-shadow: -2px 0px 10px 0px color.mix($light-color-base05, #fff, 50%);
+
+@include theme.themable((
+  selector:               ".gruvbox-soft.light",
+  name:                   gruvbox-soft-light,
+
+  body-fg-color:          $light-color-base05,
+  body-bg-color:          color.mix($light-color-base01, #fff, 30%),
+  selection-fg-color:     currentcolor,
+  selection-bg-color:     $light-color-base02,
+  heading-fg-color:       $light-color-base09,
+  heading-bg-color:       transparent,
+  blockquote-fg-color:    currentcolor,
+  blockquote-bg-color:    rgba($light-color-base00, 0.3),
+  link-fg-color:          $light-color-base08,
+  link-bg-color:          transparent,
+  hr-fg-color:            currentcolor,
+  hr-bg-color:            $light-color-derived00,
+  inline-fg-color:        $light-color-base05,
+  inline-bg-color:        $light-color-base00,
+  block-fg-color:         $light-color-base05,
+  block-bg-color:         $light-color-base00,
+  block-header-fg-color:  $light-color-base05,
+  block-header-bg-color:  $light-color-base02,
+
+  code-tok-comment:       $light-color-base03,
+  code-tok-operator:      $light-color-base05,
+  code-tok-keyword:       $light-color-base0E,
+  code-tok-builtin:       $light-color-base0A,
+  code-tok-function:      $light-color-base0D,
+  code-tok-class-name:    $light-color-base0A,
+  code-tok-string:        $light-color-base0B,
+  code-tok-variable:      $light-color-base08,
+  code-tok-constant:      $light-color-base09,
+  code-tok-property:      $light-color-base09,
+  code-tok-namespace:     $light-color-base0A,
+
+  code-tok-annotation:    $light-color-base0F,
+  code-tok-punctuation:   $light-color-base05,
+  code-tok-regex:         $light-color-base0C,
+  code-tok-number:        $light-color-base09,
+  code-tok-boolean:       $light-color-base0E,
+  code-tok-interpolation: $light-color-base09,
+  code-tok-symbol:        $light-color-base09,
+  code-tok-url:           $light-color-base09,
+
+  code-tok-doctype:       $light-color-base0F,
+  code-tok-cdata:         $light-color-base03,
+  code-tok-tag:           $light-color-base08,
+  code-tok-attr-name:     $light-color-base09,
+  code-tok-attr-value:    $light-color-base0B,
+
+  code-tok-shebang:       $light-color-base0F,
+
+  code-tok-selector:      $light-color-base0E,
+  code-tok-atrule:        $light-color-base0E,
+
+  code-tok-coord:         $light-color-base0A,
+  code-tok-deleted:       $light-color-base08,
+  code-tok-inserted:      $light-color-base0B,
+));
+
+/* 额外样式 */
+.gruvbox-soft.light {
+
+  .mdb {
+    h1 {
+      padding-bottom: 1rem;
+      border-bottom: 0.1rem dotted $light-color-base09;
+    }
+
+    h2 {
+      padding-left: 1rem;
+      border-left: 0.4rem solid $light-color-base09;
+    }
+
+    blockquote {
+      border-left: 0.2rem solid $light-color-derived00;
+    }
+
+    li::marker {
+      color: $light-color-base09;
+      font-weight: bold;
+    }
+
+    .table-container {
+      th, td {
+        border: 1px solid $light-color-base02;
+      }
+    }
+
+    .code-container, .table-container, mjx-container[jax="SVG"][display="true"] {
+      box-shadow: $light-block-box-shadow;
+    }
+
+  }
+
+}
+
+/* From https://github.com/highlightjs/highlight.js/blob/main/src/styles/base16/gruvbox-dark-soft.css */    
+/*!    
+Theme: Gruvbox dark, soft    
+Author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)    
+License: ~ MIT (or more permissive) [via base16-schemes-source]    
+Maintainer: @highlightjs/core-team    
+Version: 2021.05.0
+*/
+
+$dark-color-base00:  #32302f;  /* Default Background */
+$dark-color-base01:  #3c3836;  /* Lighter Background (Used for status bars, line number and folding marks) */
+$dark-color-base02:  #504945;  /* Selection Background */
+$dark-color-base03:  #665c54;  /* Comments, Invisibles, Line Highlighting */
+$dark-color-base04:  #bdae93;  /* Dark Foreground (Used for status bars) */
+$dark-color-base05:  #d5c4a1;  /* Default Foreground, Caret, Delimiters, Operators */
+$dark-color-base06:  #ebdbb2;  /* Light Foreground (Not often used) */
+$dark-color-base07:  #fbf1c7;  /* Light Background (Not often used) */
+$dark-color-base08:  #fb4934;  /* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
+$dark-color-base09:  #fe8019;  /* Integers, Boolean, Constants, XML Attributes, Markup Link Url */
+$dark-color-base0A:  #fabd2f;  /* Classes, Markup Bold, Search Text Background */
+$dark-color-base0B:  #b8bb26;  /* Strings, Inherited Class, Markup Code, Diff Inserted */
+$dark-color-base0C:  #8ec07c;  /* Support, Regular Expressions, Escape Characters, Markup Quotes */
+$dark-color-base0D:  #83a598;  /* Functions, Methods, Attribute IDs, Headings */
+$dark-color-base0E:  #d3869b;  /* Keywords, Storage, Selector, Markup Italic, Diff Changed */
+$dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
+
+$dark-color-derived00: color.mix($dark-color-base05, $dark-color-base00, 30%);
+
+@include theme.themable((
+  selector:              ".gruvbox-soft.dark",
+  name:                  gruvbox-soft-dark,
+
+  body-fg-color:          $dark-color-base05,
+  body-bg-color:          $dark-color-base01,
+  selection-fg-color:     currentcolor,
+  selection-bg-color:     $dark-color-base02,
+  heading-fg-color:       $dark-color-base09,
+  heading-bg-color:       transparent,
+  blockquote-fg-color:    currentcolor,
+  blockquote-bg-color:    rgba($dark-color-base00, 0.3),
+  link-fg-color:          $dark-color-base08,
+  link-bg-color:          transparent,
+  hr-fg-color:            currentcolor,
+  hr-bg-color:            $dark-color-derived00,
+  inline-fg-color:        $dark-color-base05,
+  inline-bg-color:        $dark-color-base00,
+  block-fg-color:         $dark-color-base05,
+  block-bg-color:         $dark-color-base00,
+  block-header-fg-color:  $dark-color-base05,
+  block-header-bg-color:  $dark-color-base02,
+
+  code-tok-comment:       $dark-color-base03,
+  code-tok-operator:      $dark-color-base05,
+  code-tok-keyword:       $dark-color-base0E,
+  code-tok-builtin:       $dark-color-base0A,
+  code-tok-function:      $dark-color-base0D,
+  code-tok-class-name:    $dark-color-base0A,
+  code-tok-string:        $dark-color-base0B,
+  code-tok-variable:      $dark-color-base08,
+  code-tok-constant:      $dark-color-base09,
+  code-tok-property:      $dark-color-base09,
+  code-tok-namespace:     $dark-color-base0A,
+
+  code-tok-annotation:    $dark-color-base0F,
+  code-tok-punctuation:   $dark-color-base05,
+  code-tok-regex:         $dark-color-base0C,
+  code-tok-number:        $dark-color-base09,
+  code-tok-boolean:       $dark-color-base0E,
+  code-tok-interpolation: $dark-color-base09,
+  code-tok-symbol:        $dark-color-base09,
+  code-tok-url:           $dark-color-base09,
+
+  code-tok-doctype:       $dark-color-base0F,
+  code-tok-cdata:         $dark-color-base03,
+  code-tok-tag:           $dark-color-base08,
+  code-tok-attr-name:     $dark-color-base09,
+  code-tok-attr-value:    $dark-color-base0B,
+
+  code-tok-shebang:       $dark-color-base0F,
+
+  code-tok-selector:      $dark-color-base0E,
+  code-tok-atrule:        $dark-color-base0E,
+
+  code-tok-coord:         $dark-color-base0A,
+  code-tok-deleted:       $dark-color-base08,
+  code-tok-inserted:      $dark-color-base0B,
+));
+
+/* 额外样式 */
+.gruvbox-soft.dark {
+
+  .mdb {
+    h1 {
+      padding-bottom: 1rem;
+      border-bottom: 0.1rem dotted $dark-color-base09;
+    }
+
+    h2 {
+      padding-left: 1rem;
+      border-left: 0.4rem solid $dark-color-base09;
+    }
+
+    blockquote {
+      border-left: 0.2rem solid $dark-color-derived00;
+    }
+
+    li::marker {
+      color: $dark-color-base09;
+      font-weight: bold;
+    }
+
+    .table-container {
+      th, td {
+        border: 1px solid $dark-color-base02;
+      }
+    }
+
+  }
+}
