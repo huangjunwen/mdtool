@@ -161,6 +161,42 @@
     padding-left: 2rem;
   }
 
+  ul {
+    list-style-type: disc;
+  }
+
+  ul, ol {
+    ul {
+      list-style-type: square;
+    }
+  }
+
+  ul, ol {
+    ul, ol {
+      ul {
+        list-style-type: circle;
+      }
+    }
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  ul, ol {
+    ol {
+      list-style-type: lower-roman;
+    }
+  }
+
+  ul, ol {
+    ul, ol {
+      ol {
+        list-style-type: lower-alpha;
+      }
+    }
+  }
+
   li, li > p {
     @extend .mdb-margin-y-0-5;
   }
