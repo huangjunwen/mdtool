@@ -110,7 +110,7 @@
  *****************/
 
 .mdb {
-  @extend .mdb-padding-x-1;
+  @extend .mdb-padding-x-1-5;
   @extend .mdb-padding-y-1;
   @extend .mdb-font;
 
@@ -246,11 +246,21 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        z-index: 10;
+
+        pre {
+          @extend .mdb-padding-x-0-5;
+        }
       }
 
       &:last-child {
         /* https://stackoverflow.com/a/17014884 */
         width: 100%;
+        z-index: 9;
+
+        pre {
+          @extend .mdb-padding-x-1;
+        }
       }
 
     }
@@ -258,7 +268,6 @@
     pre {
       @extend .mdb-margin-x-0;
       @extend .mdb-margin-y-0;
-      @extend .mdb-padding-x-1;
       @extend .mdb-padding-y-1;
       @extend .mdb-code-font;
     }
