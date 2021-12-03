@@ -1,4 +1,4 @@
 node_modules/
 site/resources/
 site/themes/site-content
-site/themes/markdown-body-css/assets/css/markdown-body-tex2svg.scss
+site/themes/style-markdown-body/assets/scss/_tex2svg.scss
