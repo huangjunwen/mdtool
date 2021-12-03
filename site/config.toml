@@ -12,4 +12,4 @@ publishDir = "themes/site-content/public"
   path = "style-markdown-body"
 
 [[module.imports]]
-  path = "bulma-css"
+  path = "style-bulma"
