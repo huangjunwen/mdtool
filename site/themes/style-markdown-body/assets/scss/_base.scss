@@ -105,11 +105,24 @@
   border-radius: 0.3rem;
 }
 
+/**************
+ * 常用其他类 *
+ **************/
+
+.mdb-border-box {
+  box-sizing: border-box;
+}
+
+.mdb-content-box {
+  box-sizing: content-box;
+}
+
 /*****************
  * markdown body *
  *****************/
 
 .mdb {
+  @extend .mdb-border-box;
   @extend .mdb-padding-x-1-5;
   @extend .mdb-padding-y-1;
   @extend .mdb-font;
