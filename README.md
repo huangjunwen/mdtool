@@ -125,7 +125,7 @@ $ mdtool pub
 - 其他工具
   - tex2svg 将标准输入的 tex 公式转换为标准输出的 svg (MathJax)
   - rsvg-convert svg 转图片
-  - postcss https://github.com/postcss/postcss-cli (hugo 可以直接使用 postcss)
+  - dart-sass-embedded
   - juice https://github.com/Automattic/juice
   - ...
 
