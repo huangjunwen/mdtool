@@ -1,11 +1,18 @@
 FROM node:16-buster-slim
 
-# 系统依赖以及 hugo
-RUN apt-get update && apt-get install -y pandoc librsvg2-bin wget make && cd /tmp && \
-      wget -O hugo.deb https://github.com/gohugoio/hugo/releases/download/v0.86.0/hugo_extended_0.86.0_Linux-64bit.deb && \
+ARG HUGO_VER=0.89.4
+ARG PANDOC_VER=2.16.2
+ARG DART_SASS_EMBEDDED_VER=1.0.0-beta.12
+
+# 下载安装主要工具
+RUN apt-get update && apt-get install -y librsvg2-bin wget make && cd /tmp && \
+      wget -O hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VER}/hugo_extended_${HUGO_VER}_Linux-64bit.deb && \
+      wget -O pandoc.deb https://github.com/jgm/pandoc/releases/download/v${PANDOC_VER}/pandoc-${PANDOC_VER}-1-amd64.deb && \
+      wget -O sass_embedded.tar.gz https://github.com/sass/dart-sass-embedded/releases/download/${DART_SASS_EMBEDDED_VER}/sass_embedded-${DART_SASS_EMBEDDED_VER}-linux-x64.tar.gz && \
       apt install ./hugo.deb && rm hugo.deb && \
-      wget -O sass_embedded.tar.gz https://github.com/sass/dart-sass-embedded/releases/download/1.0.0-beta.12/sass_embedded-1.0.0-beta.12-linux-x64.tar.gz && \
-      tar xfz sass_embedded.tar.gz && mv sass_embedded/dart-sass-embedded /usr/local/bin && rm -r sass_embedded.tar.gz sass_embedded
+      apt install ./pandoc.deb && rm pandoc.deb && \
+      tar xfz sass_embedded.tar.gz && mv sass_embedded/dart-sass-embedded /usr/local/bin && \
+      rm -r /tmp/*
 
 # js 依赖
 ADD tool/package.json tool/package-lock.json /opt/mdtool/tool/
