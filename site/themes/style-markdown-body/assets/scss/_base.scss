@@ -1,84 +1,48 @@
-/****************************
- * 常用 margin/padding 类型 *
- ****************************/
+$heading-margin: 2rem 0 1rem;
+$paragraph-margin: 1rem 0;
+$block-margin: 1rem auto;
+$block-padding: 1rem;
+$inline-margin: 0.2rem;
+$inline-padding: 0.3rem 0.8rem;
+$inline-border-radius: 0.3rem;
 
-@mixin _margin-y($selector, $margin) {
-  #{$selector} {
-    margin-top: $margin;
-    margin-bottom: $margin;
-  }
+$ss-fonts: sans-serif;
+$mono-fonts: monospace;
+$font: 1rem/1.5 $ss-fonts;
+$h1-font: 1.85rem/1.25 $ss-fonts;
+$h2-font: 1.70rem/1.25 $ss-fonts;
+$h3-font: 1.55rem/1.25 $ss-fonts;
+$h4-font: 1.40rem/1.25 $ss-fonts;
+$h5-font: 1.25rem/1.25 $ss-fonts;
+$h6-font: 1.10rem/1.25 $ss-fonts;
+$code-font: 0.8rem/1.6 $mono-fonts;
+$table-font: 0.85rem $ss-fonts;
+
+/* Exported variables */
+
+:root {
+  --mdb-heading-margin: #{$heading-margin};
+  --mdb-paragraph-margin: #{$paragraph-margin};
+  --mdb-block-margin: #{$block-margin};
+  --mdb-block-padding: #{$block-padding};
+  --mdb-inline-margin: #{$inline-margin};
+  --mdb-inline-padding: #{$inline-padding};
+  --mdb-inline-border-radius: #{$inline-border-radius};
+
+  --mdb-ss-fonts: #{$ss-fonts};
+  --mdb-mono-fonts: #{$mono-fonts};
+  --mdb-font: #{$font};
+  --mdb-h1-font: #{$h1-font};
+  --mdb-h2-font: #{$h2-font};
+  --mdb-h3-font: #{$h3-font};
+  --mdb-h4-font: #{$h4-font};
+  --mdb-h5-font: #{$h5-font};
+  --mdb-h6-font: #{$h6-font};
+  --mdb-code-font: #{$code-font};
+  --mdb-table-font: #{$table-font};
 }
 
-@mixin _margin-x($selector, $margin) {
-  #{$selector} {
-    margin-left: $margin;
-    margin-right: $margin;
-  }
-}
-
-@mixin _padding-y($selector, $padding) {
-  #{$selector} {
-    padding-top: $padding;
-    padding-bottom: $padding;
-  }
-}
-
-@mixin _padding-x($selector, $padding) {
-  #{$selector} {
-    padding-left: $padding;
-    padding-right: $padding;
-  }
-}
-
-@for $i from 0 through 2 {
-  @include _margin-y(".mdb-margin-y-#{$i}", #{$i}rem);
-  @include _margin-y(".mdb-margin-y-#{$i}-5", unquote("#{$i}.5rem"));
-  @include _margin-x(".mdb-margin-x-#{$i}", #{$i}rem);
-  @include _margin-x(".mdb-margin-x-#{$i}-5", unquote("#{$i}.5rem"));
-  @include _padding-y(".mdb-padding-y-#{$i}", #{$i}rem);
-  @include _padding-y(".mdb-padding-y-#{$i}-5", unquote("#{$i}.5rem"));
-  @include _padding-x(".mdb-padding-x-#{$i}", #{$i}rem);
-  @include _padding-x(".mdb-padding-x-#{$i}-5", unquote("#{$i}.5rem"));
-}
-
-@include _margin-y(".mdb-margin-y-auto", auto);
-@include _margin-x(".mdb-margin-x-auto", auto);
-@include _padding-y(".mdb-padding-y-px", 1px);
-@include _padding-x(".mdb-padding-x-px", 1px);
-
-/****************
- * 常用字体类型 *
- ****************/
-
-/* 默认字体设置 */
-.mdb-font {
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-/* heading 字体设置 */
-@for $i from 1 through 6 {
-  .mdb-heading-#{$i}-font {
-    font-size: 2rem - $i * 0.15rem;
-    font-weight: 600;
-    line-height: 1.25;
-  }
-}
-
-.mdb-code-font {
-  font-size: 0.8rem;
-  line-height: 1.6;
-}
-
-.mdb-table-font {
-  font-size: 0.85rem;
-}
-
-/***********************
- * 常用 block 元素类型 *
- ***********************/
-
-.mdb-block-container {
+%mdb-block-container {
   display: block;
   overflow-x: auto;
 
@@ -92,59 +56,35 @@
   }
 }
 
-/************************
- * 常用 inline 元素类型 *
- ************************/
-
-@include _padding-y(".mdb-inline-padding-y", 0.3rem);
-@include _padding-x(".mdb-inline-padding-x", 0.8rem);
-@include _margin-y(".mdb-inline-margin-y", 0.2rem);
-@include _margin-x(".mdb-inline-margin-x", 0.2rem);
-
-.mdb-inline-border-radius {
-  border-radius: 0.3rem;
-}
-
-/**************
- * 常用其他类 *
- **************/
-
-.mdb-border-box {
-  box-sizing: border-box;
-}
-
-.mdb-content-box {
-  box-sizing: content-box;
-}
-
 /*****************
  * markdown body *
  *****************/
 
 .mdb {
-  @extend .mdb-border-box;
-  @extend .mdb-padding-x-1-5;
-  @extend .mdb-padding-y-1;
-  @extend .mdb-font;
 
+  box-sizing: border-box;
+  padding: 1rem 1.5rem;
+  font: $font;
   /* https://stackoverflow.com/questions/3226001/some-font-sizes-rendered-larger-on-safari-iphone */
   -webkit-text-size-adjust: none;
 
   /* Headings */
 
-  @for $i from 1 through 6 {
-    h#{$i} {
-      @extend .mdb-heading-#{$i}-font;
-      /* 距离上边远一些 */
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
+  h1, h2, h3, h4, h5, h6 {
+    margin: $heading-margin;
   }
+
+  h1 { font: $h1-font; }
+  h2 { font: $h2-font; }
+  h3 { font: $h3-font; }
+  h4 { font: $h4-font; }
+  h5 { font: $h5-font; }
+  h6 { font: $h6-font; }
 
   /* Paragraphs */
 
   p {
-    @extend .mdb-margin-y-1;
+    margin: $paragraph-margin;
   }
 
   /* Emphasis */
@@ -162,15 +102,14 @@
   /* Blockquotes */
 
   blockquote {
-    @extend .mdb-margin-x-0;
-    @extend .mdb-margin-y-1;
-    @extend .mdb-padding-x-1;
-    @extend .mdb-padding-y-px;
+    margin: $paragraph-margin;
+    padding: 1px 1rem;
   }
 
   /* Lists */
 
   ul, ol {
+    margin: $paragraph-margin;
     padding-left: 2rem;
   }
 
@@ -211,13 +150,13 @@
   }
 
   li, li > p {
-    @extend .mdb-margin-y-0-5;
+    margin: 0.5rem 0;
   }
 
   /* Horizontal Rules */
 
   hr {
-    @extend .mdb-margin-y-2;
+    margin: 2rem 0;
     border: 0;
     height: 0.15rem;
   }
@@ -239,14 +178,12 @@
     /* 图片其实是可以 inline 到诸如 <p> <a> 里头的，但这里都统一成 block */
     display: block;
     max-width: 100%;
-    @extend .mdb-margin-x-auto;
-    @extend .mdb-margin-y-1;
+    margin: $block-margin;
   }
 
   figure {
-    @extend .mdb-block-container;
-    @extend .mdb-margin-x-auto;
-    @extend .mdb-margin-y-0;
+    @extend %mdb-block-container;
+    margin: 0 auto;
   }
 
   figure figcaption {
@@ -260,28 +197,23 @@
   /* Code */
 
   .code-container {    
-    @extend .mdb-block-container;
-    @extend .mdb-margin-x-auto;
-    @extend .mdb-margin-y-1;
+    @extend %mdb-block-container;
+    margin: $block-margin;
     /*    
     max-width: fit-content;    
-     */    
+    */    
 
     table {
-      @extend .mdb-margin-x-0;
-      @extend .mdb-margin-y-0;
-      @extend .mdb-padding-x-0;
-      @extend .mdb-padding-y-0;
+      margin: 0;
+      padding: 0;
       border: 0;
       border-collapse: collapse;
       width: 100%;
     }
 
     td {
-      @extend .mdb-margin-x-0;
-      @extend .mdb-margin-y-0;
-      @extend .mdb-padding-x-0;
-      @extend .mdb-padding-y-0;
+      margin: 0;
+      padding: 0;
       border: 0;
 
       &:first-child {
@@ -298,7 +230,7 @@
         z-index: 10;
 
         pre {
-          @extend .mdb-padding-x-0-5;
+          padding: 1rem 0.5rem;
         }
       }
 
@@ -308,22 +240,20 @@
         z-index: 9;
 
         pre {
-          @extend .mdb-padding-x-1;
+          padding: $block-padding;
         }
       }
 
     }
 
     pre {
-      @extend .mdb-margin-x-0;
-      @extend .mdb-margin-y-0;
-      @extend .mdb-padding-y-1;
-      @extend .mdb-code-font;
+      font: $code-font;
+      margin: 0;
     }
   }    
 
   code[class*='language-'] {
-    @extend .mdb-code-font;
+    font: $code-font;
     /*
     direction: ltr;
     text-align: left;
@@ -340,17 +270,15 @@
     hyphens: none;
   }
 
-  :not(pre) > code[class*='language-'] {
-    @extend .mdb-inline-padding-y;
-    @extend .mdb-inline-padding-x;
-    @extend .mdb-inline-margin-y;
-    @extend .mdb-inline-margin-x;
-    @extend .mdb-inline-border-radius;
+  pre > code[class*='language-'] {
+    margin: 0;
+    padding: 0;
   }
 
-  pre > code[class*='language-'] {
-    @extend .mdb-padding-x-0;
-    @extend .mdb-padding-y-0;
+  :not(pre) > code[class*='language-'] {
+    margin: $inline-margin;
+    padding: $inline-padding;
+    border-radius: $inline-border-radius;
   }
 
   .prism-token {
@@ -366,22 +294,19 @@
   /* Tables */
 
   .table-container {
-    @extend .mdb-block-container;
-    @extend .mdb-margin-x-auto;
-    @extend .mdb-margin-y-1;
+    @extend %mdb-block-container;
+    margin: $block-margin;
     max-width: fit-content;
     white-space: nowrap;
 
     table {
-      @extend .mdb-margin-x-auto;
-      @extend .mdb-margin-y-0;
+      margin: 0;
       border: 0;
       border-collapse: collapse;
 
       th, td {
-        @extend .mdb-table-font;
-        @extend .mdb-inline-padding-y;
-        @extend .mdb-inline-padding-x;
+        font: $table-font;
+        padding: $inline-padding;
       }
     }
   }
@@ -390,22 +315,18 @@
 
   mjx-container[jax="SVG"] {
     &[display="true"] {
-      @extend .mdb-block-container;
-      @extend .mdb-margin-x-auto;
-      @extend .mdb-margin-y-1;
-      @extend .mdb-padding-x-2;
-      @extend .mdb-padding-y-2;
+      @extend %mdb-block-container;
+      margin: $block-margin;
+      padding: $block-padding;
       text-align: center;
 
     }
 
     &:not([display="true"]) {
       display: inline-block;
-      @extend .mdb-inline-padding-x;
-      @extend .mdb-inline-padding-y;
-      @extend .mdb-inline-margin-x;
-      @extend .mdb-inline-margin-y;
-      @extend .mdb-inline-border-radius;
+      margin: $inline-margin;
+      padding: $inline-padding;
+      border-radius: $inline-border-radius;
     }
 
   }

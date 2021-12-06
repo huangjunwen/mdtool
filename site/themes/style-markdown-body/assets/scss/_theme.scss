@@ -8,24 +8,22 @@
   @return map.get($setting, name);
 }
 
-/* 为特定主题创建颜色类型 */
 @mixin _color-class($setting, $kind) {
 
   $theme: _theme-name($setting);
+  $fg: map.get($setting, #{$kind}-fg-color);
+  $bg: map.get($setting, #{$kind}-bg-color);
 
-  /*
-   * 这里要创建一个带上主题名的 placeholder selector 是为了能
-   * 被准确地 extend
-   */
+
   %#{$theme}--mdb-#{$kind}-color {
-    color: map.get($setting, #{$kind}-fg-color);
-    background-color: map.get($setting, #{$kind}-bg-color);
+    color: $fg;
+    background-color: $bg;
   }
 
-  /* exported class */
-  .mdb-#{$kind}-color {
-    @extend %#{$theme}--mdb-#{$kind}-color;
-  }
+  /* Exported varialbes */
+
+  --mdb-#{$kind}-fg-color: #{$fg};
+  --mdb-#{$kind}-bg-color: #{$bg};
 
 }
 
