@@ -8,15 +8,15 @@ RUN apt-get update && apt-get install -y pandoc librsvg2-bin wget make && cd /tm
       tar xfz sass_embedded.tar.gz && mv sass_embedded/dart-sass-embedded /usr/local/bin && rm -r sass_embedded.tar.gz sass_embedded
 
 # js 依赖
-ADD package.json package-lock.json /opt/mdtool/
-RUN cd /opt/mdtool && npm install
+ADD tool/package.json tool/package-lock.json /opt/mdtool/tool/
+ADD site/package.json site/package-lock.json /opt/mdtool/site/
+RUN cd /opt/mdtool/tool && npm install && cd /opt/mdtool/site && npm install
 
 # 路径
-ENV PATH="/opt/mdtool/bin:/opt/mdtool/node_modules/.bin:${PATH}"
+ENV PATH="/opt/mdtool/tool/bin:/opt/mdtool/tool/node_modules/.bin:${PATH}"
 WORKDIR /opt/mdtool/site
 
 # 其他文件
-ADD lib /opt/mdtool/lib
-ADD bin /opt/mdtool/bin
+ADD tool /opt/mdtool/tool
 ADD site /opt/mdtool/site
 RUN cd /opt/mdtool/site/themes/style-markdown-body/assets/scss && make

@@ -1,21 +1,13 @@
 {
   "name": "mdtool",
   "dependencies": {
-    "buffer": "^6.0.3",
     "cheerio": "^0.22.0",
-    "declassify": "^2.1.0",
     "esm": "^3.2.25",
-    "events": "^3.3.0",
     "get-stream": "^6.0.1",
-    "juice": "^8.0.0",
     "mathjax-full": "^3.2.0",
     "pandoc-filter": "^2.0.2",
     "prismjs": "^1.24.1",
     "winston": "^3.3.3",
     "yargs": "^17.0.1"
-  },
-  "browser": {
-    "buffer": "buffer",
-    "events": "events"
   }
 }
