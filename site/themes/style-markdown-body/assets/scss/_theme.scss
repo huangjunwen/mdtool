@@ -45,7 +45,7 @@
     @include _color-class($setting, body);
     /* 选择颜色 */
     @include _color-class($setting, selection);
-    /* <h1>..<h6> 颜色 */
+    /* <hX> 颜色 */
     @include _color-class($setting, heading);
     /* <blockquote> 颜色 */
     @include _color-class($setting, blockquote);
