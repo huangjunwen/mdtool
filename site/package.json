@@ -1,5 +1,5 @@
 {
-  "name": "mdtool",
+  "name": "mdtool.site",
   "dependencies": {
     "buffer": "^6.0.3",
     "declassify": "^2.1.0",

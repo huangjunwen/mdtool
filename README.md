@@ -75,9 +75,9 @@ $ cd my-blog
 $ mdtool pub
 ```
 
-### markdown 工具
+### tool
 
-包含:
+工具目录:
 
 - hugo (https://gohugo.io/), 主要的工具
 - pandoc (https://pandoc.org/)
@@ -122,16 +122,16 @@ $ mdtool pub
       - 普通 table 也会包括在 section 中, `<section>` 带 `table-container`
   - pandoc wrapper: 一个 shell, 使用上述的 pandoc-filter, 它在 `PATH` 上处于优先, 故 hugo 如果用 
     pandoc 进行渲染就会自动使用该 wrapper.
+  - dart-sass: 见 https://gohugo.io/hugo-pipes/scss-sass/
+  - postcss: 见 https://gohugo.io/hugo-pipes/postcss/
 - 其他工具
   - tex2svg 将标准输入的 tex 公式转换为标准输出的 svg (MathJax)
   - rsvg-convert svg 转图片
-  - dart-sass-embedded
-  - juice https://github.com/Automattic/juice
   - ...
 
-### Site
+### site
 
-镜像中 `/opt/mdtool/site` 下是一个 hugo site, 默认使用的 theme 是 `theme-weixin-mp`, 即构建输出到微信公众号的页面,
+site 目录是一个 hugo site, 默认使用的 theme 是 `theme-weixin-mp`, 即构建输出到微信公众号的页面,
 可以通过命令行参数 `-t` 修改
 
 ### 参考

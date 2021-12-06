@@ -1,11 +1,13 @@
 {
-  "name": "mdtool",
+  "name": "mdtool.tool",
   "dependencies": {
     "cheerio": "^0.22.0",
     "esm": "^3.2.25",
     "get-stream": "^6.0.1",
     "mathjax-full": "^3.2.0",
     "pandoc-filter": "^2.0.2",
+    "postcss": "^8.4.4",
+    "postcss-cli": "^9.0.2",
     "prismjs": "^1.24.1",
     "winston": "^3.3.3",
     "yargs": "^17.0.1"
