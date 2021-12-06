@@ -19,4 +19,4 @@ WORKDIR /opt/mdtool/site
 ADD lib /opt/mdtool/lib
 ADD bin /opt/mdtool/bin
 ADD site /opt/mdtool/site
-RUN cd /opt/mdtool/site/themes/markdown-body-css/assets/css && make
+RUN cd /opt/mdtool/site/themes/style-markdown-body/assets/scss && make
