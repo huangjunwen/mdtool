@@ -1,13 +1,34 @@
+{{ define "header" }}
+<style>
+  #posts {
+    font: var(--mdb-font);
+  }
+  #posts li {
+    margin: var(--mdb-inline-margin);
+  }
+  #posts a {
+    color: var(--mdb-link-fg-color);
+    padding: var(--mdb-inline-padding);
+    text-decoration: none;
+  }
+  #posts a:hover {
+    text-decoration: underline;
+  }
+</style>
+{{ end }}
+
 {{ define "main" }}
-<ul>
-  {{- range sort site.RegularPages "Date" "desc" }}
-  <li>
-    <a href="{{ .RelPermalink }}">
-      {{ .Title }}
-      <small>[<time>{{ .Date.Format "Jan 2, 2006" }}</time>]</small>
-    </a>
-  </li>
-  {{- end }}
-</ul>
+<div>
+  <ul id="posts">
+    {{- range sort site.RegularPages "Date" "desc" }}
+    <li>
+      <a href="{{ .RelPermalink }}">
+        {{ .Title }}
+        <small>[<time>{{ .Date.Format "Jan 2, 2006" }}</time>]</small>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+</div>
 {{ end }}
 

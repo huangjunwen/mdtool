@@ -28,23 +28,39 @@ function copyToClipboard(textToCopy) {
   }
 }
 
+var _mdbStyle = ''
+function getMarkdownBodyStyle() {
+  if (!_mdbStyle) {
+    // https://stackoverflow.com/questions/9180184/access-css-file-contents-via-javascript
+    const styleElem = document.getElementById('style-markdown-body');
+    const cssText = (x) => { return x.cssText }
+    _mdbStyle = Array.prototype.map.call(styleElem.sheet.cssRules, cssText).join('\n')
+  }
+  return _mdbStyle;
+}
+
+function inlineCSS(html) {
+  return declassify.process(juice(html)).trim()
+}
+
+function text2HTML(text) {
+  var elem = document.createElement('template')
+  elem.innerHTML = text
+  return elem.content
+}
+
 document.addEventListener("DOMContentLoaded", function(event) {
 
-  const colorSchemeNames = document.getElementById('color-scheme-names')
-  const colorSchemeStyles = document.getElementById('color-scheme-styles')
-  const markdownBodyCSS = document.getElementById('markdown-body-style')
-  colorSchemeNames.addEventListener('change', e => {
-    markdownBodyCSS.innerText = colorSchemeStyles.children[colorSchemeNames.selectedIndex].innerText
-  })
-  colorSchemeNames.dispatchEvent(new Event('change'))
-
-  const copyWechat = document.getElementById('copy-wechat')
-  const markdownMain = document.getElementById('markdown-main')
-  copyWechat.addEventListener('click', e => {
-    let text = declassify.process(juice(markdownMain.innerHTML))
+  const copy = document.getElementById('copy')
+  const wrapper = document.getElementById('wrapper')
+  const markdownBody = document.getElementById('markdown-body')
+  copy.addEventListener('click', e => {
+    let text = `<style>${getMarkdownBodyStyle()}</style><div class="${wrapper.className}">${markdownBody.outerHTML}</div>`
+    text = inlineCSS(text)
+    text = text2HTML(text).children[1].innerHTML // 只需要 <div> 里头的内容即可
+    console.log(text)
     copyToClipboard(text)
       .then(() => { alert('拷贝成功, 请使用 chrome/firefox inspect 替换大法粘帖到公众号') })
       .catch((e) => { alert(`拷贝失败 ${e}`) })
   })
-
 })
