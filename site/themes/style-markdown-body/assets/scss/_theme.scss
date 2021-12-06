@@ -1,0 +1,165 @@
+@use "sass:map";
+
+@function _theme-selector($setting) {
+  @return map.get($setting, selector);
+}
+
+@function _theme-name($setting) {
+  @return map.get($setting, name);
+}
+
+@mixin _color-class($setting, $kind) {
+
+  $theme: _theme-name($setting);
+  $fg: map.get($setting, #{$kind}-fg-color);
+  $bg: map.get($setting, #{$kind}-bg-color);
+
+
+  %#{$theme}--mdb-#{$kind}-color {
+    color: $fg;
+    background-color: $bg;
+  }
+
+  /* Exported varialbes */
+
+  --mdb-#{$kind}-fg-color: #{$fg};
+  --mdb-#{$kind}-bg-color: #{$bg};
+
+}
+
+@mixin _code-tok($setting, $kind) {
+  .prism-token.prism-#{$kind} {
+    color: map.get($setting, code-tok-#{$kind});
+  }
+}
+
+/* 生成特定主题下的公共样式类型 (主题可以额外添加自己独特的样式) */
+@mixin themable($setting) {
+
+  $theme: _theme-name($setting);
+  $selector: _theme-selector($setting);
+
+  #{$selector} {
+
+    /* 主体颜色 */
+    @include _color-class($setting, body);
+    /* 选择颜色 */
+    @include _color-class($setting, selection);
+    /* <hX> 颜色 */
+    @include _color-class($setting, heading);
+    /* <blockquote> 颜色 */
+    @include _color-class($setting, blockquote);
+    /* <a> 颜色 */
+    @include _color-class($setting, link);
+    /* <hr> 颜色 */
+    @include _color-class($setting, hr);
+    /* 块元素主颜色 */
+    @include _color-class($setting, block);
+    /* 块元素头颜色, 例如 table 的头部，code 的行号部分 */
+    @include _color-class($setting, block-header);
+    /* 行内元素颜色 */
+    @include _color-class($setting, inline);
+
+    .mdb {
+
+      @extend %#{$theme}--mdb-body-color;
+
+      &::selection, & *::selection {
+        @extend %#{$theme}--mdb-selection-color;
+      }
+
+      @for $i from 1 through 6 {
+        h#{$i} {
+          @extend %#{$theme}--mdb-heading-color;
+        }
+      }
+
+      blockquote {
+        @extend %#{$theme}--mdb-blockquote-color;
+      }
+
+      hr {
+        @extend %#{$theme}--mdb-hr-color;
+      }
+
+      a {
+        @extend %#{$theme}--mdb-link-color;
+      }
+
+      .code-container {
+        td:first-child {
+          pre, code[class*='language-'] {
+            @extend %#{$theme}--mdb-block-header-color;
+          }
+        }
+
+        td:last-child {
+          pre, code[class*='language-'] {
+            @extend %#{$theme}--mdb-block-color;
+          }
+        }
+      }
+
+      :not(pre) > code[class*='language-'] {
+        @extend %#{$theme}--mdb-inline-color;
+      }
+
+      @include _code-tok($setting, comment);
+      @include _code-tok($setting, operator);
+      @include _code-tok($setting, keyword);
+      @include _code-tok($setting, builtin);
+      @include _code-tok($setting, function);
+      @include _code-tok($setting, class-name);
+      @include _code-tok($setting, string);
+      @include _code-tok($setting, variable);
+      @include _code-tok($setting, constant);
+      @include _code-tok($setting, property);
+      @include _code-tok($setting, namespace);
+
+      @include _code-tok($setting, decorator);
+      @include _code-tok($setting, punctuation);
+      @include _code-tok($setting, regex);
+      @include _code-tok($setting, number);
+      @include _code-tok($setting, boolean);
+      @include _code-tok($setting, interpolation);
+      @include _code-tok($setting, symbol);
+      @include _code-tok($setting, url);
+
+      @include _code-tok($setting, doctype); /* 主要用于 html */
+      @include _code-tok($setting, cdata);
+      @include _code-tok($setting, tag);
+      @include _code-tok($setting, attr-name);
+      @include _code-tok($setting, attr-value);
+
+      @include _code-tok($setting, shebang); /* 主要用于 shell */
+
+      @include _code-tok($setting, selector); /* 主要用于 css */
+      @include _code-tok($setting, atrule);
+
+      @include _code-tok($setting, coord); /* 主要用于 diff */
+      @include _code-tok($setting, deleted);
+      @include _code-tok($setting, inserted);
+
+      .table-container {
+        th {
+          @extend %#{$theme}--mdb-block-header-color;
+        }
+        td {
+          @extend %#{$theme}--mdb-block-color;
+        }
+      }
+
+      mjx-container[jax="SVG"] {
+        &[display="true"] {
+          @extend %#{$theme}--mdb-block-color;
+        }
+        &:not([display="true"]) {
+          @extend %#{$theme}--mdb-inline-color;
+        }
+      }
+
+    }
+
+  }
+
+}

@@ -4,8 +4,100 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ .Title }}</title>
+    {{ partial "purecss.html" . }}
+    {{ partial "markdown-body.html" . }}
+    {{ $themeNames := partial "markdown-body-theme-names.html" . -}}
+    <style>
+      #wrapper {
+        color: var(--mdb-body-fg-color);
+        background-color: var(--mdb-body-bg-color);
+      }
+      #navbar {
+        padding: var(--mdb-block-padding);
+        position: -webkit-sticky;                                                                                                                     
+        position: sticky;
+        top: 0;
+        z-index: 999;
+      }
+      .pure-menu-link {
+        padding: 0.8rem 1rem;
+      }
+      #navbar, .pure-menu, .pure-menu-item, .pure-menu-children {
+        color: var(--mdb-block-fg-color);
+        background-color: var(--mdb-block-bg-color);
+      }
+      .pure-menu-heading {
+        color: var(--mdb-heading-fg-color);
+        background-color: var(--mdb-heading-bg-color);
+      }
+      .pure-menu-link {
+        color: var(--mdb-link-fg-color);
+        background-color: var(--mdb-link-bg-color);
+      }
+      .pure-menu-link:focus, .pure-menu-link:hover {
+        background-color: var(--mdb-block-header-bg-color);
+      }
+    </style>
+    <script>
+      function setTheme(themeName, themeMode) {
+        if (themeName) {
+          window.localStorage.setItem("markdownThemeName", themeName);
+        } else {
+          themeName = window.localStorage.getItem("markdownThemeName") || "{{ index $themeNames 0 }}";
+        }
+        if (themeMode) {
+          window.localStorage.setItem("markdownThemeMode", themeMode);
+        } else {
+          themeMode = window.localStorage.getItem("markdownThemeMode") || "light";
+        }
+        document.getElementById("wrapper").className = themeName + " " + themeMode;
+      }
+      document.addEventListener("DOMContentLoaded", function(event) {
+        setTheme();
+      })
+    </script>
+    {{ block "header" . }}{{ end }}
   </head>
   <body>
-    {{- block "main" . }}{{- end }}
+    <div id="wrapper">
+
+        <div class="pure-g" id="navbar">
+          <div class="pure-u-1">
+            <div class="pure-menu pure-menu-horizontal">
+              <ul class="pure-menu-list">
+                <li class="pure-menu-item">
+                  <a href="/" class="pure-menu-heading">HOME</a>
+                </li>
+                <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                  <a href="#" id="themeMenu" class="pure-menu-link">主题</a>
+                  <ul class="pure-menu-children">
+                    {{ range $themeName := $themeNames }}
+                      <li class="pure-menu-item">
+                        <a href="#" class="pure-menu-link" onclick="setTheme('{{ $themeName }}')">{{ $themeName }}</a>
+                      </li>
+                    {{ end }}
+                      <li class="pure-menu-item">
+                        <a href="#" class="pure-menu-link" onclick="setTheme('plain')">plain</a>
+                      </li>
+                  </ul>
+                </li>
+                <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                  <a href="#" id="modeMenu" class="pure-menu-link">模式</a>
+                  <ul class="pure-menu-children">
+                    <li class="pure-menu-item">
+                      <a href="#" class="pure-menu-link" onclick="setTheme('', 'light')">Light</a>
+                      <a href="#" class="pure-menu-link" onclick="setTheme('', 'dark')">Dark</a>
+                    </li>
+                  </ul>
+                </li>
+                {{ block "menu" . }}{{ end }}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {{ block "main" . }}{{ end }}
+
+    </div>
   </body>
 </html>

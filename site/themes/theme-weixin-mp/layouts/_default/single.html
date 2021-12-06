@@ -1,43 +1,44 @@
-{{ define "main" }}
-<link rel="stylesheet" href="{{ (resources.Get "css/single.css" | resources.Minify).RelPermalink }}"></link>
+{{ define "header" }}
 <script type="text/javascript" src="{{ (resources.Get "js/single.js" | js.Build | resources.Minify).RelPermalink }}"></script>
-
-<div id="panel">
-  <div><a id="home" href="/">Home</a></div>
-  <div>
-    <select id="color-scheme-names">
-      {{- $styles := partial "markdown-body-css.html" . -}}
-      {{- range $css := $styles -}}
-        {{- $cssName := strings.TrimSuffix ".css" (strings.TrimPrefix "css/markdown-body." $css.Name) }}
-        <option id="{{ $cssName }}" value="{{ $cssName }}">{{ $cssName }}</option>
-      {{- end }}
-    </select>
-    <div id="color-scheme-styles" style="display:none">
-      {{- range $css := $styles }}
-        <text>{{ ($css | resources.PostCSS (dict "use" "postcss-css-variables") | resources.Minify).Content | safeCSS }}</text>
-      {{- end }}
-    </div>
-  </div>
-  <div>
-    <button id="copy-wechat">拷贝到微信<br>公众号</button>
-  </div>
-</div>
-
-<div id="markdown-title">
-  <h1>{{ .Title }}</h1>
-  <small>{{ .Date.Format "Jan 2, 2006" }}</small>
-</div>
-
-<article id="markdown-main">
-  <style>
-  .markdown-body {
-    font-size: 16px;
-    padding: 1em;
+<style>
+  #copy {
+    color: var(--mdb-block-header-fg-color);
+    background-color: var(--mdb-block-header-bg-color);
   }
-  </style>
-  <style id="markdown-body-style"></style>
-  <section class="markdown-body">
-  {{ .Content }}
-  </section>
-</article>
+  #markdown-title {
+    text-align: center;
+    margin: 2rem;
+  }
+  #markdown-content {
+    max-width: 100%;
+  }
+  #markdown-body {
+    border: 2px dashed;
+  }
+</style>
+{{ end }}
+
+{{ define "menu" }}
+<li class="pure-menu-item">
+  <a href="#" id="copy" class="pure-button">拷贝到公众号</a>
+</li>
+
+{{ end }}
+
+{{ define "main" }}
+<div class="pure-g" id="markdown-title">
+  <div class="pure-u-1">
+    <h1 class="">{{ .Title }}</h1>
+    <small>{{ .Date.Format "Jan 2, 2006" }}</small>
+  </div>
+</div>
+<div class="pure-g" id="markdown-content">
+  <div class="pure-u-md-1-12 pure-u-lg-1-6 pure-u-xl-1-4"></div>
+  <div class="pure-u-1 pure-u-md-5-6 pure-u-lg-2-3 pure-u-xl-1-2">
+    <article id="markdown-body" class="mdb">
+      {{ .Content }}
+    </article>
+  </div>
+  <div class="pure-u-md-1-12 pure-u-lg-1-6 pure-u-xl-1-4"></div>
+</div>
 {{ end }}
