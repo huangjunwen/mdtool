@@ -3,6 +3,10 @@ languageCode = "zh-cn"
 title = "MDTool"
 theme = "theme-weixin-mp"
 
+# 用于 purge css
+[build]
+  writeStats = true
+
 [module]
 [[module.imports]]
   path = "style-markdown-body"
