@@ -3,10 +3,20 @@
 USER=$(id -u)
 GROUP=$(id -g)
 DIR=$(pwd)
-SUB_CMD=$1
-shift
 
-mkdir -p $DIR/config $DIR/content $DIR/resources $DIR/public
+if [ ! -d $DIR/content ]; then
+  while true; do
+    read -p "Content not found. Want to initialize current directory? [yN] " yn
+    case $yn in
+      [Yy]*)
+        break;;
+      *)
+        exit;;
+    esac
+  done
+fi
+
+mkdir -p $DIR/content $DIR/config $DIR/resources $DIR/public
 touch $DIR/.hugo_build.lock
 
 COMMON_ARGS="--rm -it --network=host --user $USER:$GROUP \
@@ -17,21 +27,4 @@ COMMON_ARGS="--rm -it --network=host --user $USER:$GROUP \
   -v $DIR/resources:/opt/mdtool/site/resources \
   -v $DIR/public:/opt/mdtool/site/public"
 
-case $SUB_CMD in
-  new)
-    docker run $COMMON_ARGS jayven/mdtool hugo new $@
-    ;;
-  serve)
-    docker run $COMMON_ARGS jayven/mdtool hugo serve $@
-    ;;
-  pub)
-    docker run $COMMON_ARGS jayven/mdtool hugo $@
-    ;;
-  *)
-    echo "Invalid sub command. Valid sub commands are:"
-    echo "  'mdtool new':      run 'hugo new' under current working dir"
-    echo "  'mdtool serve':    run 'hugo serve' under current working dir"
-    echo "  'mdtool pub':      run 'hugo' under current working dir"
-    exit 1
-    ;;
-esac
+docker run $COMMON_ARGS jayven/mdtool hugo $@

@@ -11,13 +11,11 @@
 
 ### 快速使用
 
-安装：只要将 `mdtool` (一个 bash 文件) 放置在 `PATH` 即可，并且需要有 docker 安装好.
+安装：安装好 docker, 将 `mdtool` (bash script) 放置在 `PATH` 即可.
 
-`mdtool` 运行时会将**当前目录** (e.g. `./`) [mount](https://docs.docker.com/storage/bind-mounts/) 为 hugo 的一个 [module](https://gohugo.io/hugo-modules/) 目录.
+`mdtool` 运行时会检查**当前目录**是否有 `content` 子目录，如果没有则会提示初始化当前目录: 新建 `config/content/public/resources` 目录;
 
-内容应当放置在 `./content` 下，额外配置应当放置在 `./config` 下 (见 https://gohugo.io/getting-started/configuration/#configuration-directory),
-
-最终生成输出到 `./public` 下.
+然后会 `docker run` 启动 hugo，并将上述目录 bind mount 到容器 site 相对应的目录下.
 
 #### 新建内容
 
@@ -72,12 +70,10 @@ Built in 4322 ms
 
 ```bash
 $ cd my-blog
-$ mdtool pub
+$ mdtool
 ```
 
-### tool
-
-工具目录:
+### tool (工具目录)
 
 - hugo (https://gohugo.io/), 主要的工具
 - pandoc (https://pandoc.org/)
@@ -129,10 +125,9 @@ $ mdtool pub
   - rsvg-convert svg 转图片
   - ...
 
-### site
+### site (hugo 站点目录)
 
-site 目录是一个 hugo site, 默认使用的 theme 是 `theme-weixin-mp`, 即构建输出到微信公众号的页面,
-可以通过命令行参数 `-t` 修改
+默认使用的 theme 是 `theme-weixin-mp`, 即构建输出到微信公众号的页面, 可以通过命令行参数 `-t` 修改
 
 ### 参考
 
