@@ -18,17 +18,19 @@
 {{ end }}
 
 {{ define "main" }}
-<div>
-  <ul id="posts">
-    {{- range sort site.RegularPages "Date" "desc" }}
-    <li>
-      <a href="{{ .RelPermalink }}">
-        {{ .Title }}
-        <small>[<time>{{ .Date.Format "Jan 2, 2006" }}</time>]</small>
-      </a>
-    </li>
-    {{- end }}
-  </ul>
+<div class="pure-g">
+  <div class="pure-u-1">
+    <ul id="posts">
+      {{- range sort site.RegularPages "Date" "desc" }}
+      <li>
+        <a href="{{ .RelPermalink }}">
+          {{ .Title }}
+          <small>[<time>{{ .Date.Format "Jan 2, 2006" }}</time>]</small>
+        </a>
+      </li>
+      {{- end }}
+    </ul>
+  </div>
 </div>
 {{ end }}
 

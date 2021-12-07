@@ -9,6 +9,8 @@
     {{ $themeNames := partial "markdown-body-theme-names.html" . -}}
     <style>
       #wrapper {
+        padding: 0;
+        min-height: 100vh;
         color: var(--mdb-body-fg-color);
         background-color: var(--mdb-body-bg-color);
       }
