@@ -2,12 +2,8 @@ baseURL = "http://127.0.0.1:1313"
 languageCode = "zh-cn"
 title = "MDTool"
 theme = "theme-weixin-mp"
-publishDir = "themes/site-content/public"
 
 [module]
-[[module.imports]]
-  path = "site-content"
-
 [[module.imports]]
   path = "style-markdown-body"
 

@@ -1,18 +1,31 @@
 #!/bin/env bash
 
+USER=$(id -u)
+GROUP=$(id -g)
 DIR=$(pwd)
 SUB_CMD=$1
 shift
 
+mkdir -p $DIR/config $DIR/content $DIR/resources $DIR/public
+touch $DIR/.hugo_build.lock
+
+COMMON_ARGS="--rm -it --network=host --user $USER:$GROUP \
+  -v /etc/passwd:/etc/passwd:ro \
+  -v $DIR/.hugo_build.lock:/opt/mdtool/site/.hugo_build.lock \
+  -v $DIR/config:/opt/mdtool/site/config:ro \
+  -v $DIR/content:/opt/mdtool/site/content \
+  -v $DIR/resources:/opt/mdtool/site/resources \
+  -v $DIR/public:/opt/mdtool/site/public"
+
 case $SUB_CMD in
   new)
-    docker run --rm -it -v"$DIR/content:/opt/mdtool/site/content" jayven/mdtool hugo new $@
+    docker run $COMMON_ARGS jayven/mdtool hugo new $@
     ;;
   serve)
-    docker run --rm -it -v"$DIR:/opt/mdtool/site/themes/site-content" --network=host jayven/mdtool hugo serve $@
+    docker run $COMMON_ARGS jayven/mdtool hugo serve $@
     ;;
   pub)
-    docker run --rm -it -v"$DIR:/opt/mdtool/site/themes/site-content" jayven/mdtool hugo $@
+    docker run $COMMON_ARGS jayven/mdtool hugo $@
     ;;
   *)
     echo "Invalid sub command. Valid sub commands are:"
