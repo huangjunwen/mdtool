@@ -1,2 +1,4 @@
-<link id="style-purecss" rel="stylesheet" href="/css/purecss/pure-min.css"></link>
-<link id="style-purecss" rel="stylesheet" href="/css/purecss/grids-responsive-min.css"></link>
+{{- $base := resources.Get "css/pure-min.css" -}}
+{{- $grids := resources.Get "css/grids-responsive-min.css" -}}
+{{- $style := slice $base $grids | resources.Concat "css/purecss/purecss.css" -}}
+<link id="style-purecss" rel="stylesheet" href="{{ $style.RelPermalink }}"></link>
