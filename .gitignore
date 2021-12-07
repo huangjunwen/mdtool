@@ -1,5 +1,7 @@
 node_modules
 .hugo_build.lock
+site/config
 site/content
+site/public
 site/resources
 site/themes/style-markdown-body/assets/scss/_tex2svg.scss
