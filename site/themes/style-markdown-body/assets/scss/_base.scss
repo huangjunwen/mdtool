@@ -6,17 +6,17 @@ $inline-margin: 0.2rem;
 $inline-padding: 0.3rem 0.8rem;
 $inline-border-radius: 0.3rem;
 
-$ss-fonts: sans-serif;
+$sans-fonts: sans-serif;
 $mono-fonts: monospace;
-$font: 1rem/1.5 $ss-fonts;
-$h1-font: 1.5rem/1.25 $ss-fonts;
-$h2-font: 1.375rem/1.25 $ss-fonts;
-$h3-font: 1.25rem/1.25 $ss-fonts;
-$h4-font: 1.125rem/1.25 $ss-fonts;
-$h5-font: 1rem/1.25 $ss-fonts;
-$h6-font: 0.875rem/1.25 $ss-fonts;
+$font: 1rem/1.5 $sans-fonts;
+$h1-font: 1.5rem/1.25 $sans-fonts;
+$h2-font: 1.375rem/1.25 $sans-fonts;
+$h3-font: 1.25rem/1.25 $sans-fonts;
+$h4-font: 1.125rem/1.25 $sans-fonts;
+$h5-font: 1rem/1.25 $sans-fonts;
+$h6-font: 0.875rem/1.25 $sans-fonts;
 $code-font: 0.7rem/1.6 $mono-fonts;
-$table-font: 0.85rem $ss-fonts;
+$table-font: 0.85rem $sans-fonts;
 
 /* Exported variables */
 
@@ -29,7 +29,7 @@ $table-font: 0.85rem $ss-fonts;
   --mdb-inline-padding: #{$inline-padding};
   --mdb-inline-border-radius: #{$inline-border-radius};
 
-  --mdb-ss-fonts: #{$ss-fonts};
+  --mdb-sans-fonts: #{$sans-fonts};
   --mdb-mono-fonts: #{$mono-fonts};
   --mdb-font: #{$font};
   --mdb-h1-font: #{$h1-font};

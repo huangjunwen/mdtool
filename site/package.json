@@ -9,10 +9,5 @@
   "browser": {
     "buffer": "buffer",
     "events": "events"
-  },
-  "devDependencies": {
-    "postcss": "^8.4.4",
-    "postcss-cli": "^9.0.2",
-    "tailwindcss": "^2.2.19"
   }
 }
