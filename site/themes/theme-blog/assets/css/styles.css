@@ -7,3 +7,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.markdown-body {
+  @apply box-border px-6 py-4 font-sans;
+
+  h1 {
+    @apply text-4xl;
+  }
+}

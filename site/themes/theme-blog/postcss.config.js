@@ -1,9 +1,10 @@
 const tailwind = require('tailwindcss')(__dirname + '/tailwind.config.js')
-const autoprefixer = require('autoprefixer')
 
 module.exports = {
   plugins: [
+    require('postcss-import'),
+    require('postcss-nested'),
     tailwind,
-    autoprefixer
+    require('autoprefixer')
   ]
 }
