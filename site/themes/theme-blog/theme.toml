@@ -1,0 +1,15 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
+
+name = "Theme Blog"
+license = "MIT"
+licenselink = ""
+description = ""
+homepage = ""
+tags = []
+features = []
+min_version = ""
+
+[author]
+  name = ""
+  homepage = ""

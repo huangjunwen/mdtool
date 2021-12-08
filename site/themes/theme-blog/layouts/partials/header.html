@@ -1,0 +1,38 @@
+  <style>
+    .light #mode:before {
+      content: "☀️";
+      visibility: visible;
+    }
+    .dark #mode:before {
+      content: "🌙";
+      visibility: visible;
+    }
+  </style>
+  <script>
+    function setMode(toggle) {
+      var darkMode = Boolean(window.localStorage.getItem("darkMode"));
+      if (toggle) {
+        darkMode = !darkMode;
+        window.localStorage.setItem("darkMode", darkMode ? "1" : "");
+      }
+      var root = document.getElementsByTagName("html")[0];
+      root.classList.remove(darkMode ? "light" : "dark");
+      root.classList.add(darkMode ? "dark" : "light");
+      return false;
+    }
+    setMode(false);
+  </script>
+  <nav id="navbar" class="nav row">
+    <div class="nav-center col col-4-md">
+      <a id="navbar-brand" class="brand" href="/">{{ .Site.Title }}</a>
+    </div>
+    <div class="nav-center col col-8-md">
+      {{ range .Site.Sections }}
+      <a href="/{{ .Section }}">{{ .Section | humanize | title }}</a>
+      {{ end }}
+      {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+      <a href="/{{ $taxonomyname | urlize }}">{{ $taxonomyname | humanize | title }}</a>
+      {{ end }}
+      <a href="javascript:void(0)" id="mode" onclick="return setMode(true)"></a>
+    </div>
+  </nav>

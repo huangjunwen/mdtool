@@ -9,3 +9,6 @@ theme = "theme-weixin-mp"
 
 [[module.imports]]
   path = "style-purecss"
+
+[[module.imports]]
+  path = "style-chota"

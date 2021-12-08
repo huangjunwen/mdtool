@@ -1,0 +1,36 @@
+html {
+  /* chota 设置了 font size， 这里恢复 */
+  font-size: 1rem;
+}
+
+:root {
+  --bg-color: var(--mdb-body-bg-color);
+  --bg-secondary-color: var(--mdb-block-bg-color);
+  --color-primary: var(--mdb-link-fg-color);
+  --color-lightGrey: var(--mdb-hr-bg-color);
+  --color-darkGrey: var(--mdb-body-fg-color);
+  --grid-gutter: 1rem;
+  --font-size: 1rem;
+  --font-color: var(--mdb-body-fg-color);
+  --font-family-sans: var(--mdb-sans-ff);
+  --font-family-mono: var(--mdb-mono-ff);
+}
+
+#navbar {
+  background-color: var(--mdb-body-bg-color);
+  border-bottom: 2px dotted var(--mdb-hr-bg-color);
+  position: -webkit-sticky;                                                                                                                     
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+#navbar-brand {
+  color: var(--mdb-link-fg-color);
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+#markdown-body {
+  max-width: 720px;
+}
