@@ -1,4 +1,8 @@
 {{ define "main" }}
+  <div id="markdown-title" class="text-center">
+    <h1>{{ .Title }}</h1>
+    <small>{{ .Date.Format "Jan 2, 2006" }}</small>
+  </div>
   <article id="markdown-body" class="container mdb">
     {{ .Content }}
   </article>

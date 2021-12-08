@@ -1,7 +1,13 @@
+/* 以下 reset chota 一些设置 */
 html {
-  /* chota 设置了 font size， 这里恢复 */
   font-size: 1rem;
 }
+
+thead {
+  border-bottom: none !important;
+}
+
+/* 以下正式样式 */
 
 :root {
   --bg-color: var(--mdb-body-bg-color);
@@ -17,18 +23,23 @@ html {
 }
 
 #navbar {
-  background-color: var(--mdb-body-bg-color);
+  background-color: var(--mdb-block-bg-color);
   border-bottom: 2px dotted var(--mdb-hr-bg-color);
-  position: -webkit-sticky;                                                                                                                     
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  font-size: 0.9rem;
 }
 
 #navbar-brand {
   color: var(--mdb-link-fg-color);
   font-weight: bold;
   white-space: nowrap;
+}
+
+#markdown-title h1 {
+  font: bold 2rem serif;
+}
+
+#markdown-title small {
+  font-style: italic;
 }
 
 #markdown-body {

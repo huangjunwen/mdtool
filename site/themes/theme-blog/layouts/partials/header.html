@@ -23,10 +23,10 @@
     setMode(false);
   </script>
   <nav id="navbar" class="nav row">
-    <div class="nav-center col col-4-md">
+    <div class="nav-center col-4-md">
       <a id="navbar-brand" class="brand" href="/">{{ .Site.Title }}</a>
     </div>
-    <div class="nav-center col col-8-md">
+    <div class="nav-center col-8-md">
       {{ range .Site.Sections }}
       <a href="/{{ .Section }}">{{ .Section | humanize | title }}</a>
       {{ end }}
