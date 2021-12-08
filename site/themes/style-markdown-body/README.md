@@ -33,12 +33,13 @@
   - `--mdb-paragraph-margin`: 一般段落的 `margin` 设置
   - `--mdb-block-margin`: 一般块元素的 `margin` 设置
   - `--mdb-block-padding`: 一般块元素的 `padding` 设置
+  - `--mdb-block-border-radius`: 一般块元素的圆角设置
   - `--mdb-inline-margin`: 一般内联元素的 `margin` 设置
   - `--mdb-inline-padding`: 一般内联元素的 `padding` 设置
   - `--mdb-inline-border-radius`: 一般内联元素的圆角设置
-  - `--mdb-ss-fonts`: sans-serif 字体
-  - `--mdb-mono-fonts`: monospace 字体
-  - `--mdb-font`: 主体字体（大小/行宽/字体）设置
+  - `--mdb-sans-ff`: sans-serif font family
+  - `--mdb-mono-ff`: monospace font family
+  - `--mdb-body-font`: 主体字体（大小/行宽/字体）设置
   - `--mdb-hX-font`: 各级 heading 字体
   - `--mdb-code-font`: 代码字体
   - `--mdb-table-font`: table 内字体

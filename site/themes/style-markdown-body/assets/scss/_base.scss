@@ -2,21 +2,22 @@ $heading-margin: 1.5rem 0 1rem;
 $paragraph-margin: 1rem 0;
 $block-margin: 1rem auto;
 $block-padding: 1rem;
+$block-border-radius: 0.5rem;
 $inline-margin: 0.2rem;
 $inline-padding: 0.3rem 0.8rem;
 $inline-border-radius: 0.3rem;
 
-$sans-fonts: sans-serif;
-$mono-fonts: monospace;
-$font: 1rem/1.5 $sans-fonts;
-$h1-font: 1.5rem/1.25 $sans-fonts;
-$h2-font: 1.375rem/1.25 $sans-fonts;
-$h3-font: 1.25rem/1.25 $sans-fonts;
-$h4-font: 1.125rem/1.25 $sans-fonts;
-$h5-font: 1rem/1.25 $sans-fonts;
-$h6-font: 0.875rem/1.25 $sans-fonts;
-$code-font: 0.7rem/1.6 $mono-fonts;
-$table-font: 0.85rem $sans-fonts;
+$sans-ff: sans-serif;
+$mono-ff: monospace;
+$body-font: 1rem/1.5 $sans-ff;
+$h1-font: bold 1.5rem/1.25 $sans-ff;
+$h2-font: bold 1.375rem/1.25 $sans-ff;
+$h3-font: bold 1.25rem/1.25 $sans-ff;
+$h4-font: bold 1.125rem/1.25 $sans-ff;
+$h5-font: bold 1rem/1.25 $sans-ff;
+$h6-font: bold 0.875rem/1.25 $sans-ff;
+$code-font: 0.7rem/1.6 $mono-ff;
+$table-font: 0.85rem $sans-ff;
 
 /* Exported variables */
 
@@ -25,13 +26,14 @@ $table-font: 0.85rem $sans-fonts;
   --mdb-paragraph-margin: #{$paragraph-margin};
   --mdb-block-margin: #{$block-margin};
   --mdb-block-padding: #{$block-padding};
+  --mdb-block-border-radius: #{$block-border-radius};
   --mdb-inline-margin: #{$inline-margin};
   --mdb-inline-padding: #{$inline-padding};
   --mdb-inline-border-radius: #{$inline-border-radius};
 
-  --mdb-sans-fonts: #{$sans-fonts};
-  --mdb-mono-fonts: #{$mono-fonts};
-  --mdb-font: #{$font};
+  --mdb-sans-ff: #{$sans-ff};
+  --mdb-mono-ff: #{$mono-ff};
+  --mdb-body-font: #{$body-font};
   --mdb-h1-font: #{$h1-font};
   --mdb-h2-font: #{$h2-font};
   --mdb-h3-font: #{$h3-font};
@@ -64,7 +66,7 @@ $table-font: 0.85rem $sans-fonts;
 
   box-sizing: border-box;
   padding: 1rem 1.5rem;
-  font: $font;
+  font: $body-font;
   /* https://stackoverflow.com/questions/3226001/some-font-sizes-rendered-larger-on-safari-iphone */
   -webkit-text-size-adjust: none;
 
@@ -319,7 +321,7 @@ $table-font: 0.85rem $sans-fonts;
       margin: $block-margin;
       padding: $block-padding;
       text-align: center;
-
+      border-radius: $block-border-radius;
     }
 
     &:not([display="true"]) {

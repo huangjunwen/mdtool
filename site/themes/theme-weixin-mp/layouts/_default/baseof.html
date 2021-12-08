@@ -53,6 +53,7 @@
           themeMode = window.localStorage.getItem("markdownThemeMode") || "light";
         }
         document.getElementById("wrapper").className = themeName + " " + themeMode;
+        return false;
       }
       document.addEventListener("DOMContentLoaded", function(event) {
         setTheme();
@@ -75,11 +76,11 @@
                   <ul class="pure-menu-children">
                     {{ range $themeName := $themeNames }}
                       <li class="pure-menu-item">
-                        <a href="#" class="pure-menu-link" onclick="setTheme('{{ $themeName }}')">{{ $themeName }}</a>
+                        <a href="#" class="pure-menu-link" onclick="return setTheme('{{ $themeName }}')">{{ $themeName }}</a>
                       </li>
                     {{ end }}
                       <li class="pure-menu-item">
-                        <a href="#" class="pure-menu-link" onclick="setTheme('plain')">plain</a>
+                        <a href="#" class="pure-menu-link" onclick="return setTheme('plain')">plain</a>
                       </li>
                   </ul>
                 </li>
@@ -87,8 +88,8 @@
                   <a href="#" id="modeMenu" class="pure-menu-link">模式</a>
                   <ul class="pure-menu-children">
                     <li class="pure-menu-item">
-                      <a href="#" class="pure-menu-link" onclick="setTheme('', 'light')">Light</a>
-                      <a href="#" class="pure-menu-link" onclick="setTheme('', 'dark')">Dark</a>
+                      <a href="#" class="pure-menu-link" onclick="return setTheme('', 'light')">Light</a>
+                      <a href="#" class="pure-menu-link" onclick="return setTheme('', 'dark')">Dark</a>
                     </li>
                   </ul>
                 </li>

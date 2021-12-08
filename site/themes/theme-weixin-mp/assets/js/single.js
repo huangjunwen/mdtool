@@ -62,5 +62,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     copyToClipboard(text)
       .then(() => { alert('拷贝成功, 请使用 chrome/firefox inspect 替换大法粘帖到公众号') })
       .catch((e) => { alert(`拷贝失败 ${e}`) })
+    return false
   })
 })
