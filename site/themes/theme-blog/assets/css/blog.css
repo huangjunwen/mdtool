@@ -8,7 +8,20 @@ thead {
   border-bottom: none !important;
 }
 
-/* 以下添加一些额外的 util class */
+/* chota customize */
+
+:root {
+  --bg-color: var(--mdb-body-bg-color);
+  --bg-secondary-color: var(--mdb-block-bg-color);
+  --color-primary: var(--mdb-link-fg-color);
+  --color-lightGrey: var(--mdb-hr-bg-color);
+  --color-darkGrey: var(--mdb-body-fg-color);
+  --grid-gutter: 1rem;
+  --font-size: 1rem;
+  --font-color: var(--mdb-body-fg-color);
+  --font-family-sans: var(--mdb-sans-ff);
+  --font-family-mono: var(--mdb-mono-ff);
+}
 
 /* chota 本身有 hide-xx, 但用了!important */
 
@@ -36,36 +49,29 @@ thead {
     }
 }
 
-/* chota customize */
+/* body 样式 */
 
-:root {
-  --bg-color: var(--mdb-body-bg-color);
-  --bg-secondary-color: var(--mdb-block-bg-color);
-  --color-primary: var(--mdb-link-fg-color);
-  --color-lightGrey: var(--mdb-hr-bg-color);
-  --color-darkGrey: var(--mdb-body-fg-color);
-  --grid-gutter: 1rem;
-  --font-size: 1rem;
-  --font-color: var(--mdb-body-fg-color);
-  --font-family-sans: var(--mdb-sans-ff);
-  --font-family-mono: var(--mdb-mono-ff);
+#body {
+  display: flex;
+  flex-direction: column;
+  color: var(--mdb-body-fg-color);
 }
 
-/* 样式 */
+/* 导航条样式 */
 
 #navbar {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 3;
   background-color: var(--mdb-block-bg-color);
   font-size: 0.9rem;
-  padding: 0;
+  padding: 0rem;
   border-bottom: 1px solid var(--mdb-hr-bg-color);
 }
 
 #navbar a, #navbar label {
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1.5rem;
 }
 
 #navbar-brand {
@@ -73,12 +79,12 @@ thead {
   white-space: nowrap;
 }
 
-#navbar-toggle {
+#navbar-toggle-menu {
   margin-left: auto;
   cursor: pointer;
 }
 
-#navbar-toggle span {
+#navbar-toggle-menu span {
   display: block;
   width: 1rem;
   height: 0.1rem;
@@ -86,9 +92,28 @@ thead {
   background-color: var(--mdb-link-fg-color);
 }
 
-#navbar-toggle-state:checked ~ #navbar-menu {
+#navbar-toggle-menu-state:checked ~ #navbar-menu {
   display: flex;
 }
+
+.light #navbar-toggle-mode:before {
+  content: "☀️";
+  visibility: visible;
+}
+
+.dark #navbar-toggle-mode:before {
+  content: "🌙";
+  visibility: visible;
+}
+
+/* 主体样式 */
+
+main {
+  background-color: var(--mdb-body-bg-color);
+  z-index: 2;
+}
+
+/* markdown 容器样式 */
 
 #markdown-title h1 {
   margin-top: 2rem;
@@ -101,4 +126,22 @@ thead {
 
 #markdown-body {
   max-width: 720px;
+  margin: 0 auto;
+}
+
+/* 页脚样式 */
+
+#footer {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  background-color: var(--mdb-selection-bg-color);
+  font: italic bold 0.9rem serif;
+  padding: 1rem;
+}
+
+#footer p {
+  text-align: center;
+  margin: 0.5rem;
 }
