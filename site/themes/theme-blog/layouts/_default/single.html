@@ -1,10 +1,12 @@
 {{ define "main" }}
-  <div id="markdown-title" class="text-center">
-    <h1>{{ .Title }}</h1>
-    <small>{{ .Date.Format "Jan 2, 2006" }}</small>
+  <div id="markdown-content">
+    <div id="markdown-title" class="text-center">
+      <h1>{{ .Title }}</h1>
+      <small>{{ .Date.Format "Mon, Jan 2, 2006" }}</small>
+    </div>
+    <article id="markdown-body" class="mdb">
+      {{ .Content }}
+    </article>
   </div>
-  <article id="markdown-body" class="mdb">
-    {{ .Content }}
-  </article>
 {{ end }}
 

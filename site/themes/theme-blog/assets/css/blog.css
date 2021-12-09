@@ -55,6 +55,7 @@ thead {
   display: flex;
   flex-direction: column;
   color: var(--mdb-body-fg-color);
+  min-height: 100vh;
 }
 
 /* 导航条样式 */
@@ -108,25 +109,10 @@ thead {
 
 /* 主体样式 */
 
-main {
+#main {
   background-color: var(--mdb-body-bg-color);
   z-index: 2;
-}
-
-/* markdown 容器样式 */
-
-#markdown-title h1 {
-  margin-top: 2rem;
-  font: bold 2rem serif;
-}
-
-#markdown-title small {
-  font-style: italic;
-}
-
-#markdown-body {
-  max-width: 720px;
-  margin: 0 auto;
+  flex: 1;
 }
 
 /* 页脚样式 */
@@ -137,11 +123,34 @@ main {
   bottom: 0;
   z-index: 1;
   background-color: var(--mdb-selection-bg-color);
-  font: italic bold 0.9rem serif;
+  font: italic bold 0.9rem var(--mdb-sans-ff);
   padding: 1rem;
 }
 
 #footer p {
   text-align: center;
   margin: 0.5rem;
+}
+
+/* markdown 容器样式 */
+
+#markdown-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+#markdown-title h1 {
+  margin-top: 2rem;
+  font: bold 2rem serif;
+}
+
+#markdown-title small {
+  font-style: italic;
+}
+
+/* 列表样式 */
+
+.posts {
+  max-width: 600px;
+  margin: 3rem auto;
 }
