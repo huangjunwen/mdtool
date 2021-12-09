@@ -51,16 +51,19 @@ thead {
 
 /* body 样式 */
 
-#body {
+body {
   display: flex;
   flex-direction: column;
-  color: var(--mdb-body-fg-color);
+  margin: 0;
   min-height: 100vh;
+  /* https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/ */
+  /* https://css-tricks.com/css-fix-for-100vh-in-mobile-webkit/ */
+  min-height: -webkit-fill-available;
 }
 
-/* 导航条样式 */
+/* 头部样式 */
 
-#navbar {
+#header {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -112,6 +115,7 @@ thead {
 #main {
   background-color: var(--mdb-body-bg-color);
   z-index: 2;
+  /* #header 和 #footer 没有设置 flex, 默认 flex-grow 为 0, 所以所有空余空间都会由 main 占据 */
   flex: 1;
 }
 
