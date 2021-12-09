@@ -1,4 +1,4 @@
 {{- $style := resources.Get "css/chota.min.css" -}}
-{{- $style = slice $style | resources.Concat "css/chota/chota.min.css" -}}
+{{- $style = slice $style | resources.Concat "css/chota/chota.min.css" | resources.Fingerprint -}}
 <link id="style-chota" rel="stylesheet" href="{{ $style.RelPermalink }}"></link>
 
