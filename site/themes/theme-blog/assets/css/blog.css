@@ -82,11 +82,11 @@ body {
 }
 
 #navbar a, #navbar label {
-  padding: 1.2rem 1.5rem;
+  padding: 1rem 1.5rem;
 }
 
 #navbar-brand {
-  font: bold 1.25rem var(--mdb-sans-ff);
+  font: bold 1rem var(--mdb-sans-ff);
   white-space: nowrap;
 }
 
@@ -132,12 +132,8 @@ body {
 }
 
 #main-title h1 {
-  margin-top: 1.75rem;
-  font: bold 2rem var(--mdb-sans-ff);
-}
-
-#main-title small {
-  font-style: italic;
+  margin-top: 1.5rem;
+  font: var(--mdb-h1-font);
 }
 
 /* 页脚样式 */
@@ -171,3 +167,6 @@ body {
   font: 1.2rem var(--mdb-sans-ff);
 }
 
+#list-main-body time {
+  font: 0.75rem var(--mdb-sans-ff);
+}
