@@ -7,10 +7,10 @@
     <ul>
     {{ range .Data.Pages -}}
       <li>
-        <span>
+        <p>
           <a href="{{ .Permalink }}">{{ .Title }}</a>
           <time class="" datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">{{ .Date.Format "Mon, 2006/01/02" }}</time>
-        </span>
+        </p>
       </li>
     {{- end }}
     </ul>

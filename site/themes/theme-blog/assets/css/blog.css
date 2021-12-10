@@ -136,6 +136,10 @@ body {
   font: var(--mdb-h1-font);
 }
 
+#main-body a {
+  color: var(--mdb-heading-fg-color);
+}
+
 /* 页脚样式 */
 
 #footer {
@@ -156,15 +160,7 @@ body {
 
 #list-main-body ul {
   max-width: 100%;
-}
-
-#list-main-body li {
   overflow-wrap: break-word;
-  padding-bottom: 0.5rem;
-}
-
-#list-main-body a {
-  font: 1.2rem var(--mdb-sans-ff);
 }
 
 #list-main-body time {
