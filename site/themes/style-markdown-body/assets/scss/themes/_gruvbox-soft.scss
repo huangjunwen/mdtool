@@ -169,11 +169,11 @@ $dark-color-derived00: color.mix($dark-color-base05, $dark-color-base00, 30%);
   body-bg-color:          $dark-color-base01,
   selection-fg-color:     currentcolor,
   selection-bg-color:     $dark-color-base02,
-  heading-fg-color:       $dark-color-base09,
+  heading-fg-color:       $dark-color-base08,
   heading-bg-color:       transparent,
   blockquote-fg-color:    currentcolor,
   blockquote-bg-color:    rgba($dark-color-base00, 0.3),
-  link-fg-color:          $dark-color-base08,
+  link-fg-color:          $dark-color-base09,
   link-bg-color:          transparent,
   hr-fg-color:            currentcolor,
   hr-bg-color:            $dark-color-derived00,
@@ -227,12 +227,12 @@ $dark-color-derived00: color.mix($dark-color-base05, $dark-color-base00, 30%);
   .mdb {
     h1 {
       padding-bottom: 1rem;
-      border-bottom: 0.1rem dotted $dark-color-base09;
+      border-bottom: 0.1rem dotted $dark-color-base08;
     }
 
     h2 {
       padding-left: 1rem;
-      border-left: 0.4rem solid $dark-color-base09;
+      border-left: 0.4rem solid $dark-color-base08;
     }
 
     blockquote {
@@ -240,7 +240,7 @@ $dark-color-derived00: color.mix($dark-color-base05, $dark-color-base00, 30%);
     }
 
     li::marker {
-      color: $dark-color-base09;
+      color: $dark-color-base08;
       font-weight: bold;
     }
 
