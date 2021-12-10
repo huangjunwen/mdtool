@@ -16,7 +16,7 @@ thead {
   --color-primary: var(--mdb-link-fg-color);
   --color-lightGrey: var(--mdb-hr-bg-color);
   --color-darkGrey: var(--mdb-body-fg-color);
-  --grid-gutter: 1rem;
+  --grid-gutter: 0rem;
   --font-size: 1rem;
   --font-color: var(--mdb-body-fg-color);
   --font-family-sans: var(--mdb-sans-ff);
@@ -49,16 +49,23 @@ thead {
     }
 }
 
-/* body 样式 */
+/* 全局样式 */
+
+/* https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/ */
+/* https://css-tricks.com/css-fix-for-100vh-in-mobile-webkit/ */
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
 
 body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  min-height: 100vh;
-  /* https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/ */
-  /* https://css-tricks.com/css-fix-for-100vh-in-mobile-webkit/ */
-  min-height: -webkit-fill-available;
 }
 
 /* 头部样式 */
@@ -75,7 +82,7 @@ body {
 }
 
 #navbar a, #navbar label {
-  padding: 0.75rem 1.5rem;
+  padding: 1.2rem 1.5rem;
 }
 
 #navbar-brand {
@@ -119,6 +126,19 @@ body {
   flex: 1;
 }
 
+#main-title {
+  overflow-wrap: break-word;
+}
+
+#main-title h1 {
+  margin-top: 1.75rem;
+  font: bold 2rem var(--mdb-sans-ff);
+}
+
+#main-title small {
+  font-style: italic;
+}
+
 /* 页脚样式 */
 
 #footer {
@@ -127,34 +147,21 @@ body {
   bottom: 0;
   z-index: 1;
   background-color: var(--mdb-selection-bg-color);
-  font: italic bold 0.9rem var(--mdb-sans-ff);
-  padding: 1rem;
+  font: italic bold 0.75rem var(--mdb-sans-ff);
+  padding: 0.75rem;
 }
 
 #footer p {
-  text-align: center;
   margin: 0.5rem;
 }
 
-/* markdown 容器样式 */
+/* list 样式 */
 
-#markdown-content {
-  max-width: 720px;
-  margin: 0 auto;
+#list-main-body a {
+  font: 1.2rem var(--mdb-sans-ff);
 }
 
-#markdown-title h1 {
-  margin-top: 2rem;
-  font: bold 2rem serif;
-}
-
-#markdown-title small {
-  font-style: italic;
-}
-
-/* 列表样式 */
-
-.posts {
-  max-width: 600px;
-  margin: 3rem auto;
+#list-main-body li {
+  overflow-wrap: break-word;
+  padding-bottom: 0.5rem;
 }

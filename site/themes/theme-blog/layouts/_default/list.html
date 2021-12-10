@@ -1,12 +1,18 @@
-{{ define "main" }}
-  <ul class="posts">
-  {{ range .Data.Pages -}}
-    <li>
-      <span>
-        <a href="{{ .Permalink }}">{{ .Title }}</a>
-        <time class="" datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">{{ .Date.Format "Mon, Jan 2, 2006" }}</time>
-      </span>
-    </li>
-  {{- end }}
-  </ul>
+{{ define "mainTitle" }}
+  <h1>{{ .Type | humanize | title }}</h1>
+{{ end }}
+
+{{ define "mainBody" }}
+  <div id="list-main-body" class="is-center">
+    <ul class="is-full-width">
+    {{ range .Data.Pages -}}
+      <li>
+        <span>
+          <a href="{{ .Permalink }}">{{ .Title }}</a>
+          <time class="" datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">{{ .Date.Format "Mon, Jan 2, 2006" }}</time>
+        </span>
+      </li>
+    {{- end }}
+    </ul>
+  </div>
 {{ end }}
