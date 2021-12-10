@@ -124,6 +124,7 @@ body {
   z-index: 2;
   /* #header 和 #footer 没有设置 flex, 默认 flex-grow 为 0, 所以所有空余空间都会由 main 占据 */
   flex: 1;
+  padding: 0 0.25rem;
 }
 
 #main-title {
@@ -157,11 +158,16 @@ body {
 
 /* list 样式 */
 
-#list-main-body a {
-  font: 1.2rem var(--mdb-sans-ff);
+#list-main-body ul {
+  max-width: 100%;
 }
 
 #list-main-body li {
   overflow-wrap: break-word;
   padding-bottom: 0.5rem;
 }
+
+#list-main-body a {
+  font: 1.2rem var(--mdb-sans-ff);
+}
+
