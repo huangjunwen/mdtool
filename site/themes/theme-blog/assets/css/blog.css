@@ -15,6 +15,7 @@ thead {
   --bg-secondary-color: var(--mdb-block-bg-color);
   --color-primary: var(--mdb-link-fg-color);
   --color-lightGrey: var(--mdb-hr-bg-color);
+  --color-grey: var(--mdb-body-fg-color);
   --color-darkGrey: var(--mdb-body-fg-color);
   --grid-gutter: 0rem;
   --font-size: 1rem;
@@ -125,19 +126,12 @@ body {
   /* #header 和 #footer 没有设置 flex, 默认 flex-grow 为 0, 所以所有空余空间都会由 main 占据 */
   flex: 1;
   padding: 0 0.25rem;
-}
-
-#main-title {
+  /* 过长的需要 wrap */
   overflow-wrap: break-word;
 }
 
 #main-title h1 {
   margin-top: 1.5rem;
-  font: var(--mdb-h1-font);
-}
-
-#main-body a {
-  color: var(--mdb-heading-fg-color);
 }
 
 /* 页脚样式 */
@@ -160,7 +154,6 @@ body {
 
 #list-main-body ul {
   max-width: 100%;
-  overflow-wrap: break-word;
 }
 
 #list-main-body time {

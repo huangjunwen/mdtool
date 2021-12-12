@@ -1,6 +1,11 @@
 {{ define "mainTitle" }}
   <h1>{{ .Title }}</h1>
   <small>{{ .Date.Format "Mon, 2006/01/02" }}</small>
+  <p>
+    {{ range .Params.tags }}
+    <a href="/tags/{{ . | urlize }}/"><span class="tag is-small">{{ . }}</span></a>
+    {{ end }}
+  </p>
 {{ end }}
 
 {{ define "mainBody" }}

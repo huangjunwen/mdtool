@@ -38,7 +38,7 @@
         <input id="navbar-toggle-menu-state" type="checkbox" style="display:none"></input>
         <div id="navbar-menu" class="is-right col-12 col-9-md row hide-xs-noimportant hide-sm-noimportant">
           {{ range .Site.Sections }}
-          <a href="/{{ .Section }}">{{ .Section | humanize | title }}</a>
+          <a href="/{{ .Section | urlize }}">{{ .Section | humanize | title }}</a>
           {{ end }}
           {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
           <a href="/{{ $taxonomyname | urlize }}">{{ $taxonomyname | humanize | title }}</a>
