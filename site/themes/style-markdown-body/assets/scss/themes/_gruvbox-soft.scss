@@ -27,8 +27,6 @@ $light-color-base0D:  #076678;  /* Functions, Methods, Attribute IDs, Headings*/
 $light-color-base0E:  #8f3f71;  /* Keywords, Storage, Selector, Markup Italic, Diff Changed*/
 $light-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>*/
 
-$light-color-derived00: color.mix($light-color-base05, $light-color-base00, 30%);
-
 $light-block-box-shadow: -2px 0px 10px 0px color.mix($light-color-base05, #fff, 50%);
 
 @include theme.themable((
@@ -39,14 +37,14 @@ $light-block-box-shadow: -2px 0px 10px 0px color.mix($light-color-base05, #fff, 
   body-bg-color:          color.mix($light-color-base01, #fff, 30%),
   selection-fg-color:     currentcolor,
   selection-bg-color:     $light-color-base02,
-  heading-fg-color:       $light-color-base09,
+  heading-fg-color:       $light-color-base06,
   heading-bg-color:       transparent,
   blockquote-fg-color:    currentcolor,
   blockquote-bg-color:    rgba($light-color-base00, 0.3),
   link-fg-color:          $light-color-base0F,
   link-bg-color:          transparent,
   hr-fg-color:            currentcolor,
-  hr-bg-color:            $light-color-derived00,
+  hr-bg-color:            $light-color-base03,
   inline-fg-color:        $light-color-base05,
   inline-bg-color:        $light-color-base00,
   block-fg-color:         $light-color-base05,
@@ -96,11 +94,11 @@ $light-block-box-shadow: -2px 0px 10px 0px color.mix($light-color-base05, #fff, 
 
   .mdb {
     blockquote {
-      border-left: 0.2rem solid $light-color-derived00;
+      border-left: 0.2rem solid $light-color-base03;
     }
 
     li::marker {
-      color: $light-color-base09;
+      color: $light-color-base06;
       font-weight: bold;
     }
 
@@ -149,8 +147,6 @@ $dark-color-base0D:  #83a598;  /* Functions, Methods, Attribute IDs, Headings */
 $dark-color-base0E:  #d3869b;  /* Keywords, Storage, Selector, Markup Italic, Diff Changed */
 $dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
 
-$dark-color-derived00: color.mix($dark-color-base05, $dark-color-base00, 30%);
-
 @include theme.themable((
   selector:              ".gruvbox-soft.dark",
   name:                  gruvbox-soft-dark,
@@ -159,14 +155,14 @@ $dark-color-derived00: color.mix($dark-color-base05, $dark-color-base00, 30%);
   body-bg-color:          $dark-color-base01,
   selection-fg-color:     currentcolor,
   selection-bg-color:     $dark-color-base02,
-  heading-fg-color:       $dark-color-base08,
+  heading-fg-color:       $dark-color-base06,
   heading-bg-color:       transparent,
   blockquote-fg-color:    currentcolor,
-  blockquote-bg-color:    rgba($dark-color-base00, 0.3),
+  blockquote-bg-color:    rgba($dark-color-base00, 0.6),
   link-fg-color:          $dark-color-base09,
   link-bg-color:          transparent,
   hr-fg-color:            currentcolor,
-  hr-bg-color:            $dark-color-derived00,
+  hr-bg-color:            $dark-color-base03,
   inline-fg-color:        $dark-color-base05,
   inline-bg-color:        $dark-color-base00,
   block-fg-color:         $dark-color-base05,
@@ -216,11 +212,11 @@ $dark-color-derived00: color.mix($dark-color-base05, $dark-color-base00, 30%);
 
   .mdb {
     blockquote {
-      border-left: 0.2rem solid $dark-color-derived00;
+      border-left: 0.2rem solid $dark-color-base03;
     }
 
     li::marker {
-      color: $dark-color-base08;
+      color: $dark-color-base06;
       font-weight: bold;
     }
 
