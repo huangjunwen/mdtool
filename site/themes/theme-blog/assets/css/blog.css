@@ -16,7 +16,7 @@ thead {
   --color-primary: var(--mdb-link-fg-color);
   --color-lightGrey: var(--mdb-hr-bg-color);
   --color-grey: var(--mdb-body-fg-color);
-  --color-darkGrey: var(--mdb-body-fg-color);
+  --color-darkGrey: var(--mdb-heading-fg-color);
   --grid-gutter: 0rem;
   --font-size: 1rem;
   --font-color: var(--mdb-body-fg-color);
