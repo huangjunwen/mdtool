@@ -258,13 +258,6 @@ $table-font: 0.85rem $sans-ff;
 
   code[class*='language-'] {
     font: $code-font;
-    /*
-    direction: ltr;
-    text-align: left;
-    word-spacing: normal;
-    word-break: normal;
-    */
-    white-space: pre;
     -moz-tab-size: 2;
     -o-tab-size: 2;
     tab-size: 2;

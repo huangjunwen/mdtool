@@ -8,10 +8,13 @@
     <a href="/tags/{{ . | urlize }}/"><span class="tag is-small">{{ . }}</span></a>
     {{ end }}
   </p>
+  {{ if templates.Exists "partials/single-main-title-extra.html" }}
+    {{ partial "single-main-title-extra.html" . }}
+  {{ end }}
 {{ end }}
 
 {{ define "mainBody" }}
-  <article>
+  <article id="markdown-body">
     {{ .Content }}
   </article>
 {{ end }}

@@ -51,13 +51,13 @@ function text2HTML(text) {
 
 document.addEventListener("DOMContentLoaded", function(event) {
 
-  const copy = document.getElementById('copy')
-  const wrapper = document.getElementById('wrapper')
+  const root = document.documentElement
+  const copy = document.getElementById('copy-weixin-mp')
   const markdownBody = document.getElementById('markdown-body')
   copy.addEventListener('click', e => {
-    let text = `<style>${getMarkdownBodyStyle()}</style><div class="${wrapper.className}">${markdownBody.outerHTML}</div>`
+    let text = `<style>${getMarkdownBodyStyle()}</style><div class="${root.className}"><article class="mdb">${markdownBody.innerHTML}</article></div>`
     text = inlineCSS(text)
-    text = text2HTML(text).children[1].innerHTML // 只需要 <div> 里头的内容即可
+    text = text2HTML(text).children[1].children[0].outerHTML // 只需要 <div> 里头的内容即可
     console.log(text)
     copyToClipboard(text)
       .then(() => { alert('拷贝成功, 请使用 chrome/firefox inspect 替换大法粘帖到公众号') })
