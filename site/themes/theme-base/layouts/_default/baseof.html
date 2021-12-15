@@ -5,10 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ .Title }}</title>
-    {{ partial "chota" . }}
-    {{ partial "markdown-body" . }}
-    <link rel="stylesheet" href="{{ (resources.Get "css/blog.css" | resources.Minify).RelPermalink }}"></link>
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"></link>
+    <link rel="stylesheet" href="/chota/css/chota.min.css"></link>
+    {{ partial "markdown-body" . }}
+    <link rel="stylesheet" href="{{ (resources.Get "css/styles.css" | resources.Minify).RelPermalink }}"></link>
+    <script src="/anchorjs/js/anchor.min.js"></script>
     <script>
       function setMode(toggle) {
         var darkMode = Boolean(window.localStorage.getItem("darkMode"));
@@ -69,5 +70,8 @@
       </p>
       <p>&copy; {{ now.Format "2006"}}. All rights reserved</p>
     </div>
+    <script>
+      anchors.add();
+    </script>
   </body>
 </html>

@@ -27,27 +27,32 @@ thead {
 /* chota 本身有 hide-xx, 但用了!important */
 
 @media screen and (max-width: 599px) {
-    .hide-xs-noimportant {
-        display: none;
-    }
+  .hide-xs-noimportant {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 600px) and (max-width: 899px) {
-    .hide-sm-noimportant {
-        display: none;
-    }
+  .hide-sm-noimportant {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 900px) and (max-width: 1199px) {
-    .hide-md-noimportant {
-        display: none;
-    }
+  .hide-md-noimportant {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1200px) {
-    .hide-lg-noimportant {
-        display: none;
-    }
+  .hide-lg-noimportant {
+    display: none;
+  }
+}
+
+/* anchorjs 由于 sticky header 被遮挡的问题: https://www.bryanbraun.com/anchorjs/#pages-with-a-sticky-navbar */
+:target {
+  scroll-margin-top: 5rem;
 }
 
 /* 全局样式 */
