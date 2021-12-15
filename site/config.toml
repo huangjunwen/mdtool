@@ -1,14 +1,14 @@
 baseURL = "http://127.0.0.1:1313"
 languageCode = "zh-cn"
 title = "MDTool"
-theme = "theme-weixin-mp"
+theme = ""
 
 [module]
 [[module.imports]]
   path = "style-markdown-body"
 
 [[module.imports]]
-  path = "style-purecss"
+  path = "style-chota"
 
 [[module.imports]]
-  path = "style-chota"
+  path = "theme-base"
