@@ -127,7 +127,9 @@ $ mdtool
 
 ### site (hugo 站点目录)
 
-默认使用的 theme 是 `theme-weixin-mp`, 即构建输出到微信公众号的页面, 可以通过命令行参数 `-t` 修改
+默认使用的 theme 是 `theme-base`, 用于输出博客页面, 可以通过命令行参数 `-t` 修改:
+
+  - `-t theme-with-weixin-mp`: 添加拷贝到微信公众号的功能
 
 ### 参考
 
