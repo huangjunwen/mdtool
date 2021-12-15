@@ -8,6 +8,7 @@
     {{ partial "chota" . }}
     {{ partial "markdown-body" . }}
     <link rel="stylesheet" href="{{ (resources.Get "css/blog.css" | resources.Minify).RelPermalink }}"></link>
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"></link>
     <script>
       function setMode(toggle) {
         var darkMode = Boolean(window.localStorage.getItem("darkMode"));
