@@ -8,7 +8,4 @@ theme = ""
   path = "style-markdown-body"
 
 [[module.imports]]
-  path = "style-chota"
-
-[[module.imports]]
   path = "theme-base"
