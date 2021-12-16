@@ -1,8 +1,12 @@
 {{ define "mainTitle" }}
+  {{ if not .Params.hideTitle }}
   <h1>{{ .Title }}</h1>
+  {{ end }}
+  {{ if not .Params.hideDate }}
   <small>
     <time class="" datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">{{ .Date.Format "Mon, 2006/01/02" }}</time>
   </small>
+  {{ end }}
   <p>
     {{ range .Params.tags }}
     <a href="/tags/{{ . | urlize }}/"><span class="tag is-small">{{ . }}</span></a>
