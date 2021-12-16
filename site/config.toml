@@ -1,6 +1,6 @@
 baseURL = "http://127.0.0.1:1313"
 languageCode = "zh-cn"
-title = "MDTool"
+title = "Markdown Tool"
 theme = ""
 
 [module]
@@ -9,3 +9,11 @@ theme = ""
 
 [[module.imports]]
   path = "theme-base"
+
+# [taxonomies]
+#   tag = "tags"
+
+# [menu]
+# [[menu.main]]
+#   name = "About"
+#   url = "/about/"
