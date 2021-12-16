@@ -10,7 +10,11 @@
         <p>
           <a href="{{ .Permalink }}">{{ .Title }}</a>
           <small>
-            <time class="" datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">{{ .Date.Format "Mon, 2006/01/02" }}</time>
+            {{ if len .Pages }}
+              <span><i class="fa fa-fw fa-angle-double-right"></i>{{ len .Pages }}</span>
+            {{ else }}
+              <time class="" datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">{{ .Date.Format "Mon, 2006/01/02" }}</time>
+            {{ end }}
           </small>
         </p>
       </li>
