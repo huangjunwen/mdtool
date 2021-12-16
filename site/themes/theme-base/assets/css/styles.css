@@ -182,4 +182,5 @@ body {
 #list-main-body ul {
   max-width: 100%;
   padding-left: 1rem;
+  margin: 0;
 }
