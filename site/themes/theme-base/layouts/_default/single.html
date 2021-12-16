@@ -1,3 +1,8 @@
+{{ define "head" }}
+  <script src="/anchorjs/js/anchor.min.js"></script>
+  <script src="/tocbot/js/tocbot.min.js"></script>
+{{ end }}
+
 {{ define "mainTitle" }}
   {{ if not .Params.hideTitle }}
   <h1>{{ .Title }}</h1>
@@ -21,4 +26,13 @@
   <article id="markdown-body">
     {{ .Content }}
   </article>
+{{ end }}
+
+{{ define "mainLeft" }}
+{{ end }}
+
+{{ define "bodyEnd" }}
+  <script>
+    anchors.add('#main-body h2, #main-body h3, #main-body h4, #main-body h5, #main-body h6');
+  </script>
 {{ end }}

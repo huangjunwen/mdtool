@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/chota/css/chota.min.css"></link>
     {{ partial "markdown-body" . }}
     <link rel="stylesheet" href="{{ (resources.Get "css/styles.css" | resources.Minify).RelPermalink }}"></link>
-    <script src="/anchorjs/js/anchor.min.js"></script>
+    {{ block "head" . }}{{ end }}
     <script>
       function setMode(toggle) {
         var darkMode = Boolean(window.localStorage.getItem("darkMode"));
@@ -54,7 +54,9 @@
     </div>
     <!-- 主体 -->
     <div id="main" class="row">
-      <div class="col-2-md col-3-lg hide-xs hide-sm"></div>
+      <div class="col-2-md col-3-lg hide-xs hide-sm">
+        {{ block "mainLeft" . }}{{ end}}
+      </div>
       <div class="col-12 col-8-md col-6-lg mdb">
         <div id="main-title" class="text-center">
           {{ block "mainTitle" . }}{{ end }}
@@ -63,7 +65,9 @@
           {{ block "mainBody" . }}{{ end }}
         </div>
       </div>
-      <div class="col-2-md col-3-lg hide-xs hide-sm"></div>
+      <div class="col-2-md col-3-lg hide-xs hide-sm">
+        {{ block "mainRight" . }}{{ end }}
+      </div>
     </div>
     <!-- 页脚 -->
     <div id="footer" class="text-center">
@@ -73,8 +77,6 @@
       </p>
       <p>&copy; {{ now.Format "2006"}}. All rights reserved</p>
     </div>
-    <script>
-      anchors.add('#main-body h2, #main-body h3, #main-body h4, #main-body h5, #main-body h6');
-    </script>
+    {{ block "bodyEnd" . }}{{ end }}
   </body>
 </html>

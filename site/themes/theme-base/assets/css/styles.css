@@ -8,6 +8,10 @@ thead {
   border-bottom: none !important;
 }
 
+code {
+  white-space: nowrap;
+}
+
 [type=checkbox], [type=radio] {
   width: 1rem;
   height: 1rem;
