@@ -1,8 +1,5 @@
 {{ define "mainTitle" }}
-  <h1>{{ .Type | humanize | title }}</h1>
-  {{ if eq .Kind "term" }}
-    <div class="tag is-small">{{ .Title | humanize | title }}</div>
-  {{ end }}
+  <h2>{{ partial "breadcrumb.html" . }}</h2>
 {{ end }}
 
 {{ define "mainBody" }}

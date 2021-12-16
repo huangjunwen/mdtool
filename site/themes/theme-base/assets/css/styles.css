@@ -143,6 +143,14 @@ body {
   margin-top: 1.5rem;
 }
 
+.breadcrumbnav span + span:before {
+  font-family: "FontAwesome";
+  font-size: 1rem;
+  content: "\f101";
+  color: var(--mdb-hr-bg-color);
+  padding-right: 0.3rem;
+}
+
 /* 页脚样式 */
 
 #footer {
@@ -163,4 +171,5 @@ body {
 
 #list-main-body ul {
   max-width: 100%;
+  padding-left: 1rem;
 }
