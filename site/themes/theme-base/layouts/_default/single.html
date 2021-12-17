@@ -1,6 +1,7 @@
 {{ define "head" }}
   <script src="/anchorjs/js/anchor.min.js"></script>
   <script src="/tocbot/js/tocbot.min.js"></script>
+  <link rel="stylesheet" href="/tocbot/css/tocbot.css"></link>
 {{ end }}
 
 {{ define "mainTitle" }}
@@ -28,11 +29,20 @@
   </article>
 {{ end }}
 
-{{ define "mainLeft" }}
+{{ define "mainRight" }}
+  <div id="markdown-toc" class="toc"></div>
 {{ end }}
 
 {{ define "bodyEnd" }}
   <script>
     anchors.add('#main-body h2, #main-body h3, #main-body h4, #main-body h5, #main-body h6');
+    tocbot.init({
+      tocSelector: '#markdown-toc',
+      contentSelector: '#markdown-body',
+      headingSelector: 'h2, h3, h4, h5, h6',
+      hasInnerContainers: false,
+      headingsOffset: 80,
+      scrollSmoothOffset: -80
+    });
   </script>
 {{ end }}
