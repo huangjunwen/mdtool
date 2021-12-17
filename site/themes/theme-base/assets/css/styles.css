@@ -64,8 +64,12 @@ input:disabled, input:disabled:hover {
 }
 
 /* anchorjs 由于 sticky header 被遮挡的问题: https://www.bryanbraun.com/anchorjs/#pages-with-a-sticky-navbar */
-:target {
-  scroll-margin-top: 5rem;
+:target::before {
+  content: "";
+  display: block;
+  margin-top: -80px;
+  height: 80px;
+  width: 1px;
 }
 
 /* 全局样式 */
