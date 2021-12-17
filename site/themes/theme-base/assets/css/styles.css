@@ -162,7 +162,7 @@ body {
 }
 
 .breadcrumbnav span + span:before {
-  font-family: "FontAwesome";
+  font-family: "Font Awesome 5 Free";
   font-size: 1rem;
   content: "\f101";
   color: var(--mdb-hr-bg-color);
