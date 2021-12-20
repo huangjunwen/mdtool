@@ -3,7 +3,10 @@
 {{ end }}
 
 {{ define "mainBody" }}
-  <div id="list-main-body" class="is-center">
+  <article id="content-body">
+    {{ .Content }}
+  </article>
+  <div id="list-body" class="is-center">
     <ul>
     {{ range .Data.Pages -}}
       <li>

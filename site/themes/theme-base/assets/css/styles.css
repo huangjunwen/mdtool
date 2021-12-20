@@ -185,35 +185,33 @@ body {
   margin: 0.5rem;
 }
 
-/* list 样式 */
+/* 内容样式 */
 
-#list-main-body ul {
+#list-body ul {
   max-width: 100%;
   padding-left: 1rem;
   margin: 0;
 }
 
-/* single 样式 */
-
-#markdown-toc {
+#content-toc {
   position: -webkit-sticky;
   position: sticky;
   top: 7rem;
   padding-left: 2rem;
 }
 
-#markdown-toc a.toc-link {
+#content-toc a.toc-link {
   color: var(--mdb-body-fg-color);
 }
 
-#markdown-toc a.toc-link.is-active-link {
+#content-toc a.toc-link.is-active-link {
   color: var(--mdb-heading-fg-color);
 }
 
-#markdown-toc a.toc-link::before {
+#content-toc a.toc-link::before {
   background-color: var(--mdb-body-bg-color);
 }
 
-#markdown-toc a.toc-link.is-active-link::before {
+#content-toc a.toc-link.is-active-link::before {
   background-color: var(--mdb-link-fg-color);
 }

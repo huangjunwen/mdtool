@@ -24,21 +24,21 @@
 {{ end }}
 
 {{ define "mainBody" }}
-  <article id="markdown-body">
+  <article id="content-body">
     {{ .Content }}
   </article>
 {{ end }}
 
 {{ define "mainRight" }}
-  <div id="markdown-toc" class="toc"></div>
+  <div id="content-toc" class="toc"></div>
 {{ end }}
 
 {{ define "bodyEnd" }}
   <script>
     anchors.add('#main-body h2, #main-body h3, #main-body h4, #main-body h5, #main-body h6');
     tocbot.init({
-      tocSelector: '#markdown-toc',
-      contentSelector: '#markdown-body',
+      tocSelector: '#content-toc',
+      contentSelector: '#content-body',
       headingSelector: 'h2, h3, h4, h5, h6',
       hasInnerContainers: false,
       headingsOffset: 80,

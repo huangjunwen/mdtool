@@ -53,9 +53,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   const root = document.documentElement
   const copy = document.getElementById('copy-weixin-mp')
-  const markdownBody = document.getElementById('markdown-body')
+  const contentBody = document.getElementById('content-body')
   copy.addEventListener('click', e => {
-    let text = `<div class="${root.className}"><article class="mdb">${markdownBody.innerHTML}</article></div><style>${getMarkdownBodyStyle()}</style>`
+    let text = `<div class="${root.className}"><article class="mdb">${contentBody.innerHTML}</article></div><style>${getMarkdownBodyStyle()}</style>`
     text = inlineCSS(text)
     text = text2HTML(text).children[0].children[0].outerHTML // 只需要 <article> 的内容即可
     console.log(text)
