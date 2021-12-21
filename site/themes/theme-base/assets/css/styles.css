@@ -161,7 +161,7 @@ body {
   margin-bottom: 1.5rem;
 }
 
-.breadcrumbnav span + span:before {
+.breadcrumbnav > span + span:before {
   font-family: "Font Awesome 5 Free";
   font-size: 1rem;
   content: "\f101";

@@ -5,6 +5,7 @@
 {{ end }}
 
 {{ define "mainTitle" }}
+  <h6>{{ partial "breadcrumb.html" .Parent }}</h6>
   {{ if not .Params.hideTitle }}
   <h1>{{ .Title }}</h1>
   {{ end }}
