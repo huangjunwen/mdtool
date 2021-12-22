@@ -37,13 +37,15 @@ async function init () {
     let $ = cheerio.load(await tex2svg(value, { inline, container: true }))
     $('mjx-container').attr('data-math', value) // 添加 data-math 属性存放原始的公式
     // 参考 mdnice: 将 width/height 属性移到 style 中去
-    $('mjx-container>svg').css(
-      'width', $('mjx-container>svg').attr('width')
-    ).css(
-      'height', $('mjx-container>svg').attr('height')
-    ).css(
-      'vertical-align', 'middle'
-    ).removeAttr('width').removeAttr('height')
+    let svg = $('mjx-container>svg')
+    let w = svg.attr('width')
+    let h = svg.attr('height')
+    svg.css('width', w).css('height', h).css('vertical-align', 'middle').removeAttr('width').removeAttr('height')
+    if (!inline) {
+      // 如果是 block 的话，保持 width 不 scale
+      // inline 的话则随着行宽 scale
+      svg.css('min-width', w)
+    }
     return pd.RawInline('html', $.html())
   }
 
