@@ -69,6 +69,7 @@ $table-font: 0.85rem $sans-ff;
   box-sizing: border-box;
   padding: 1rem 1.5rem;
   font: $body-font;
+  text-align: start;
   /* https://stackoverflow.com/questions/3226001/some-font-sizes-rendered-larger-on-safari-iphone */
   -webkit-text-size-adjust: none;
 
