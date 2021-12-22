@@ -35,8 +35,13 @@
 {{ end }}
 
 {{ define "bodyEnd" }}
+  {{- if not (.Scratch.Get "noAnchorjs") }}
   <script>
     anchors.add('#main-body h2, #main-body h3, #main-body h4, #main-body h5, #main-body h6');
+  </script>
+  {{ end }}
+  {{- if not (.Scratch.Get "noTocbot") }}
+  <script>
     tocbot.init({
       tocSelector: '#content-toc',
       contentSelector: '#content-body',
@@ -46,4 +51,5 @@
       scrollSmoothOffset: -80
     });
   </script>
+  {{ end }}
 {{ end }}
