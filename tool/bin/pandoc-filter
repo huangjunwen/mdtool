@@ -6,9 +6,11 @@ const child_process = require('child_process')
 const yargs = require('yargs')
 const getStream = require('get-stream')
 const winston = require('winston')
+const consts = require('../lib/consts.js')
 const pandocFilterInit = require('../lib/pandoc-filter.js')
 
-const sockPath = '/tmp/pandoc-filter.sock'
+const sockPath = consts.sockPath
+const logPath = consts.logPath
 
 var argv = yargs
   .strict()
@@ -58,7 +60,7 @@ async function runAsServer () {
     level: 'info',
     format: combine(timestamp(), json()),
     transports: [
-      new winston.transports.File({ filename: '/tmp/pandoc-filter.log', level: 'info' })
+      new winston.transports.File({ filename: logPath, level: 'info' })
     ]
   })
 
