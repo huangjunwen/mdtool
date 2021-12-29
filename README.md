@@ -116,8 +116,8 @@ $ mdtool
         </section>
         ````
       - 普通 table 也会包括在 section 中, `<section>` 带 `table-container`
-  - pandoc wrapper: 一个 shell, 使用上述的 pandoc-filter, 它在 `PATH` 上处于优先, 故 hugo 如果用 
-    pandoc 进行渲染就会自动使用该 wrapper.
+  - pandoc wrapper: 一个脚本，由于处于 PATH 的优先位置，所以 hugo 在执行时会用这个 wrapper，
+    目前该 wrapper 会调用上述的 filter，以及对内容处理结果进行缓存以加速重建
   - dart-sass: 见 https://gohugo.io/hugo-pipes/scss-sass/
   - postcss: 见 https://gohugo.io/hugo-pipes/postcss/
 - 其他工具
