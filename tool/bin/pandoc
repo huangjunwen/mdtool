@@ -8,11 +8,8 @@ const { utimes }= require('fs/promises')
 const path = require('path')
 const crypto = require('crypto')
 const getStream = require('get-stream')
-const common = require('../lib/common.js')
 
-const cachePath = common.cachePath
-const cacheCleanLockPath = common.cacheCleanLockPath
-const logger = common.logger
+const { cachePath, cacheCleanLockPath }= require('../lib/common.js')
 
 fs.mkdirSync(cachePath, {recursive: true})
 
@@ -58,7 +55,6 @@ async function main () {
     // 更新 mtime
     const now = Date.now()/1000.0
     await utimes(p, now, now)
-    logger.log({ level: 'info', comp: 'pandoc', hash: h, message: 'cache hit', dur: `${new Date() - startTime}ms` })
     return
 
   } catch (err) {
@@ -69,11 +65,10 @@ async function main () {
     // 等待子进程的 stdout/stderr 并输出，同时缓存
     await tee(child.stdout, [fs.createWriteStream(p), process.stdout])
     await tee(child.stderr, [process.stderr])
-    logger.log({ level: 'info', comp: 'pandoc', hash: h, message: 'cache miss', dur: `${new Date() - startTime}ms` })
 
   } finally {
     // 开启一个后台清理过期 cache
-    spawn('/usr/bin/flock', ['-x', '-n', '-F', cacheCleanLockPath, 'clean-pandoc-cache'], {detached: true, stdio: 'ignore'}).unref()
+    spawn('/usr/bin/flock', ['-x', '-n', '-F', cacheCleanLockPath, 'pandoc-clean-cache'], {detached: true, stdio: 'ignore'}).unref()
   }
 
 }
