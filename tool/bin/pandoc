@@ -60,19 +60,22 @@ async function main () {
     await utimes(p, now, now)
     logger.log({ level: 'info', comp: 'pandoc', hash: h, message: 'cache hit', dur: `${new Date() - startTime}ms` })
     return
-  } catch (err) {}
 
-  // 启动子进程 pandoc 并写入输入
-  const child = spawn('/usr/bin/pandoc', args)
-  child.stdin.end(input)
+  } catch (err) {
+    // 启动子进程 pandoc 并写入输入
+    const child = spawn('/usr/bin/pandoc', args)
+    child.stdin.end(input)
 
-  // 等待子进程的 stdout/stderr 并输出，同时缓存
-  await tee(child.stdout, [fs.createWriteStream(p), process.stdout])
-  await tee(child.stderr, [process.stderr])
-  logger.log({ level: 'info', comp: 'pandoc', hash: h, message: 'cache miss', dur: `${new Date() - startTime}ms` })
+    // 等待子进程的 stdout/stderr 并输出，同时缓存
+    await tee(child.stdout, [fs.createWriteStream(p), process.stdout])
+    await tee(child.stderr, [process.stderr])
+    logger.log({ level: 'info', comp: 'pandoc', hash: h, message: 'cache miss', dur: `${new Date() - startTime}ms` })
 
-  // 开启一个后台清理过期 cache
-  spawn('/usr/bin/flock', ['-x', '-n', '-F', cacheCleanLockPath, 'clean-pandoc-cache'], {detached: true, stdio: 'ignore'}).unref()
+  } finally {
+    // 开启一个后台清理过期 cache
+    spawn('/usr/bin/flock', ['-x', '-n', '-F', cacheCleanLockPath, 'clean-pandoc-cache'], {detached: true, stdio: 'ignore'}).unref()
+  }
+
 }
 
 main().then(() => {})

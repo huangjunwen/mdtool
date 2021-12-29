@@ -16,7 +16,7 @@ if [ ! -d $DIR/content ]; then
   done
 fi
 
-mkdir -p $DIR/content $DIR/config $DIR/resources $DIR/public
+mkdir -p $DIR/content $DIR/config $DIR/resources $DIR/public $DIR/.pandoc-cache
 touch $DIR/.hugo_build.lock
 
 COMMON_ARGS="--rm -it --network=host --user $USER:$GROUP \
@@ -25,6 +25,7 @@ COMMON_ARGS="--rm -it --network=host --user $USER:$GROUP \
   -v $DIR/config:/opt/mdtool/site/config:ro \
   -v $DIR/content:/opt/mdtool/site/content \
   -v $DIR/resources:/opt/mdtool/site/resources \
-  -v $DIR/public:/opt/mdtool/site/public"
+  -v $DIR/public:/opt/mdtool/site/public \
+  -v $DIR/.pandoc-cache:/tmp/pandoc-cache"
 
 docker run $COMMON_ARGS jayven/mdtool hugo $@
