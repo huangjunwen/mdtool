@@ -1,0 +1,63 @@
+#!/usr/bin/env node
+
+const { readdir, stat, unlink }= require('fs/promises')
+const path = require('path')
+const common = require('../lib/common.js')
+
+const cachePath = common.cachePath
+const logger = common.logger
+
+function sleep (interval) {
+  return new Promise((resolove) => setTimeout(resolove, interval))
+}
+
+async function clean () {
+  try {
+    // 获得所有 cache 文件的 stat 以及最新的 mtime
+    let files = []
+    let stats = []
+    let t = null
+    for (const f of await readdir(cachePath)) {
+      if (!f.match(/^[a-zA-Z0-9]+$/)) {
+        continue
+      }
+      const s = await stat(path.join(cachePath, f))
+      files.push(f)
+      stats.push(s)
+      if (!t || s.mtime > t) {
+        t = s.mtime
+      }
+    }
+
+    if (!files.length) {
+      return
+    }
+
+    // 删除最新时间 1 分钟之前的缓存
+    t.setMinutes(t.getMinutes() - 1)
+
+    let n = 0
+    for (let i=0; i<files.length; i++) {
+      if (stats[i].mtime < t) {
+        const f = files[i]
+        await unlink(path.join(cachePath, f))
+        n++
+      }
+    }
+    if (n > 0) {
+      logger.log({ level: 'info', comp: 'clean-pandoc-cache', message: `clean ${n} cache` })
+    }
+
+  } catch (e) {
+    logger.log({ level: 'error', comp: 'clean-pandoc-cache', error: String(e) })
+  }
+}
+
+async function main () {
+  while (true) {
+    await sleep(60 * 1000)
+    await clean()
+  }
+}
+
+main().then(() => {})

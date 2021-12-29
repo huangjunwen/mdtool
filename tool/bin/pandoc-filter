@@ -6,11 +6,11 @@ const child_process = require('child_process')
 const yargs = require('yargs')
 const getStream = require('get-stream')
 const winston = require('winston')
-const consts = require('../lib/consts.js')
+const common = require('../lib/common.js')
 const pandocFilterInit = require('../lib/pandoc-filter.js')
 
-const sockPath = consts.sockPath
-const logPath = consts.logPath
+const sockPath = common.sockPath
+const logger = common.logger
 
 var argv = yargs
   .strict()
@@ -54,16 +54,6 @@ async function runAsClient () {
 
 async function runAsServer () {
 
-  const { combine, timestamp, json } = winston.format
-
-  const logger = winston.createLogger({
-    level: 'info',
-    format: combine(timestamp(), json()),
-    transports: [
-      new winston.transports.File({ filename: logPath, level: 'info' })
-    ]
-  })
-
   const pandocFilter = await pandocFilterInit()
   const server = net.createServer({ allowHalfOpen: true }, async (c) => {
     try {
@@ -72,9 +62,9 @@ async function runAsServer () {
         c.end()
         return
       }
-      logger.log({ level: 'info', message: `input length ${input.length}` })
+      logger.log({ level: 'info', comp: 'pandoc-filter', message: `input length ${input.length}` })
       let output = await pandocFilter(input)
-      logger.log({ level: 'info', message: `output length ${output.length}` })
+      logger.log({ level: 'info', comp: 'pandoc-filter', message: `output length ${output.length}` })
       c.end(output)
     } catch (e) {
       logger.log({
