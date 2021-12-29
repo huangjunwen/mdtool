@@ -5,7 +5,6 @@ const net = require('net')
 const child_process = require('child_process')
 const yargs = require('yargs')
 const getStream = require('get-stream')
-const winston = require('winston')
 
 const { sockPath, logger }= require('../lib/common.js')
 const pandocFilterInit = require('../lib/pandoc-filter.js')
@@ -60,9 +59,9 @@ async function runAsServer () {
         c.end()
         return
       }
-      logger().log({ level: 'info', comp: 'pandoc-filter', message: `input length ${input.length}` })
+      //logger().log({ level: 'info', comp: 'pandoc-filter', message: `input length ${input.length}` })
       let output = await pandocFilter(input)
-      logger().log({ level: 'info', comp: 'pandoc-filter', message: `output length ${output.length}` })
+      //logger().log({ level: 'info', comp: 'pandoc-filter', message: `output length ${output.length}` })
       c.end(output)
     } catch (e) {
       logger().log({ level: 'error', comp: 'pandoc-filter', error: String(e) })
