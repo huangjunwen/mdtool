@@ -1,0 +1,11 @@
+<span class="breadcrumbnav">{{ template "breadcrumbnav" . }}</span>
+
+{{- define "breadcrumbnav" -}}
+  {{ if .Parent -}}
+    {{ if not .Parent.IsHome -}}
+      {{ template "breadcrumbnav" .Parent -}}
+      <i class="fa fa-fw fa-angle-double-right"></i>
+    {{- end -}}
+  {{ end -}}
+  <span><a href="{{ .RelPermalink }}">{{ .Title | upper }}</a></span>
+{{- end -}}

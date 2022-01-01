@@ -2,14 +2,14 @@
 <link id="{{ .id }}Dark" rel="stylesheet" href="{{ .dark }}" disabled="disabled"></link>
 <link id="{{ .id }}" rel="stylesheet"></link>
 <script>
-  (function () {
-    function setColorMode{{ title .id | safeJS }} (colorMode) {
-      var id = colorMode === 'dark' ? '{{ .id }}Dark' : '{{ .id }}Light';
-      document.getElementById('{{ .id }}').setAttribute('href', document.getElementById(id).getAttribute('href'));
-    }
-    document.addEventListener('ColorModeToggled', function (ev) {
-      setColorMode{{ title .id | safeJS }}(ev.detail.colorMode);
-    });
-    setColorMode{{ title .id | safeJS }}(getColorMode());
-  })();
+(function () {
+  function setColorMode{{ title .id | safeJS }} (colorMode) {
+    var id = colorMode === 'dark' ? '{{ .id }}Dark' : '{{ .id }}Light';
+    document.getElementById('{{ .id }}').setAttribute('href', document.getElementById(id).getAttribute('href'));
+  }
+  document.addEventListener('ColorModeToggled', function (ev) {
+    setColorMode{{ title .id | safeJS }}(ev.detail.colorMode);
+  });
+  setColorMode{{ title .id | safeJS }}(getColorMode());
+})();
 </script>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ .Title }}</title>
+    <link rel="stylesheet" href="/fontawesome/css/all.min.css"></link>
+    <link rel="stylesheet" href="/chota/css/chota.min.css"></link>
+    {{ partial "color_mode.html" . }}
+    {{ block "head" . }}{{ end }}
+  </head>
+
+  <body>
+    <!-- 头部 -->
+    <div id="header">
+      <!-- 导航条 -->
+      <nav id="navbar" class="row">
+        <div class="is-left col-12 col-3-md row">
+          <a id="navbar-brand" class="brand" href="/">{{ .Site.Title }}</a>
+          <label id="navbar-toggle-menu" for="navbar-toggle-menu-state" class="hide-md hide-lg">
+            <span></span>
+            <span></span>
+            <span></span>
+          </label>
+        </div>
+        <input id="navbar-toggle-menu-state" type="checkbox" style="display:none"></input>
+        <div id="navbar-menu" class="is-right col-12 col-9-md row hide-xs-noimportant hide-sm-noimportant">
+          {{ range .Site.Sections }}
+          <a href="/{{ .Section | urlize }}">{{ .Section | humanize | title }}</a>
+          {{ end }}
+          {{ range $taxonomyname, $taxonomy := .Site.Taxonomies }}
+          <a href="/{{ $taxonomyname | urlize }}">{{ $taxonomyname | humanize | title }}</a>
+          {{ end }}
+          {{ range .Site.Menus.main }}
+          <a href="{{ .URL }}">{{ .Name | humanize | title }}</a>
+          {{ end }}
+          <a href="javascript:void(0)" id="navbar-toggle-mode" onclick="return toggleColorMode()"></a>
+        </div>
+      </nav>
+    </div>
+
+    <!-- 主体 -->
+    <div id="main" class="row">
+      <div id="main-left" class="col-3-md hide-xs hide-sm">
+        {{ block "mainLeft" . }}{{ end}}
+      </div>
+      <div id="main-center" class="col-12 col-6-md">
+        <div id="main-title" class="text-center">
+          {{ block "mainTitle" . }}{{ end }}
+        </div>
+        <div id="main-body">
+          {{ block "mainBody" . }}{{ end }}
+        </div>
+      </div>
+      <div id="main-right" class="col-3-md hide-xs hide-sm">
+        {{ block "mainRight" . }}{{ end }}
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <div id="footer" class="text-center">
+      <p>
+        Powered By <a href="https://gohugo.io/">Hugo</a>/<a href="https://jenil.github.io/chota">Chota</a>,
+        Generated Using <a href="https://github.com/huangjunwen/mdtool">MDTool</a>
+      </p>
+      <p>&copy; {{ now.Format "2006"}}. All rights reserved</p>
+    </div>
+    {{ block "bodyEnd" . }}{{ end }}
+  </body>
+</html>

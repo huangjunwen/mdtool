@@ -1,16 +1,19 @@
-{{- $styleOpt := dict "id" "hljsStyle" "light" "/highlightjs/styles/base16/gruvbox-light-soft.min.css" "dark" "/highlightjs/styles/base16/gruvbox-dark-soft.min.css" -}}
+{{- $styleOpt := dict "id" "hljsStyle"
+                      "light" "/highlightjs/styles/base16/gruvbox-light-soft.min.css"
+                      "dark" "/highlightjs/styles/base16/gruvbox-dark-soft.min.css"
+-}}
 {{ partial "color_mode_style.html" $styleOpt }}
 <script type="text/javascript" src="/highlightjs/highlight.min.js"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', function (ev) {
-    hljs.configure({
-      ignoreUnescapedHTML: true
-    });
-    document.querySelectorAll('pre[class*=language-] > code').forEach(function (el) {
-      hljs.highlightElement(el);
-    });
-    document.querySelectorAll('code[class*=language-]').forEach(function (el) {
-      hljs.highlightElement(el);
-    });
+document.addEventListener('DOMContentLoaded', function (ev) {
+  hljs.configure({
+    ignoreUnescapedHTML: true
   });
+  document.querySelectorAll('pre[class*=language-] > code').forEach(function (el) {
+    hljs.highlightElement(el);
+  });
+  document.querySelectorAll('code[class*=language-]').forEach(function (el) {
+    hljs.highlightElement(el);
+  });
+});
 </script>
