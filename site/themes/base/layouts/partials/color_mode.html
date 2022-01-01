@@ -1,0 +1,14 @@
+<script>
+  function getColorMode () {
+    return window.localStorage.getItem("colorMode") || 'light';
+  }
+  function setColorMode (colorMode) {
+    window.localStorage.setItem("colorMode", colorMode);
+    document.dispatchEvent(new CustomEvent('ColorModeToggled', {detail: {colorMode: colorMode}}));
+  }
+  function toggleColorMode () {
+    var colorMode = getColorMode() === 'light' ? 'dark' : 'light';
+    setColorMode(colorMode);
+  }
+  setColorMode(getColorMode());
+</script>

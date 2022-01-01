@@ -1,8 +1,5 @@
-{{- $light := .Scratch.Get "highlightjsLightStyle" | default "base16/gruvbox-light-soft" -}}
-{{- $dark := .Scratch.Get "highlightjsDarkStyle" | default "base16/gruvbox-dark-soft" -}}
-<link id="hljs-light-css" rel="stylesheet" href="/highlightjs/styles/{{ $light }}.min.css" disabled="disabled"></link>
-<link id="hljs-dark-css" rel="stylesheet" href="/highlightjs/styles/{{ $dark }}.min.css" disabled="disabled"></link>
-<link id="hljs-css" rel="stylesheet"></link>
+{{- $styleOpt := dict "id" "hljsStyle" "light" "/highlightjs/styles/base16/gruvbox-light-soft.min.css" "dark" "/highlightjs/styles/base16/gruvbox-dark-soft.min.css" -}}
+{{ partial "color_mode_style.html" $styleOpt }}
 <script type="text/javascript" src="/highlightjs/highlight.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function (ev) {
@@ -15,11 +12,5 @@
     document.querySelectorAll('code[class*=language-]').forEach(function (el) {
       hljs.highlightElement(el);
     });
-  });
-  document.addEventListener('ColorModeToggled', function (ev) {
-    document.getElementById('hljs-css').setAttribute(
-      'href',
-      document.getElementById(ev.detail.dark ? 'hljs-dark-css' : 'hljs-light-css').getAttribute('href'),
-    )
   });
 </script>
