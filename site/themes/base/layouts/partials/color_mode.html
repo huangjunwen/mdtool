@@ -4,7 +4,12 @@ function getColorMode () {
 }
 function setColorMode (colorMode) {
   window.localStorage.setItem("colorMode", colorMode);
-  document.dispatchEvent(new CustomEvent('ColorModeToggled', {detail: {colorMode: colorMode}}));
+  var root = document.getElementsByTagName('html')[0];
+  var a = 'light', r = 'dark';
+  if (colorMode === 'dark')
+    a = 'dark', r = 'light';
+  root.classList.remove(r);
+  root.classList.add(a);
 }
 function toggleColorMode () {
   setColorMode(getColorMode() === 'light' ? 'dark' : 'light');
