@@ -5,9 +5,9 @@ function getColorMode () {
 function setColorMode (colorMode) {
   window.localStorage.setItem("colorMode", colorMode);
   var root = document.getElementsByTagName('html')[0];
-  var a = 'light', r = 'dark';
+  var a = 'light-mode', r = 'dark-mode';
   if (colorMode === 'dark')
-    a = 'dark', r = 'light';
+    a = 'dark-mode', r = 'light-mode';
   root.classList.remove(r);
   root.classList.add(a);
 }

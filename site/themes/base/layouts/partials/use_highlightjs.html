@@ -1,5 +1,5 @@
-{{- $options := dict "transpiler" "dartsass" "outputStyle" "compressed" "targetPath" "highlightjs/styles2/gruvbox-soft.min.css" -}}
-{{- $style := resources.Get "highlightjs/scss/gruvbox-soft.scss" | resources.ToCSS $options | resources.Fingerprint -}}
+{{- $options := dict "transpiler" "dartsass" "outputStyle" "compressed" "targetPath" "highlightjs/hightlightjs-style.css" -}}
+{{- $style := resources.Get "highlightjs/scss/hightlightjs-style.scss" | resources.ToCSS $options | resources.Fingerprint -}}
 <link rel="stylesheet" href="{{ $style.RelPermalink }}"></link>
 <script type="text/javascript" src="/highlightjs/highlight.min.js"></script>
 <script>
