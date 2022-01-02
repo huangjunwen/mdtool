@@ -2,13 +2,6 @@
 @use "theme";
 
 /* From: https://github.com/highlightjs/highlight.js/blob/main/src/styles/base16/gruvbox-light-soft.css */
-/*!
-Theme: Gruvbox light, soft
-Author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
-License: ~ MIT (or more permissive) [via base16-schemes-source]
-Maintainer: @highlightjs/core-team
-Version: 2021.05.0
-*/
 $light-color-base00:  #f2e5bc;  /* Default Background*/
 $light-color-base01:  #ebdbb2;  /* Lighter Background (Used for status bars, line number and folding marks)*/
 $light-color-base02:  #d5c4a1;  /* Selection Background*/
@@ -27,13 +20,6 @@ $light-color-base0E:  #8f3f71;  /* Keywords, Storage, Selector, Markup Italic, D
 $light-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>*/
 
 /* From https://github.com/highlightjs/highlight.js/blob/main/src/styles/base16/gruvbox-dark-soft.css */    
-/*!    
-Theme: Gruvbox dark, soft    
-Author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)    
-License: ~ MIT (or more permissive) [via base16-schemes-source]    
-Maintainer: @highlightjs/core-team    
-Version: 2021.05.0
-*/
 $dark-color-base00:  #32302f;  /* Default Background */
 $dark-color-base01:  #3c3836;  /* Lighter Background (Used for status bars, line number and folding marks) */
 $dark-color-base02:  #504945;  /* Selection Background */
