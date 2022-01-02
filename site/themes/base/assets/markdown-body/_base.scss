@@ -6,13 +6,11 @@ $block-border-radius: 0.5rem;
 $inline-margin: 0.2rem;
 $inline-padding: 0.2rem 0.5rem;
 $inline-border-radius: 0.2rem;
+$table-cell-padding: 0.5rem;
 
 $serif-ff: serif;
-// Copy from chota
-$sans-ff: -apple-system, BlinkMacSystemFont, Avenir, "Avenir Next",
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
-    "Droid Sans", "Helvetica Neue", sans-serif;
-$mono-ff: monaco, "Consolas", "Lucida Console", monospace;
+$sans-ff: sans-serif;
+$mono-ff: monospace;
 $body-font: 1rem/1.5 $sans-ff;
 $h1-font: bold 1.65rem/1.25 $sans-ff;
 $h2-font: bold 1.375rem/1.25 $sans-ff;
@@ -26,12 +24,14 @@ $table-font: 0.85rem $sans-ff;
 %block-container {
   display: block;
   overflow-x: auto;
+}
 
-  /* 隐藏滚动条 */
+%no-scrollbar {
   & {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -172,11 +172,67 @@ $table-font: 0.85rem $sans-ff;
   }
 
   /* Code */
+
   pre[class*=language-] {
-    font: $code-font;
-    white-space: pre;
-    margin: 0;
+    @extend %block-container;
+    padding: $block-padding;
+    margin: $block-margin;
+    border-radius: $block-border-radius;
+
+    code[class*=language-] {
+      @extend %no-scrollbar;
+      font: $code-font;
+      padding: 0;
+      margin: 0;
+    }
   }
 
+  :not(pre) > code[class*='language-'] {
+    margin: $inline-margin;
+    padding: $inline-padding;
+    border-radius: $inline-border-radius;
+  }
+
+  /* Tables */
+
+  .table-container {
+    @extend %block-container;
+    @extend %no-scrollbar;
+    margin: $block-margin;
+    max-width: fit-content;
+    white-space: nowrap;
+
+    table {
+      margin: 0;
+      border: 0;
+      border-collapse: collapse;
+
+      th, td {
+        font: $table-font;
+        padding: $table-cell-padding;
+      }
+    }
+  }
+
+  /* Math */
+
+  mjx-container[jax="SVG"] {
+    &[display="true"] {
+      @extend %block-container;
+      @extend %no-scrollbar;
+      margin: $block-margin;
+      padding: $block-padding;
+      text-align: center;
+      border-radius: $block-border-radius;
+    }
+
+    &:not([display="true"]) {
+      display: inline-block;
+      margin: $inline-margin;
+      padding: $inline-padding;
+      border-radius: $inline-border-radius;
+    }
+
+  }
 
 }

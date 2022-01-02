@@ -93,6 +93,7 @@
     }
 
     .table-container {
+      background-color: #{$block-header-bg};
       th {
         color: #{$block-header-fg};
         background-color: #{$block-header-bg};
