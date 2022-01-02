@@ -1,0 +1,182 @@
+$heading-margin: 1.5rem 0 1rem;
+$paragraph-margin: 1rem 0;
+$block-margin: 1rem auto;
+$block-padding: 1rem;
+$block-border-radius: 0.5rem;
+$inline-margin: 0.2rem;
+$inline-padding: 0.2rem 0.5rem;
+$inline-border-radius: 0.2rem;
+
+$serif-ff: serif;
+// Copy from chota
+$sans-ff: -apple-system, BlinkMacSystemFont, Avenir, "Avenir Next",
+    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+$mono-ff: monaco, "Consolas", "Lucida Console", monospace;
+$body-font: 1rem/1.5 $sans-ff;
+$h1-font: bold 1.65rem/1.25 $sans-ff;
+$h2-font: bold 1.375rem/1.25 $sans-ff;
+$h3-font: bold 1.25rem/1.25 $sans-ff;
+$h4-font: bold 1.125rem/1.25 $sans-ff;
+$h5-font: bold 1rem/1.25 $sans-ff;
+$h6-font: bold 0.875rem/1.25 $sans-ff;
+$code-font: 0.8rem/1.6 $mono-ff;
+$table-font: 0.85rem $sans-ff;
+
+%block-container {
+  display: block;
+  overflow-x: auto;
+
+  /* 隐藏滚动条 */
+  & {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/*****************
+ * markdown body *
+ *****************/
+
+.mdb {
+  box-sizing: border-box;
+  padding: 1rem 1.5rem;
+  font: $body-font;
+  text-align: start;
+  /* https://stackoverflow.com/questions/3226001/some-font-sizes-rendered-larger-on-safari-iphone */
+  -webkit-text-size-adjust: none;
+
+  /* Headings */
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: $heading-margin;
+  }
+
+  h1 { font: $h1-font; }
+  h2 { font: $h2-font; }
+  h3 { font: $h3-font; }
+  h4 { font: $h4-font; }
+  h5 { font: $h5-font; }
+  h6 { font: $h6-font; }
+
+  /* Paragraphs */
+
+  p {
+    margin: $paragraph-margin;
+  }
+
+  /* Emphasis */
+
+  strong {
+    color: inherit;
+    font-weight: bold;
+  }
+
+  em {
+    color: inherit;
+    font-style: italic;
+  }
+
+  /* Blockquotes */
+
+  blockquote {
+    margin: $paragraph-margin;
+    padding: 1px 1rem;
+  }
+
+  /* Lists */
+
+  ul, ol {
+    margin: $paragraph-margin;
+    padding-left: 2rem;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ul, ol {
+    ul {
+      list-style-type: square;
+    }
+  }
+
+  ul, ol {
+    ul, ol {
+      ul {
+        list-style-type: circle;
+      }
+    }
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  ul, ol {
+    ol {
+      list-style-type: lower-roman;
+    }
+  }
+
+  ul, ol {
+    ul, ol {
+      ol {
+        list-style-type: lower-alpha;
+      }
+    }
+  }
+
+  li, li > p {
+    margin: 0.5rem 0;
+  }
+
+  /* Horizontal Rules */
+
+  hr {
+    margin: 2rem 0;
+    border: 0;
+    height: 0.15rem;
+  }
+
+  /* Links */
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Images */
+
+  img {
+    /* 图片其实是可以 inline 到诸如 <p> <a> 里头的，但这里都统一成 block */
+    display: block;
+    max-width: 100%;
+    margin: $block-margin;
+  }
+
+  figure {
+    @extend %block-container;
+    margin: 0 auto;
+  }
+
+  figure figcaption {
+    text-align: center;
+    font-size: 0.8rem;
+    font-style: italic;
+    font-weight: bold;
+    opacity: 0.5;
+  }
+
+  /* Code */
+  pre[class*=language-] {
+    font: $code-font;
+    white-space: pre;
+    margin: 0;
+  }
+
+
+}
