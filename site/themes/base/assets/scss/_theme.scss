@@ -7,37 +7,45 @@
   $body-bg: map.get($setting, body-bg);
   --mdb-body-fg: #{$body-fg};
   --mdb-body-bg: #{$body-bg};
+
   /* 选择颜色 */
   $selection-fg: map.get($setting, selection-fg);
   $selection-bg: map.get($setting, selection-bg);
   --mdb-selection-fg: #{$selection-fg};
   --mdb-selection-bg: #{$selection-bg};
+
   /* 引用块颜色 */
   $quote-fg: map.get($setting, quote-fg);
   $quote-bg: map.get($setting, quote-bg);
   --mdb-quote-fg: #{$quote-fg};
   --mdb-quote-bg: #{$quote-bg};
+
   /* 行内元素颜色 */
   $inline-fg: map.get($setting, inline-fg);
   $inline-bg: map.get($setting, inline-bg);
   --mdb-inline-fg: #{$inline-fg};
   --mdb-inline-bg: #{$inline-bg};
+
   /* 块元素主颜色 */
   $block-fg: map.get($setting, block-fg);
   $block-bg: map.get($setting, block-bg);
   --mdb-block-fg: #{$block-fg};
   --mdb-block-bg: #{$block-bg};
+
   /* 块元素头颜色, 例如 table 的头部，code 的行号部分等 */
   $block-header-fg: map.get($setting, block-header-fg);
   $block-header-bg: map.get($setting, block-header-bg);
   --mdb-block-header-fg: #{$block-header-fg};
   --mdb-block-header-bg: #{$block-header-bg};
+
   /* 标题颜色 */
   $heading: map.get($setting, heading);
   --mdb-heading: #{$heading};
+
   /* 链接颜色 */
   $link: map.get($setting, link);
   --mdb-link: #{$link};
+
   /* 分隔符颜色 */
   $sep: map.get($setting, sep);
   --mdb-sep: #{$sep};
@@ -52,28 +60,26 @@
       background-color: #{$selection-bg};
     }
 
-    @for $i from 1 through 6 {
-      h#{$i} {
-        color: #{$heading};
-      }
+    h1, h2, h3, h4, h5, h6 {
+      color: #{$heading};
+    }
+
+    li::marker {
+      color: #{$heading};
     }
 
     a {
       color: #{$link};
     }
 
-    blockquote {
-      color: #{$quote-fg};
-      background-color: #{$quote-bg};
-      border-left: 0.2rem solid #{$sep};
-    }
-
     hr {
       background-color: #{$sep};
     }
 
-    li::marker {
-      color: #{$heading};
+    blockquote {
+      color: #{$quote-fg};
+      background-color: #{$quote-bg};
+      border-left: 0.2rem solid #{$sep};
     }
 
     pre[class*='language-'] {
