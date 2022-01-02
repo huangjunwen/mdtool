@@ -11,10 +11,9 @@ if FORMAT:match 'html' then
     return el
   end
 
-  -- 将 code block 包裹起来使得如果代码块超长可以滚动
   function CodeBlock (el)
     el.classes[1] = 'language-' .. (el.classes[1] or 'plaintext')
-    return pandoc.Div(el, {class = 'code-container'})
+    return el
   end
 
   -- inline/display math 不需要包裹元素

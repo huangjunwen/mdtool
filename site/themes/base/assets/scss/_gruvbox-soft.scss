@@ -1,0 +1,96 @@
+@use "sass:color";
+@use "theme";
+
+/* From: https://github.com/highlightjs/highlight.js/blob/main/src/styles/base16/gruvbox-light-soft.css */
+/*!
+Theme: Gruvbox light, soft
+Author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)
+License: ~ MIT (or more permissive) [via base16-schemes-source]
+Maintainer: @highlightjs/core-team
+Version: 2021.05.0
+*/
+$light-color-base00:  #f2e5bc;  /* Default Background*/
+$light-color-base01:  #ebdbb2;  /* Lighter Background (Used for status bars, line number and folding marks)*/
+$light-color-base02:  #d5c4a1;  /* Selection Background*/
+$light-color-base03:  #bdae93;  /* Comments, Invisibles, Line Highlighting*/
+$light-color-base04:  #665c54;  /* Dark Foreground (Used for status bars)*/
+$light-color-base05:  #504945;  /* Default Foreground, Caret, Delimiters, Operators*/
+$light-color-base06:  #3c3836;  /* Light Foreground (Not often used)*/
+$light-color-base07:  #282828;  /* Light Background (Not often used)*/
+$light-color-base08:  #9d0006;  /* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted*/
+$light-color-base09:  #af3a03;  /* Integers, Boolean, Constants, XML Attributes, Markup Link Url*/
+$light-color-base0A:  #b57614;  /* Classes, Markup Bold, Search Text Background*/
+$light-color-base0B:  #79740e;  /* Strings, Inherited Class, Markup Code, Diff Inserted*/
+$light-color-base0C:  #427b58;  /* Support, Regular Expressions, Escape Characters, Markup Quotes*/
+$light-color-base0D:  #076678;  /* Functions, Methods, Attribute IDs, Headings*/
+$light-color-base0E:  #8f3f71;  /* Keywords, Storage, Selector, Markup Italic, Diff Changed*/
+$light-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>*/
+
+/* From https://github.com/highlightjs/highlight.js/blob/main/src/styles/base16/gruvbox-dark-soft.css */    
+/*!    
+Theme: Gruvbox dark, soft    
+Author: Dawid Kurek (dawikur@gmail.com), morhetz (https://github.com/morhetz/gruvbox)    
+License: ~ MIT (or more permissive) [via base16-schemes-source]    
+Maintainer: @highlightjs/core-team    
+Version: 2021.05.0
+*/
+$dark-color-base00:  #32302f;  /* Default Background */
+$dark-color-base01:  #3c3836;  /* Lighter Background (Used for status bars, line number and folding marks) */
+$dark-color-base02:  #504945;  /* Selection Background */
+$dark-color-base03:  #665c54;  /* Comments, Invisibles, Line Highlighting */
+$dark-color-base04:  #bdae93;  /* Dark Foreground (Used for status bars) */
+$dark-color-base05:  #d5c4a1;  /* Default Foreground, Caret, Delimiters, Operators */
+$dark-color-base06:  #ebdbb2;  /* Light Foreground (Not often used) */
+$dark-color-base07:  #fbf1c7;  /* Light Background (Not often used) */
+$dark-color-base08:  #fb4934;  /* Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted */
+$dark-color-base09:  #fe8019;  /* Integers, Boolean, Constants, XML Attributes, Markup Link Url */
+$dark-color-base0A:  #fabd2f;  /* Classes, Markup Bold, Search Text Background */
+$dark-color-base0B:  #b8bb26;  /* Strings, Inherited Class, Markup Code, Diff Inserted */
+$dark-color-base0C:  #8ec07c;  /* Support, Regular Expressions, Escape Characters, Markup Quotes */
+$dark-color-base0D:  #83a598;  /* Functions, Methods, Attribute IDs, Headings */
+$dark-color-base0E:  #d3869b;  /* Keywords, Storage, Selector, Markup Italic, Diff Changed */
+$dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
+
+.light-mode {
+  @import "../../static/highlightjs/styles/base16/gruvbox-light-soft.min";
+
+  @include theme.themable((
+    body-fg:          $light-color-base05,
+    body-bg:          color.mix($light-color-base01, #fff, 30%),
+    selection-fg:     currentColor,
+    selection-bg:     $light-color-base02,
+    quote-fg:         currentColor,
+    quote-bg:         rgba($light-color-base00, 0.3),
+    inline-fg:        $light-color-base05,
+    inline-bg:        $light-color-base00,
+    block-fg:         $light-color-base05,
+    block-bg:         $light-color-base00,
+    block-header-fg:  $light-color-base05,
+    block-header-bg:  $light-color-base01,
+    heading:          $light-color-base06,
+    link:             $light-color-base0F,
+    sep:              $light-color-base03,
+  ));
+}
+
+.dark-mode {
+  @import "../../static/highlightjs/styles/base16/gruvbox-dark-soft.min";
+
+  @include theme.themable((
+    body-fg:          $dark-color-base05,
+    body-bg:          $dark-color-base01,
+    selection-fg:     currentColor,
+    selection-bg:     $dark-color-base02,
+    quote-fg:         currentColor,
+    quote-bg:         rgba($dark-color-base00, 0.6),
+    inline-fg:        $dark-color-base05,
+    inline-bg:        $dark-color-base00,
+    block-fg:         $dark-color-base05,
+    block-bg:         $dark-color-base00,
+    block-header-fg:  $dark-color-base05,
+    block-header-bg:  $dark-color-base02,
+    heading:          $dark-color-base06,
+    link:             $dark-color-base09,
+    sep:              $dark-color-base03,
+  ));
+}

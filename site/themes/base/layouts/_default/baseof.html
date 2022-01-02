@@ -7,11 +7,16 @@
     <title>{{ .Title }}</title>
     <link rel="stylesheet" href="/fontawesome/css/all.min.css"></link>
     <link rel="stylesheet" href="/chota/css/chota.min.css"></link>
+    {{ $options := dict "transpiler" "dartsass" "targetPath" "markdown-body/markdown-body.css" -}}
+    {{ $style := resources.Get "scss/markdown-body.scss" | resources.ToCSS $options -}}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}"></link>
     {{ partial "color_mode.html" . }}
+    {{ partial "use_highlightjs.html" . }}
+    {{ partial "use_mathjax.html" . }}
     {{ block "head" . }}{{ end }}
   </head>
 
-  <body>
+  <body class="mdb">
     <!-- 头部 -->
     <div id="header">
       <!-- 导航条 -->
