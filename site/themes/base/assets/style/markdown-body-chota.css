@@ -1,0 +1,15 @@
+/* 用 markdown-body 的颜色对 chota 颜色定制化 */
+
+:root {
+  --bg-color: var(--mdb-body-bg);
+  --bg-secondary-color: var(--mdb-code-block-bg);
+  --color-primary: var(--mdb-link);
+  --color-lightGrey: var(--mdb-sep);
+  --color-grey: var(--mdb-body-fg);
+  --color-darkGrey: var(--mdb-heading);
+  --font-color: var(--mdb-body-fg);
+  /* XXX
+  --color-error: #d43939;
+  --color-success: #28bd14;
+  */
+}
