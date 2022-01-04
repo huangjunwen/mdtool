@@ -25,7 +25,7 @@ code {
 
 :root {
   --bg-color: var(--mdb-body-bg);
-  --bg-secondary-color: var(--mdb-block-bg);
+  --bg-secondary-color: var(--mdb-code-block-bg);
   --color-primary: var(--mdb-link);
   --color-lightGrey: var(--mdb-sep);
   --color-grey: var(--mdb-body-fg);
@@ -87,7 +87,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 3;
-  background-color: var(--mdb-block-bg);
+  background-color: var(--mdb-code-block-bg);
   font-size: 0.9rem;
   padding: 0rem;
   border-bottom: 1px solid var(--mdb-sep);
