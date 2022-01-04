@@ -1,5 +1,5 @@
 {{ define "mainTitle" }}
-  <h6>{{ partial "breadcrumb.html" .Parent }}</h6>
+  {{ if not .Params.noBreadcrumb -}}<h6>{{ partial "breadcrumb.html" .Parent }}</h6>{{- end }}
   {{ if not .Params.noTitle -}}<h1>{{ .Title }}</h1>{{- end }}
   {{ if not .Params.noDate -}}
   <small>
@@ -22,5 +22,11 @@
 {{ define "mainRight" }}
   {{ if not .Params.noTOC }}
   <div id="content-toc" class="toc"></div>
+  {{ end }}
+{{ end }}
+
+{{ define "bodyEnd" }}
+  {{ if not .Params.noTOC }}
+    {{ partial "use_tocbot.html" . }}
   {{ end }}
 {{ end }}

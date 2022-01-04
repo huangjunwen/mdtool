@@ -172,3 +172,11 @@ body {
 #footer p {
   margin: 0.5rem;
 }
+
+/* 内容样式 */
+
+#list-body ul {
+  max-width: 100%;
+  padding-left: 1rem;
+  margin: 0;
+}

@@ -1,4 +1,28 @@
 <link rel="stylesheet" href="/tocbot/css/tocbot.css"></link>
+<style>
+#content-toc {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 7rem;
+  padding-left: 2rem;
+}
+
+#content-toc a.toc-link {
+  color: var(--mdb-body-fg);
+}
+
+#content-toc a.toc-link.is-active-link {
+  color: var(--mdb-heading);
+}
+
+#content-toc a.toc-link::before {
+  background-color: var(--mdb-body-bg);
+}
+
+#content-toc a.toc-link.is-active-link::before {
+  background-color: var(--mdb-link);
+}
+</style>
 <script src="/tocbot/js/tocbot.min.js"></script>
 <script>
 tocbot.init({

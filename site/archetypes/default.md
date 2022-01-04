@@ -4,8 +4,10 @@ date: {{ .Date }}
 draft: true
 markup: pandoc
 
-hideTitle: false
-hideDate: false
+noBreadcrumb: false
+noTitle: false
+noDate: false
+noToc: false
 
 ---
 
