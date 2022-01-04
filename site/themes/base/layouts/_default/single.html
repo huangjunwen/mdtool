@@ -1,5 +1,5 @@
 {{ define "mainTitle" }}
-  {{ if not .Params.noBreadcrumb -}}<h6>{{ partial "breadcrumb.html" .Parent }}</h6>{{- end }}
+  {{ if not .Params.noBreadcrumb -}}<h5>{{ partial "breadcrumb.html" .Parent }}</h5>{{- end }}
   {{ if not .Params.noTitle -}}<h1>{{ .Title }}</h1>{{- end }}
   {{ if not .Params.noDate -}}
   <small>
