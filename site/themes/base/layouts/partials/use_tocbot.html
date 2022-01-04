@@ -29,7 +29,8 @@
 document.addEventListener('DOMContentLoaded', (ev) => {
   tocbot.init({
     tocSelector: '#content-toc',
-    contentSelector: '#content-body',
+    contentSelector: '#main-center',
+    ignoreSelector: '.no-toc',
     headingSelector: 'h1, h2, h3, h4, h5, h6',
     hasInnerContainers: false,
     headingsOffset: 80,
