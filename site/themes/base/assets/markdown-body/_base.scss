@@ -206,8 +206,10 @@ $table-font: 0.85rem $sans-ff;
       margin: $inline-margin;
       padding: $inline-padding;
       border-radius: $inline-border-radius;
+      svg {
+        max-width: 100%;
+      }
     }
-
   }
 
   /* Tables */
