@@ -6,7 +6,6 @@ $block-border-radius: 0.5rem;
 $inline-margin: 0.2rem;
 $inline-padding: 0.2rem 0.5rem;
 $inline-border-radius: 0.2rem;
-$table-cell-padding: 0.5rem;
 
 $serif-ff: serif;
 $sans-ff: sans-serif;
@@ -24,9 +23,6 @@ $table-font: 0.85rem $sans-ff;
 %block-container {
   display: block;
   overflow-x: auto;
-}
-
-%no-scrollbar {
   & {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -175,43 +171,23 @@ $table-font: 0.85rem $sans-ff;
 
   pre[class*=language-] {
     @extend %block-container;
-    padding: $block-padding;
     margin: $block-margin;
+    padding: $block-padding;
     border-radius: $block-border-radius;
 
-    code[class*=language-] {
-      @extend %no-scrollbar;
+    code, code[class*=language-] {
+      @extend %block-container;
       font: $code-font;
-      padding: 0;
       margin: 0;
+      padding: 0;
     }
   }
 
-  :not(pre) > code[class*='language-'] {
+  :not(pre) > code[class*=language-] {
+    font: $code-font;
     margin: $inline-margin;
     padding: $inline-padding;
     border-radius: $inline-border-radius;
-  }
-
-  /* Tables */
-
-  .table-container {
-    @extend %block-container;
-    @extend %no-scrollbar;
-    margin: $block-margin;
-    max-width: fit-content;
-    white-space: nowrap;
-
-    table {
-      margin: 0;
-      border: 0;
-      border-collapse: collapse;
-
-      th, td {
-        font: $table-font;
-        padding: $table-cell-padding;
-      }
-    }
   }
 
   /* Math */
@@ -219,7 +195,6 @@ $table-font: 0.85rem $sans-ff;
   mjx-container[jax="SVG"] {
     &[display="true"] {
       @extend %block-container;
-      @extend %no-scrollbar;
       margin: $block-margin;
       padding: $block-padding;
       text-align: center;
@@ -233,6 +208,26 @@ $table-font: 0.85rem $sans-ff;
       border-radius: $inline-border-radius;
     }
 
+  }
+
+  /* Tables */
+
+  .table-container {
+    @extend %block-container;
+    margin: $block-margin;
+    max-width: fit-content;
+    white-space: nowrap;
+
+    table {
+      margin: 0;
+      border: 0;
+      border-collapse: collapse;
+
+      th, td {
+        font: $table-font;
+        padding: $inline-padding;
+      }
+    }
   }
 
 }
