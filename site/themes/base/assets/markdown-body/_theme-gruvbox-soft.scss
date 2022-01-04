@@ -56,6 +56,10 @@ $dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language 
     link:             $light-color-base0F,
     sep:              $light-color-base03,
   ));
+
+  pre[class*=language-], mjx-container[jax=SVG][display=true], .table-container {
+    box-shadow: -2px 0px 10px 0px color.mix($light-color-base05, #fff, 50%);
+  }
 }
 
 .dark-mode {

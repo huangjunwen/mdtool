@@ -82,7 +82,7 @@
       border-left: 0.2rem solid #{$sep};
     }
 
-    pre[class*='language-'] {
+    pre[class*=language-] {
       color: #{$block-fg};
       background-color: #{$block-bg};
     }
@@ -90,6 +90,17 @@
     :not(pre) > code[class*='language-'] {
       color: #{$inline-fg};
       background-color: #{$inline-bg};
+    }
+
+    mjx-container[jax="SVG"] {
+      &[display="true"] {
+        color: #{$block-fg};
+        background-color: #{$block-bg};
+      }
+      &:not([display="true"]) {
+        color: #{$inline-fg};
+        background-color: #{$inline-bg};
+      }
     }
 
     .table-container {
@@ -106,18 +117,5 @@
         border: 1px solid #{$block-header-bg};
       }
     }
-
-    mjx-container[jax="SVG"] {
-      &[display="true"] {
-        color: #{$block-fg};
-        background-color: #{$block-bg};
-      }
-      &:not([display="true"]) {
-        color: #{$inline-fg};
-        background-color: #{$inline-bg};
-      }
-    }
-
   }
-
 }
