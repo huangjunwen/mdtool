@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/chota/css/chota.min.css"></link>
     <link rel="stylesheet" href="{{ (resources.Get "style/style.css" | resources.Minify).RelPermalink }}"></link>
     {{- $options := dict "transpiler" "dartsass" "outputStyle" "compressed" "targetPath" "markdown-body/markdown-body.css" }}
-    {{- $style := resources.Get "markdown-body/markdown-body.scss" | resources.ToCSS $options }}
+    {{- $style := resources.Get "style/markdown-body/markdown-body.scss" | resources.ToCSS $options }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}"></link>
     {{ partial "color_mode.html" . }}
     {{ partial "use_highlightjs.html" . }}

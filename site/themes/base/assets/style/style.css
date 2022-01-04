@@ -24,15 +24,8 @@ code {
 /* chota 定制化 */
 
 :root {
-  --bg-color: var(--mdb-body-bg);
-  --bg-secondary-color: var(--mdb-code-block-bg);
-  --color-primary: var(--mdb-link);
-  --color-lightGrey: var(--mdb-sep);
-  --color-grey: var(--mdb-body-fg);
-  --color-darkGrey: var(--mdb-heading);
   --grid-gutter: 0rem;
   --font-size: 1rem;
-  --font-color: var(--mdb-body-fg);
 }
 
 /* chota 本身有 hide-xx, 但用了!important */
@@ -87,10 +80,10 @@ body {
   position: sticky;
   top: 0;
   z-index: 3;
-  background-color: var(--mdb-code-block-bg);
   font-size: 0.9rem;
   padding: 0rem;
-  border-bottom: 1px solid var(--mdb-sep);
+  background-color: var(--bg-secondary-color);
+  border-bottom: 1px solid var(--color-lightGrey);
 }
 
 #navbar a, #navbar label {
@@ -113,7 +106,7 @@ body {
   width: 1rem;
   height: 0.1rem;
   margin-top: 0.2rem;
-  background-color: var(--mdb-link);
+  background-color: var(--color-primary);
 }
 
 #navbar-toggle-menu-state:checked ~ #navbar-menu {
@@ -138,7 +131,8 @@ body {
   flex: 1;
   /* 过长的需要 wrap */
   overflow-wrap: break-word;
-  background-color: var(--mdb-body-bg);
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--color-lightGrey);
 }
 
 #main small {
@@ -162,7 +156,7 @@ body {
   position: sticky;
   bottom: 0;
   z-index: 1;
-  background-color: var(--mdb-selection-bg);
+  background-color: var(--bg-secondary-color);
   font-style: italic;
   font-weight: bold;
   font-size: 0.75rem;

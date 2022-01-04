@@ -38,7 +38,7 @@ $dark-color-base0E:  #d3869b;  /* Keywords, Storage, Selector, Markup Italic, Di
 $dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?> */
 
 .light-mode {
-  @import "../../static/highlightjs/styles/base16/gruvbox-light-soft.min";
+  @import "../../../static/highlightjs/styles/base16/gruvbox-light-soft.min";
   @include theme.themable((
     body-fg:          $light-color-base05,
     body-bg:          color.mix($light-color-base01, #fff, 30%),
@@ -69,7 +69,7 @@ $dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language 
 }
 
 .dark-mode {
-  @import "../../static/highlightjs/styles/base16/gruvbox-dark-soft.min";
+  @import "../../../static/highlightjs/styles/base16/gruvbox-dark-soft.min";
   @include theme.themable((
     body-fg:          $dark-color-base05,
     body-bg:          $dark-color-base01,
