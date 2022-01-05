@@ -69,7 +69,7 @@
     });
     </script>
   {{ end }}
-  {{ if (or (not .Params.noAnchor) (not (.Scratch.Get "noAnchor"))) }}
+  {{ if (and (not .Params.noAnchor) (not (.Scratch.Get "noAnchor"))) }}
     <script type="text/javascript" src="/anchorjs/js/anchor.min.js"></script>
     <script>anchors.add('#main-body h1, #main-body h2, #main-body h3, #main-body h4, #main-body h5, #main-body h6');</script>
   {{ end }}
