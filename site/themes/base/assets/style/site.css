@@ -24,6 +24,17 @@ code {
 /* chota 定制化 */
 
 :root {
+  --bg-color: var(--mdb-body-bg);
+  --bg-secondary-color: var(--mdb-code-block-bg);
+  --color-primary: var(--mdb-link);
+  --color-lightGrey: var(--mdb-sep);
+  --color-grey: var(--mdb-body-fg);
+  --color-darkGrey: var(--mdb-heading);
+  --font-color: var(--mdb-body-fg);
+  /* XXX
+  --color-error: #d43939;
+  --color-success: #28bd14;
+  */
   --grid-gutter: 0rem;
   --font-size: 1rem;
 }
@@ -174,4 +185,14 @@ body {
   padding-left: 1rem;
   margin: 0;
   font-weight: bold;
+}
+
+/* sticky header 会遮挡 anchor，
+ * 见: https://www.bryanbraun.com/anchorjs/#pages-with-a-sticky-navbar */
+:target::before {
+  content: "";
+  display: block;
+  margin-top: -80px;
+  height: 80px;
+  width: 1px;
 }

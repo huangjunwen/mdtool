@@ -7,22 +7,16 @@
     <title>{{ .Title }}</title>
     <link rel="stylesheet" href="/fontawesome/css/all.min.css"></link>
     <link rel="stylesheet" href="/chota/css/chota.min.css"></link>
-    <link rel="stylesheet" href="{{ (resources.Get "style/style.css" |
-      resources.Minify |
-      resources.Fingerprint).RelPermalink }}"></link>
     <link rel="stylesheet" href="{{ (resources.Get "style/markdown-body/markdown-body.scss" |
       resources.ToCSS (dict "transpiler" "dartsass" "outputStyle" "compressed" "targetPath" "style/markdown-body.min.css") |
       resources.Fingerprint).RelPermalink
     }}"></link>
-    <link rel="stylesheet" href="{{ (resources.Get "style/markdown-body-chota.css" |
+    <script type="text/javascript" src="{{ (resources.Get "script/markdown-body.js" |
+      js.Build (dict "targetPath" "script/markdown-body.min.js" "minify" true) |
+      resources.Fingerprint).RelPermalink }}"></script>
+    <link rel="stylesheet" href="{{ (resources.Get "style/site.css" |
       resources.Minify |
       resources.Fingerprint).RelPermalink }}"></link>
-    <script type="text/javascript" src="/highlightjs/highlight.min.js"></script>
-    <script type="text/javascript" src="{{ (resources.Get "script/script.js" |
-      js.Build (dict "targetPath" "script/script.min.js" "minify" true) |
-      resources.Fingerprint).RelPermalink }}"></script>
-    {{ if .Scratch.Get "noMathjaxFontCache" -}}<script>window.Mathjax.svg.fontCache = 'none';</script>{{ end -}}
-    <script type="text/javascript" src="/mathjax/es5/tex-svg.js"></script>
   </head>
 
   <body>
