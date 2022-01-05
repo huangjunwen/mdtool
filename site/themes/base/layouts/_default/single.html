@@ -11,6 +11,7 @@
     <a href="/tags/{{ . | urlize }}/"><span class="tag is-small">{{ . }}</span></a>
     {{- end }}
   </p>
+  {{ partial "ifex_partial" (slice "single-main-title" .) -}}
 {{ end }}
 
 {{ define "mainBody" }}

@@ -24,7 +24,7 @@
 (() => {
   window.MathJax = {
     svg: {
-      fontCache: window.noMathjaxFontCache ? 'none' : 'global'
+      fontCache: window.mathjaxFontCache || 'global'
     },
     options: {
       enableAssistiveMml: false
