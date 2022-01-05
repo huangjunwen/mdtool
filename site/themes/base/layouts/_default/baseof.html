@@ -2,10 +2,10 @@
 <html>
 
   <head>
-    {{ partial "ifex_partial" (slice "base-head" .) -}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ .Title }}</title>
+    {{ partial "ifex_partial" (slice "base-head" .) }}
     <link rel="stylesheet" href="/fontawesome/css/all.min.css"></link>
     <link rel="stylesheet" href="/chota/css/chota.min.css"></link>
     <link rel="stylesheet" href="{{ (resources.Get "style/site.css" |
