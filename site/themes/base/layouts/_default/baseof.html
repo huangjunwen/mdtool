@@ -41,7 +41,7 @@
           <a href="/{{ $taxonomyname | urlize }}">{{ $taxonomyname | humanize | title }}</a>
           {{ end }}
           {{ range .Site.Menus.main }}
-          <a href="{{ .URL }}">{{ .Name | humanize | title }}</a>
+          <a href="{{ .URL }}">{{ .Pre }}{{ .Name | humanize | title }}</a>
           {{ end }}
           <a href="javascript:void(0)" id="navbar-toggle-mode" onclick="return toggleColorMode()"></a>
         </div>
