@@ -1,3 +1,0 @@
-{{- .Scratch.Set "noAnchorjs" true -}}
-<script type="text/javascript" src="{{ (resources.Get "js/single.js" | js.Build | resources.Minify).RelPermalink }}"></script>
-<a id="copy-weixin-mp" href="#"><i class="fab fa-fw fa-weixin"></i>将文章拷贝到微信公众号</a>

@@ -5,10 +5,7 @@ theme = ""
 
 [module]
 [[module.imports]]
-  path = "style-markdown-body"
-
-[[module.imports]]
-  path = "theme-base"
+  path = "base"
 
 # [taxonomies]
 #   tag = "tags"
