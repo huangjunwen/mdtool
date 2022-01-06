@@ -17,7 +17,7 @@ $h3-font: bold 1.25rem/1.25 $sans-ff;
 $h4-font: bold 1.125rem/1.25 $sans-ff;
 $h5-font: bold 1rem/1.25 $sans-ff;
 $h6-font: bold 0.875rem/1.25 $sans-ff;
-$code-font: 0.8rem/1.6 $mono-ff;
+$code-font: 0.75rem/1.6 $mono-ff;
 $table-font: 0.85rem $sans-ff;
 
 %block-container {
@@ -175,12 +175,22 @@ $table-font: 0.85rem $sans-ff;
     padding: $block-padding;
     border-radius: $block-border-radius;
 
+    /* code 是未着色之前，code[class*=language-] 是着色之后 */
     code, code[class*=language-] {
       @extend %block-container;
       font: $code-font;
       margin: 0;
       padding: 0;
     }
+
+    /* safari 下貌似如果指定了 word-break: break-word 的话（微信公众号就设置了，还 !important），
+     * pre code 还是会 wrap，目前用的方法是：将 code 里面的 space 转成 nbsp，换行符转成 <br>，
+     * 这样不会因为 css 的样式影响其排版，然后下面这里 white-space 设成 nowrap 强制其不要换行
+     */
+    code[class*=language-] {
+      white-space: nowrap;
+    }
+
   }
 
   :not(pre) > code[class*=language-] {

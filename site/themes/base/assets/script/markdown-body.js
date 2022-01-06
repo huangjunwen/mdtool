@@ -6,7 +6,7 @@
   }
   const setColorMode = (colorMode) => {
     window.localStorage.setItem("colorMode", colorMode)
-    let root = document.getElementsByTagName('html')[0]
+    let root = document.documentElement
     let a = 'light-mode', r = 'dark-mode'
     if (colorMode === 'dark')
       a = 'dark-mode', r = 'light-mode'
@@ -61,7 +61,10 @@
         ignoreUnescapedHTML: true
       })
       document.querySelectorAll('pre[class*=language-] > code, code[class*=language-]').forEach((el) => {
+        // 在 highlight 时将空格转换为 &nbsp; 换行符转成 <br>
+        el.textContent = el.textContent.replaceAll('\u0020', '\u00a0')
         hljs.highlightElement(el)
+        el.innerHTML = el.innerHTML.split('\n').join('<br/>')
       })
     }).catch((e) => {})
   })
