@@ -1,76 +1,10 @@
-#!/usr/bin/env node
+#!/bin/bash
 
-// 这个文件用于覆盖原来的 pandoc, 添加上自定义 filter
+# 这个文件用于覆盖原来的 pandoc
+ORIGIN_PANDOC=/usr/bin/pandoc
 
-const { spawn } = require('child_process')
-const fs = require('fs')
-const { utimes }= require('fs/promises')
-const path = require('path')
-const crypto = require('crypto')
-const getStream = require('get-stream')
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-const { cachePath, cacheCleanLockPath }= require('../lib/common.js')
-
-fs.mkdirSync(cachePath, {recursive: true})
-
-async function tee (s, ds) {
-  for await (const data of s) {
-    for (const d of ds) {
-      d.write(data)
-    }
-  }
-  for (const d of ds) {
-    d.end()
-  }
-}
-
-async function main () {
-
-  const startTime = new Date()
-
-  const args = process.argv.slice(2).concat([
-    '--mathjax',
-    // --no-highlight 阻止 pandoc 自带的语法高亮, filter 里会用 prismjs 处理.
-    '--no-highlight',
-    '--from=markdown+autolink_bare_uris+auto_identifiers+emoji',
-    '--filter=pandoc-filter',
-  ])
-
-  const input = await getStream(process.stdin)
-
-  // 计算参数以及 stdin 的 hash
-  let h = crypto.createHash('md5')
-  h.setEncoding('hex')
-  h.write(args.join(' '))
-  h.write('\n')
-  h.end(input)
-  h = h.read()
-
-  // cache 完整路径
-  const p = path.join(cachePath, h)
-
-  // 如果已经有缓存，直接输出
-  try {
-    await tee(fs.createReadStream(p), [process.stdout])
-    // 更新 mtime
-    const now = Date.now()/1000.0
-    await utimes(p, now, now)
-    return
-
-  } catch (err) {
-    // 启动子进程 pandoc 并写入输入
-    const child = spawn('/usr/bin/pandoc', args)
-    child.stdin.end(input)
-
-    // 等待子进程的 stdout/stderr 并输出，同时缓存
-    await tee(child.stdout, [fs.createWriteStream(p), process.stdout])
-    await tee(child.stderr, [process.stderr])
-
-  } finally {
-    // 开启一个后台清理过期 cache
-    spawn('/usr/bin/flock', ['-x', '-n', '-F', cacheCleanLockPath, 'pandoc-clean-cache'], {detached: true, stdio: 'ignore'}).unref()
-  }
-
-}
-
-main().then(() => {})
+exec $ORIGIN_PANDOC $@ --mathjax --no-highlight \
+  -f markdown+autolink_bare_uris+auto_identifiers+emoji \
+  --lua-filter=$DIR/pandoc-filter.lua

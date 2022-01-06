@@ -1,0 +1,187 @@
+/* 以下覆盖 chota 一些设置 */
+
+html {
+  font-size: 1rem;
+}
+
+thead {
+  border-bottom: none !important;
+}
+
+[type=checkbox], [type=radio] {
+  width: 1rem;
+  height: 1rem;
+}
+
+input:disabled, input:disabled:hover {
+  opacity: 1;
+}
+
+code {
+  white-space: pre;
+}
+
+/* chota 定制化 */
+
+:root {
+  --grid-gutter: 0rem;
+  --font-size: 1rem;
+}
+
+/* chota 本身有 hide-xx, 但用了!important */
+
+@media screen and (max-width: 599px) {
+  .hide-xs-noimportant {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 899px) {
+  .hide-sm-noimportant {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1199px) {
+  .hide-md-noimportant {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .hide-lg-noimportant {
+    display: none;
+  }
+}
+
+/* 全局样式 */
+
+/* https://allthingssmitty.com/2020/05/11/css-fix-for-100vh-in-mobile-webkit/ */
+/* https://css-tricks.com/css-fix-for-100vh-in-mobile-webkit/ */
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+/* 头部样式 */
+
+#header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  font-size: 0.9rem;
+  padding: 0rem;
+  background-color: var(--bg-secondary-color);
+  border-bottom: 1px solid var(--color-lightGrey);
+}
+
+#navbar a, #navbar label {
+  padding: 1rem 1.5rem;
+}
+
+#navbar-brand {
+  font-weight: bold;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+#navbar-toggle-menu {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+#navbar-toggle-menu span {
+  display: block;
+  width: 1rem;
+  height: 0.1rem;
+  margin-top: 0.2rem;
+  background-color: var(--color-primary);
+}
+
+#navbar-toggle-menu-state:checked ~ #navbar-menu {
+  display: flex;
+}
+
+.light-mode #navbar-toggle-mode:before {
+  content: "☀️";
+  visibility: visible;
+}
+
+.dark-mode #navbar-toggle-mode:before {
+  content: "🌙";
+  visibility: visible;
+}
+
+/* 主体样式 */
+
+#main {
+  z-index: 2;
+  /* #header 和 #footer 没有设置 flex, 默认 flex-grow 为 0, 所以所有空余空间都会由 main 占据 */
+  flex: 1;
+  /* 过长的需要 wrap */
+  overflow-wrap: break-word;
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--color-lightGrey);
+}
+
+#main small {
+  font-size: 0.75rem;
+}
+
+#main-title, #main-body {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.breadcrumbnav i {
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+}
+
+/* 页脚样式 */
+
+#footer {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  background-color: var(--bg-secondary-color);
+  font-style: italic;
+  font-weight: bold;
+  font-size: 0.75rem;
+  padding: 0.75rem;
+}
+
+#footer p {
+  margin: 0.5rem;
+}
+
+/* 内容样式 */
+
+#list-body ul {
+  max-width: 100%;
+  padding-left: 1rem;
+  margin: 0;
+  font-weight: bold;
+}
+
+/* sticky header 会遮挡 anchor，
+ * 见: https://www.bryanbraun.com/anchorjs/#pages-with-a-sticky-navbar */
+:target::before {
+  content: "";
+  display: block;
+  margin-top: -80px;
+  height: 80px;
+  width: 1px;
+}

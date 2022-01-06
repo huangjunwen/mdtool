@@ -1,0 +1,139 @@
+@use "sass:map";
+
+@mixin themable($setting) {
+
+  /* 主体颜色 */
+  $body-fg: map.get($setting, body-fg);
+  $body-bg: map.get($setting, body-bg);
+  --mdb-body-fg: #{$body-fg};
+  --mdb-body-bg: #{$body-bg};
+
+  /* 选择颜色 */
+  $selection-fg: map.get($setting, selection-fg);
+  $selection-bg: map.get($setting, selection-bg);
+  --mdb-selection-fg: #{$selection-fg};
+  --mdb-selection-bg: #{$selection-bg};
+
+  /* 引用块颜色 */
+  $blockquote-fg: map.get($setting, blockquote-fg);
+  $blockquote-bg: map.get($setting, blockquote-bg);
+  --mdb-blockquote-fg: #{$blockquote-fg};
+  --mdb-blockquote-bg: #{$blockquote-bg};
+
+  /* code 颜色 */
+  $code-inline-fg: map.get($setting, code-inline-fg);
+  $code-inline-bg: map.get($setting, code-inline-bg);
+  --mdb-code-inline-fg: #{$code-inline-fg};
+  --mdb-code-inline-bg: #{$code-inline-bg};
+
+  /* code block 颜色 */
+  $code-block-fg: map.get($setting, code-block-fg);
+  $code-block-bg: map.get($setting, code-block-bg);
+  --mdb-code-block-fg: #{$code-block-fg};
+  --mdb-code-block-bg: #{$code-block-bg};
+
+  /* math 颜色 */
+  $math-inline-fg: map.get($setting, math-inline-fg);
+  $math-inline-bg: map.get($setting, math-inline-bg);
+  --mdb-math-inline-fg: #{$math-inline-fg};
+  --mdb-math-inline-bg: #{$math-inline-bg};
+
+  /* math block 颜色 */
+  $math-block-fg: map.get($setting, math-block-fg);
+  $math-block-bg: map.get($setting, math-block-bg);
+  --mdb-math-block-fg: #{$math-block-fg};
+  --mdb-math-block-bg: #{$math-block-bg};
+
+  /* table 颜色*/
+  $table-fg: map.get($setting, table-fg);
+  $table-bg: map.get($setting, table-bg);
+  --mdb-table-fg: #{$table-fg};
+  --mdb-table-bg: #{$table-bg};
+
+  /* table header 颜色 */
+  $table-header-fg: map.get($setting, table-header-fg);
+  $table-header-bg: map.get($setting, table-header-bg);
+  --mdb-table-header-fg: #{$table-header-fg};
+  --mdb-table-header-bg: #{$table-header-bg};
+
+  /* 标题颜色 */
+  $heading: map.get($setting, heading);
+  --mdb-heading: #{$heading};
+
+  /* 链接颜色 */
+  $link: map.get($setting, link);
+  --mdb-link: #{$link};
+
+  /* 分隔符颜色 */
+  $sep: map.get($setting, sep);
+  --mdb-sep: #{$sep};
+
+  .mdb {
+
+    color: #{$body-fg};
+    background-color: #{$body-bg};
+
+    &::selection, & *::selection {
+      color: #{$selection-fg};
+      background-color: #{$selection-bg};
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #{$heading};
+    }
+
+    li::marker {
+      color: #{$heading};
+    }
+
+    a {
+      color: #{$link};
+    }
+
+    hr {
+      background-color: #{$sep};
+    }
+
+    blockquote {
+      color: #{$blockquote-fg};
+      background-color: #{$blockquote-bg};
+      border-left: 0.2rem solid #{$sep};
+    }
+
+    pre[class*=language-] {
+      color: #{$code-block-fg};
+      background-color: #{$code-block-bg};
+    }
+
+    :not(pre) > code[class*='language-'] {
+      color: #{$code-inline-fg};
+      background-color: #{$code-inline-bg};
+    }
+
+    mjx-container[jax="SVG"] {
+      &[display="true"] {
+        color: #{$math-block-fg};
+        background-color: #{$math-block-bg};
+      }
+      &:not([display="true"]) {
+        color: #{$math-inline-fg};
+        background-color: #{$math-inline-bg};
+      }
+    }
+
+    .table-container {
+      background-color: #{$table-header-bg};
+      th {
+        color: #{$table-header-fg};
+        background-color: #{$table-header-bg};
+      }
+      td {
+        color: #{$table-fg};
+        background-color: #{$table-bg};
+      }
+      th, td {
+        border: 1px solid #{$table-header-bg};
+      }
+    }
+  }
+}

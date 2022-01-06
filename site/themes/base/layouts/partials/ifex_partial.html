@@ -1,0 +1,5 @@
+{{ $partial := index . 0 -}}
+{{ $dot := index . 1 -}}
+{{ if templates.Exists (printf "partials/%s.html" $partial) -}}
+  {{ partial (printf "%s.html" $partial) $dot -}}
+{{ end -}}

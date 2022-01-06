@@ -77,57 +77,14 @@ $ mdtool
 
 - hugo (https://gohugo.io/), 主要的工具
 - pandoc (https://pandoc.org/)
-  - pandoc-filter
-    - 服务端使用 MathJax 渲染 tex 公式
-      - 语法见 https://pandoc.org/MANUAL.html#extension-tex_math_dollars 说明, 简单说即 `$...$` (math inline) 或者 `$$....$$` (math block)
-      - 输出 svg, MathJax 设置中的 font cache 为 none, 这样体积会比较大, 但适配场景要广一些 (微信公众号文章不允许 html 元素有 id)
-    - 服务端使用 prismjs 渲染语法高亮, 支持添加行号
-      - 语法见 https://pandoc.org/MANUAL.html#extension-fenced_code_blocks 说明, 例如
-        ````markdown
-        语法高亮
-        ```python
-        // ...
-        ```
-
-        带行号并指定开始行号语法高亮
-        ```{.js .number-lines startFrom=10}
-        // ....
-        ```
-        ````
-      - code block (非 inline) 统一生成一个一行两列的 table, 第一列是行号, 第二列是高亮代码, 并包裹在 section 中,
-        `<pre>` `<code>` 都会带上 `language-*` 类型, `<section>` 带 `code-container`, 例如
-        ````html
-        <section class="code-container">
-          <table>
-            <tr>
-              <td></td>
-              <td><pre class="language-python"><code class="language-python">....</code></pre></td>
-            </tr>
-          </table>
-        </section>
-
-        <section class="code-container">
-          <table>
-            <tr>
-              <td><pre class="language-js"><code class="language-js"><span>1</span><br/><span>2</span></code></pre></td>
-              <td><pre class="language-js"><code class="language-js">....</code></pre></td>
-            </tr>
-          </table>
-        </section>
-        ````
-      - 普通 table 也会包括在 section 中, `<section>` 带 `table-container`
+  - lua-pandoc-filter
   - pandoc wrapper: 一个脚本，由于处于 PATH 的优先位置，所以 hugo 在执行时会用这个 wrapper，
     目前该 wrapper 会调用上述的 filter，以及对内容处理结果进行缓存以加速重建
-  - dart-sass: 见 https://gohugo.io/hugo-pipes/scss-sass/
-  - postcss: 见 https://gohugo.io/hugo-pipes/postcss/
-- 其他工具
-  - tex2svg 将标准输入的 tex 公式转换为标准输出的 svg (MathJax)
-  - rsvg-convert svg 转图片
-  - ...
+- dart-sass: 见 https://gohugo.io/hugo-pipes/scss-sass/
 
 ### site (hugo 站点目录)
 
-默认使用的 theme 是 `theme-base`, 用于输出博客页面, 可以通过命令行参数 `-t` 修改:
+默认不使用 theme, 用于输出博客页面, 可以通过命令行参数 `-t` 修改:
 
   - `-t theme-with-weixin-mp`: 添加拷贝到微信公众号的功能
 

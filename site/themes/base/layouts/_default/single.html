@@ -1,0 +1,76 @@
+{{ define "mainTitle" }}
+  {{ if not .Params.noBreadcrumb -}}<h5 class="no-toc">{{ partial "breadcrumb.html" .Parent }}</h5>{{- end }}
+  {{ if not .Params.noTitle -}}<h1>{{ .Title }}</h1>{{- end }}
+  {{ if not .Params.noDate -}}
+  <small>
+    <time class="" datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">{{ .Date.Format "Mon, 2006/01/02" }}</time>
+  </small>
+  {{- end }}
+  <p>
+    {{ range .Params.tags }}
+    <a href="/tags/{{ . | urlize }}/"><span class="tag is-small">{{ . }}</span></a>
+    {{- end }}
+  </p>
+  {{ partial "ifex_partial" (slice "single-main-title" .) -}}
+{{ end }}
+
+{{ define "mainBody" }}
+  <article id="content-body">
+    {{ .Content }}
+  </article>
+{{ end }}
+
+{{ define "mainRight" }}
+  {{ if not .Params.noTOC }}
+  <div id="content-toc" class="toc"></div>
+  {{ end }}
+{{ end }}
+
+{{ define "bodyEnd" }}
+  {{ if not .Params.noTOC }}
+    <link rel="stylesheet" href="/tocbot/css/tocbot.css"></link>
+    <style>
+    #content-toc {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 7rem;
+      padding-left: 2rem;
+      padding-right: 1rem;
+    }
+
+    #content-toc a.toc-link {
+      color: var(--font-color);
+    }
+
+    #content-toc a.toc-link.is-active-link {
+      color: var(--color-darkGrey);
+    }
+
+    #content-toc a.toc-link::before {
+      background-color: var(--bg-color);
+    }
+
+    #content-toc a.toc-link.is-active-link::before {
+      background-color: var(--color-primary);
+    }
+    </style>
+    <script src="/tocbot/js/tocbot.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', (ev) => {
+      tocbot.init({
+        tocSelector: '#content-toc',
+        contentSelector: '#main-center',
+        ignoreSelector: '.no-toc',
+        headingSelector: 'h1, h2, h3, h4, h5, h6',
+        hasInnerContainers: false,
+        headingsOffset: 80,
+        scrollSmoothOffset: -80
+      });
+    });
+    </script>
+  {{ end }}
+  {{ if (and (not .Params.noAnchor) (not (.Scratch.Get "noAnchor"))) }}
+    <script type="text/javascript" src="/anchorjs/js/anchor.min.js"></script>
+    <script>anchors.add('#main-body h1, #main-body h2, #main-body h3, #main-body h4, #main-body h5, #main-body h6');</script>
+  {{ end }}
+{{ end }}
