@@ -79,7 +79,7 @@ $ mdtool
 - pandoc (https://pandoc.org/)
   - lua-pandoc-filter
   - pandoc wrapper: 一个脚本，由于处于 PATH 的优先位置，所以 hugo 在执行时会用这个 wrapper，
-    目前该 wrapper 会调用上述的 filter，以及对内容处理结果进行缓存以加速重建
+    目前该 wrapper 会调用上述的 filter 进行处理
 - dart-sass: 见 https://gohugo.io/hugo-pipes/scss-sass/
 
 ### site (hugo 站点目录)
