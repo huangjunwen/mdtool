@@ -32,13 +32,9 @@
     startup: {
       pageReady: () => {
         return MathJax.startup.defaultPageReady().then(() => {
-          // 将 display （block）math 的 height/width 设置到 style 中去，尤其是设置 min-width 阻止其缩放
+          // 设置 display （block）math 的 min-width 阻止其缩放，只能 scroll
           document.querySelectorAll('mjx-container[jax=SVG][display=true] svg').forEach((svg) => {
-            let w = svg.getAttribute('width'), h = svg.getAttribute('height')
-            svg.removeAttribute('width')
-            svg.removeAttribute('height')
-            svg.style.width = svg.style.minWidth = w
-            svg.style.height = h
+            svg.style.minWidth = svg.getAttribute('width')
           })
           // 排版完毕后页面大小可能会变化，
           // 导致 anchor 指向的地方不太正确，这里重新设置一次
