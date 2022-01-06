@@ -198,6 +198,8 @@ $table-font: 0.85rem $sans-ff;
     margin: $inline-margin;
     padding: $inline-padding;
     border-radius: $inline-border-radius;
+    /* inline code 如果过长应当 wrap */
+    white-space: pre-wrap;
   }
 
   /* Math */
