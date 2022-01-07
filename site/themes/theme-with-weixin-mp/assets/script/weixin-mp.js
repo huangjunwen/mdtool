@@ -3,29 +3,6 @@ const juice = require('juice/client')
 // github.com/jrit/declassify remove any classes or IDs not found
 const declassify = require('declassify')
 
-// https://stackoverflow.com/a/65996386
-function copyToClipboard (textToCopy) {
-  // 创建一个临时的隐藏的元素并触发 copy 事件以获得修改剪贴板的机会
-  let textArea = document.createElement('textarea')
-  try {
-    // 通过样式隐藏起来
-    textArea.style.position = 'absolute'
-    textArea.style.opacity = 0
-    document.body.appendChild(textArea)
-    textArea.focus()
-    textArea.addEventListener('copy', (e) => {
-      e.clipboardData.setData('text/html', textToCopy)
-      e.clipboardData.setData('text/plain', textToCopy)
-      e.preventDefault()
-    })
-    document.execCommand('copy')
-  } catch (e) {
-    console.log(e)
-  } finally {
-    textArea.remove()
-  }
-}
-
 function getStyle (id) {
   // https://stackoverflow.com/questions/9180184/access-css-file-contents-via-javascript
   const styleElem = document.getElementById(id)
@@ -54,8 +31,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     text = inlineCSS(text)
     text = text2HTML(text).children[0].children[0].outerHTML // 只需要 <article> 的内容即可
     //console.log(text)
-    copyToClipboard(text)
-    alert('完成拷贝，请到公众号后台粘帖')
+    copyToClipboard({'text/html': text, 'text/plain': text}).then(() => {
+      alert('完成拷贝，请到公众号后台粘帖；如果卡死（例如公式太多，或样式不对），则可以使用 chrome/firefox inspect 替换大法')
+    })
     return false
   })
 })

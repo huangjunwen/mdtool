@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="{{ (resources.Get "style/site.css" |
       resources.Minify |
       resources.Fingerprint).RelPermalink }}"></link>
+    <script type="text/javascript" src="{{ (resources.Get "script/site.js" |
+      js.Build (dict "targetPath" "script/site.min.js" "minify" true) |
+      resources.Fingerprint).RelPermalink }}"></script>
     <link id="markdown-body-style" rel="stylesheet" href="{{ (resources.Get "style/markdown-body/markdown-body.scss" |
       resources.ToCSS (dict "transpiler" "dartsass" "outputStyle" "compressed" "targetPath" "style/markdown-body.min.css") |
       resources.Fingerprint).RelPermalink }}"></link>
