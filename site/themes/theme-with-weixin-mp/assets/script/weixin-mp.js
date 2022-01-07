@@ -5,26 +5,24 @@ const declassify = require('declassify')
 
 // https://stackoverflow.com/a/65996386
 function copyToClipboard (textToCopy) {
-  // navigator clipboard api needs a secure context (https)
-  if (navigator.clipboard && window.isSecureContext) {
-    // navigator clipboard api method
-    return navigator.clipboard.writeText(textToCopy)
-  } else {
-    // text area method
-    let textArea = document.createElement("textarea")
-    textArea.value = textToCopy
-    // make the textarea out of viewport
-    textArea.style.position = "fixed"
-    textArea.style.left = "-999999px"
-    textArea.style.top = "-999999px"
+  // 创建一个临时的隐藏的元素并触发 copy 事件以获得修改剪贴板的机会
+  let textArea = document.createElement('textarea')
+  try {
+    // 通过样式隐藏起来
+    textArea.style.position = 'absolute'
+    textArea.style.opacity = 0
     document.body.appendChild(textArea)
     textArea.focus()
-    textArea.select()
-    return new Promise((res, rej) => {
-      // here the magic happens
-      document.execCommand('copy') ? res() : rej()
-      textArea.remove()
+    textArea.addEventListener('copy', (e) => {
+      e.clipboardData.setData('text/html', textToCopy)
+      e.clipboardData.setData('text/plain', textToCopy)
+      e.preventDefault()
     })
+    document.execCommand('copy')
+  } catch (e) {
+    console.log(e)
+  } finally {
+    textArea.remove()
   }
 }
 
@@ -55,10 +53,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let text = `<div class="${root.className}"><article class="mdb">${contentBody.innerHTML}</article></div><style>${markdownBodyStyle}\n${mathjaxSVGStyle}</style>`
     text = inlineCSS(text)
     text = text2HTML(text).children[0].children[0].outerHTML // 只需要 <article> 的内容即可
-    console.log(text)
+    //console.log(text)
     copyToClipboard(text)
-      .then(() => { alert('拷贝成功, 请使用 chrome/firefox inspect 替换大法粘帖到公众号') })
-      .catch((e) => { alert(`拷贝失败 ${e}`) })
+    alert('完成拷贝，请到公众号后台粘帖')
     return false
   })
 })
