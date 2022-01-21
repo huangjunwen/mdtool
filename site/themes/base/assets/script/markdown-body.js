@@ -27,7 +27,17 @@
       fontCache: window.mathjaxFontCache || 'global'
     },
     options: {
-      enableAssistiveMml: false
+      menuOptions: {
+        settings: {
+          assistiveMml: false,  // true to enable assitive MathML
+          collapsible: false,   // true to enable collapsible math
+          explorer: false,      // true to enable the expression explorer
+        }
+      },
+      enableEnrichment: false,
+      enableComplexity: false,
+      enableExplorer: false,
+      enableAssistiveMml: false,
     },
     startup: {
       ready: () => {
@@ -51,6 +61,7 @@
   }
   let script = document.createElement('script')
   document.head.appendChild(script)
+  script.async = true
   script.src = '/mathjax/es5/tex-svg.js'
 })();
 
