@@ -178,10 +178,6 @@ body {
 
 /* sticky header 会遮挡 anchor，
  * 见: https://www.bryanbraun.com/anchorjs/#pages-with-a-sticky-navbar */
-:target::before {
-  content: "";
-  display: block;
-  margin-top: -80px;
-  height: 80px;
-  width: 1px;
+:target {
+  scroll-margin-top: 5rem;
 }
