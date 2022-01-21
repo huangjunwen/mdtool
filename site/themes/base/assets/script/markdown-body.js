@@ -30,8 +30,9 @@
       enableAssistiveMml: false
     },
     startup: {
-      pageReady: () => {
-        return MathJax.startup.defaultPageReady().then(() => {
+      ready: () => {
+        MathJax.startup.defaultReady()
+        MathJax.startup.promise.then(() => {
           // 设置 display （block）math 的 min-width 阻止其缩放，只能 scroll
           document.querySelectorAll('mjx-container[jax=SVG][display=true] svg').forEach((svg) => {
             svg.style.minWidth = svg.getAttribute('width')
@@ -39,9 +40,11 @@
           // 排版完毕后页面大小可能会变化，
           // 导致 anchor 指向的地方不太正确，这里重新设置一次
           let h = window.location.hash
-          if (h)
-            window.location.hash = window.location.hash
-        });
+          if (h) {
+            window.location.hash = h
+          }
+
+        })
       }
     }
   }
