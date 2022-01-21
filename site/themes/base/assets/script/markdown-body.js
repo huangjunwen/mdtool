@@ -39,11 +39,12 @@
           })
           // 排版完毕后页面大小可能会变化，
           // 导致 anchor 指向的地方不太正确，这里重新设置一次
-          let h = window.location.hash
-          if (h) {
-            window.location.hash = h
-          }
-
+          window.setTimeout(() => {
+            let h = window.location.hash
+            if (h) {
+              window.location.hash = h
+            }
+          }, 1)
         })
       }
     }
