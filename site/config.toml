@@ -14,3 +14,7 @@ theme = ""
 # [[menu.main]]
 #   name = "About"
 #   url = "/about/"
+
+[security]
+[security.exec]
+  allow = ['^dart-sass-embedded$', '^go$', '^npx$', '^postcss$', '^pandoc$']
