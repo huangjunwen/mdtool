@@ -1,8 +1,8 @@
 FROM node:16-buster-slim
 
-ARG HUGO_VER=0.89.4
-ARG PANDOC_VER=2.16.2
-ARG DART_SASS_EMBEDDED_VER=1.0.0-beta.12
+ARG HUGO_VER=0.92.2
+ARG PANDOC_VER=2.17.1.1
+ARG DART_SASS_EMBEDDED_VER=1.49.7
 
 # 下载安装主要工具
 RUN apt-get update && apt-get install -y wget make graphviz inotify-tools && cd /tmp && \
