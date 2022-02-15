@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# 功能：将当前目录下（包括子目录）的 dot 文件转换为 png，然后用 inotifywait 监听变化再生成
+
+find . -name '*.dot' -exec dot -Tpng -O {} \;
+
+inotifywait -rmq -e close_write,moved_to . | while read dir action file; do 
+  case $file in *.dot) dot -Tpng -O $dir/$file ;; esac 
+done
