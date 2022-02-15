@@ -75,12 +75,13 @@ $ mdtool
 
 ### tool (工具目录)
 
-- hugo (https://gohugo.io/), 主要的工具
+- hugo (https://gohugo.io/), 主要的工具，实际直接执行的也是这个
 - pandoc (https://pandoc.org/)
   - lua-pandoc-filter
   - pandoc wrapper: 一个脚本，由于处于 PATH 的优先位置，所以 hugo 在执行时会用这个 wrapper，
     目前该 wrapper 会调用上述的 filter 进行处理
 - dart-sass: 见 https://gohugo.io/hugo-pipes/scss-sass/
+- dot2png: 一个脚本，能自动将（子）目录下的 dot 文件转换为 png
 
 ### site (hugo 站点目录)
 
