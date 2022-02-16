@@ -26,6 +26,6 @@ COMMON_ARGS="--rm -it --network=host --user $USER:$GROUP \
   -v $DIR/content:/opt/mdtool/site/content \
   -v $DIR/resources:/opt/mdtool/site/resources \
   -v $DIR/public:/opt/mdtool/site/public \
-  -v $DIR/.hugo_build.lock:/opt/mdtool/site/.hugo_build.lock
+  -v $DIR/.hugo_build.lock:/opt/mdtool/site/.hugo_build.lock"
 
 docker run $COMMON_ARGS jayven/mdtool hugo $@
