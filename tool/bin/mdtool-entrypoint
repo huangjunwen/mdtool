@@ -1,7 +1,0 @@
-#!/bin/bash
-
-# 启动一个后台程序监控 dot 文件变化自动生成 png
-nohup dot2png >> /tmp/dot2png.log 2>&1 &
-
-# 执行主程序
-exec "$@"
