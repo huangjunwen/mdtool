@@ -16,17 +16,16 @@ if [ ! -d $DIR/content ]; then
   done
 fi
 
-mkdir -p $DIR/content $DIR/config $DIR/resources $DIR/public $DIR/.pandoc-cache
-touch $DIR/.hugo_build.lock $DIR/.pandoc-filter.log
+mkdir -p $DIR/content $DIR/config $DIR/resources $DIR/public
+touch $DIR/.hugo_build.lock
 
 COMMON_ARGS="--rm -it --network=host --user $USER:$GROUP \
   -v /etc/passwd:/etc/passwd:ro \
-  -v $DIR/.hugo_build.lock:/opt/mdtool/site/.hugo_build.lock \
+  -v /etc/shadow:/etc/shadow:ro \
   -v $DIR/config:/opt/mdtool/site/config:ro \
   -v $DIR/content:/opt/mdtool/site/content \
   -v $DIR/resources:/opt/mdtool/site/resources \
   -v $DIR/public:/opt/mdtool/site/public \
-  -v $DIR/.pandoc-cache:/tmp/pandoc-cache \
-  -v $DIR/.pandoc-filter.log:/tmp/pandoc-filter.log"
+  -v $DIR/.hugo_build.lock:/opt/mdtool/site/.hugo_build.lock
 
 docker run $COMMON_ARGS jayven/mdtool hugo $@
