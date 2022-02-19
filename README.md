@@ -91,20 +91,25 @@ $ mdtool
 ### 内容处理
 
 - 表格：会包裹在 `<section class="table-container">` 元素中以供超长时滑动
-- 代码：inline code 和 code block 会经由 `highlightjs` 进行语法高亮
+- 代码：inline code 和 code block 会经由 `highlightjs` 进行语法高亮，如：
+  ~~~md
+  `x=lambda:None`{.python}
+  
+  ```python
+  x=lambda:None
+  ```  
+  ~~~
 - 数学：inline math 和 display math 会经由 `mathjax` 进行排版，如：
-  ```
+  ```md
   质能方程 $E=mc^2$
 
   $$
   E=mc^2
   $$
-
   ```
 - 图片：如果图片链接是 `.svg` 且带有 `embeded` 类，则会将 svg 直接注入到 html 中以便 css 起效，如：
   ```
   ![XXX](xxx.svg){.embeded}
-
   ```
 
 ### 参考
