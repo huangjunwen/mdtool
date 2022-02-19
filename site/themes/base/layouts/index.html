@@ -1,6 +1,6 @@
 {{ define "mainBody" -}}
   <div>
-    {{ range first 5 .Site.RegularPages -}}
+    {{ range first 20 (where .Site.RegularPages "Params.showAtHome" true) -}}
     <article>
       <h1>
         <a href="{{ .Permalink }}">{{ .Title }}</a>
