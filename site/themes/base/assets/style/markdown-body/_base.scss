@@ -147,11 +147,16 @@ $table-font: 0.85rem $sans-ff;
 
   /* Images */
 
-  img {
+  img, svg.embeded {
     /* 图片其实是可以 inline 到诸如 <p> <a> 里头的，但这里都统一成 block */
     display: block;
     max-width: 100%;
     margin: $block-margin;
+  }
+
+  img.embeded[src$=".svg"] {
+    /* https://github.com/iconfu/svg-inject#how-does-svginject-prevent-unstyled-image-flash */
+    display: none;
   }
 
   figure {

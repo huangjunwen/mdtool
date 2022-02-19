@@ -1,3 +1,18 @@
+// 动态加载 js script，返回 Promise
+function loadScript (url, opts) {
+  let { async } = opts || {}
+  return new Promise((resolve, reject) => {
+    let script = document.createElement('script')
+    script.onload = () => { resolve(true) }
+    script.onerror = (e) => { reject(e) }
+    document.head.appendChild(script)
+    if (async) {
+      script.async = true
+    }
+    script.src = url
+  })
+}
+
 // 明暗模式
 // export: toggleColorMode
 (() => {
@@ -59,21 +74,12 @@
       }
     }
   }
-  let script = document.createElement('script')
-  document.head.appendChild(script)
-  script.async = true
-  script.src = '/mathjax/es5/tex-svg.js'
+  loadScript('/mathjax/es5/tex-svg.js', { async: true })
 })();
 
 // 代码高亮 (highlightjs)
 (() => {
-  let hljsLoaded = new Promise((resolve, reject) => {
-    let script = document.createElement('script')
-    script.onload = () => { resolve(true) }
-    script.onerror = (e) => { reject(e) }
-    document.head.appendChild(script)
-    script.src = '/highlightjs/highlight.min.js'
-  })
+  let hljsLoaded = loadScript('/highlightjs/highlight.min.js')
   document.addEventListener('DOMContentLoaded', (ev) => {
     hljsLoaded.then(() => {
       hljs.configure({
@@ -85,6 +91,21 @@
         hljs.highlightElement(el)
         el.innerHTML = el.innerHTML.split('\n').join('<br/>')
       })
-    }).catch((e) => {})
+    })
+  })
+})();
+
+// 如果 img 是 svg 而且有 class embeded，则将 svg 代码直接注入到 html 中
+(() => {
+  let svgInjectLoaded = loadScript('/svg-inject/svg-inject.min.js')
+  document.addEventListener('DOMContentLoaded', (ev) => {
+    svgInjectLoaded.then(() => {
+      SVGInject(document.querySelectorAll('img.embeded[src$=".svg"]'), {
+        beforeInject (img, svg) {
+          svg.removeAttribute('height')
+          //svg.removeAttribute('width')
+        }
+      })
+    })
   })
 })();

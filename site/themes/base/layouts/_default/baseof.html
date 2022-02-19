@@ -53,10 +53,10 @@
 
     <!-- 主体 -->
     <div id="main" class="row">
-      <div id="main-left" class="col-3-md hide-xs hide-sm">
+      <div id="main-left" class="hide-xs hide-sm col-2-md col-3-lg">
         {{ block "mainLeft" . }}{{ end}}
       </div>
-      <div id="main-center" class="col-12 col-6-md mdb">
+      <div id="main-center" class="col-12 col-8-md col-6-lg mdb">
         <div id="main-title" class="text-center">
           {{ block "mainTitle" . }}{{ end }}
         </div>
@@ -64,7 +64,7 @@
           {{ block "mainBody" . }}{{ end }}
         </div>
       </div>
-      <div id="main-right" class="col-3-md hide-xs hide-sm">
+      <div id="main-right" class="hide-xs hide-sm col-2-md col-3-lg">
         {{ block "mainRight" . }}{{ end }}
       </div>
     </div>
