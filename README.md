@@ -107,9 +107,9 @@ $ mdtool
   E=mc^2
   $$
   ```
-- 图片：如果图片链接是 `.svg` 且带有 `embeded` 类，则会将 svg 直接注入到 html 中以便 css 起效，如：
+- 图片：如果图片是 svg 且后缀为 `.embed.svg`，则会将 svg 直接注入到 html 中以便 css 起效，如：
   ```
-  ![XXX](xxx.svg){.embeded}
+  ![XXX](xxx.embed.svg)
   ```
 
 ### 参考

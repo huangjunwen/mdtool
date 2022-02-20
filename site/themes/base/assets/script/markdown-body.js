@@ -95,12 +95,12 @@ function loadScript (url, opts) {
   })
 })();
 
-// 如果 img 是 svg 而且有 class embeded，则将 svg 代码直接注入到 html 中
+// 如果 img 是 svg 且后缀为 '.embed.svg'，则将 svg 代码直接注入到 html 中
 (() => {
   let svgInjectLoaded = loadScript('/svg-inject/svg-inject.min.js')
   document.addEventListener('DOMContentLoaded', (ev) => {
     svgInjectLoaded.then(() => {
-      SVGInject(document.querySelectorAll('img.embeded[src$=".svg"]'), {
+      SVGInject(document.querySelectorAll('img[src$=".embed.svg"]'), {
         beforeInject (img, svg) {
           svg.removeAttribute('height')
           //svg.removeAttribute('width')
