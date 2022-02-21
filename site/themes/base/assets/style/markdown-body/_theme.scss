@@ -20,6 +20,12 @@
   --mdb-blockquote-fg: #{$blockquote-fg};
   --mdb-blockquote-bg: #{$blockquote-bg};
 
+  /* 定义块颜色 */
+  $dd-fg: map.get($setting, dd-fg);
+  $dd-bg: map.get($setting, dd-bg);
+  --mdb-dd-fg: #{$dd-fg};
+  --mdb-dd-bg: #{$dd-bg};
+
   /* code 颜色 */
   $code-inline-fg: map.get($setting, code-inline-fg);
   $code-inline-bg: map.get($setting, code-inline-bg);
@@ -68,6 +74,10 @@
   $sep: map.get($setting, sep);
   --mdb-sep: #{$sep};
 
+  /* definition term 颜色 */
+  $dt: map.get($setting, dt);
+  --mdb-dt: #{$dt};
+
   .mdb {
 
     color: #{$body-fg};
@@ -86,12 +96,22 @@
       color: #{$heading};
     }
 
+    hr {
+      background-color: #{$sep};
+    }
+
     a {
       color: #{$link};
     }
 
-    hr {
-      background-color: #{$sep};
+    dt {
+      color: #{$dt};
+    }
+
+    dd {
+      color: #{$dd-fg};
+      background-color: #{$dd-bg};
+      border: 0.2rem dashed #{$sep};
     }
 
     blockquote {
@@ -108,6 +128,7 @@
     :not(pre) > code[class*='language-'] {
       color: #{$code-inline-fg};
       background-color: #{$code-inline-bg};
+      border-color: #{$code-inline-bg};
     }
 
     mjx-container[jax="SVG"] {

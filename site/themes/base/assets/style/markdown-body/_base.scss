@@ -3,9 +3,10 @@ $paragraph-margin: 1rem 0;
 $block-margin: 1rem auto;
 $block-padding: 1rem;
 $block-border-radius: 0.5rem;
-$inline-margin: 0.2rem;
-$inline-padding: 0.2rem 0.5rem;
+$inline-margin: 0rem 0.2rem;
+$inline-padding: 0rem 0.2rem;
 $inline-border-radius: 0.2rem;
+$cell-padding: 0.2rem 0.5rem;
 
 $serif-ff: serif;
 $sans-ff: sans-serif;
@@ -42,6 +43,7 @@ $table-font: 0.85rem $sans-ff;
   padding: 1rem 1.5rem;
   font: $body-font;
   text-align: start;
+  line-height: 1.8rem;
   /* https://stackoverflow.com/questions/3226001/some-font-sizes-rendered-larger-on-safari-iphone */
   -webkit-text-size-adjust: none;
 
@@ -145,6 +147,22 @@ $table-font: 0.85rem $sans-ff;
     cursor: pointer;
   }
 
+  /* Definition Lists */
+  dl {
+    margin: $paragraph-margin;
+  }
+
+  dt {
+    padding-left: 1rem;
+    font-weight: bold;
+  }
+
+  dd {
+    margin: $block-margin;
+    padding: $block-padding;
+    border-radius: $block-border-radius;
+  }
+
   /* Images */
 
   img, svg[data-inject-url$=".embed.svg"] {
@@ -199,9 +217,9 @@ $table-font: 0.85rem $sans-ff;
   }
 
   :not(pre) > code[class*=language-] {
-    font: $code-font;
     margin: $inline-margin;
     padding: $inline-padding;
+    border: 0.2rem solid;
     border-radius: $inline-border-radius;
     /* inline code 如果过长应当 wrap */
     white-space: pre-wrap;
@@ -244,7 +262,7 @@ $table-font: 0.85rem $sans-ff;
 
       th, td {
         font: $table-font;
-        padding: $inline-padding;
+        padding: $cell-padding;
       }
     }
   }
