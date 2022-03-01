@@ -21,6 +21,11 @@ code {
   white-space: pre;
 }
 
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
 /* chota 定制化 */
 
 :root {

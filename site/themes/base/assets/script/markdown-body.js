@@ -58,8 +58,8 @@ function loadScript (url, opts) {
       ready: () => {
         MathJax.startup.defaultReady()
         MathJax.startup.promise.then(() => {
-          // 设置 display （block）math 的 min-width 阻止其缩放，只能 scroll
-          document.querySelectorAll('mjx-container[jax=SVG][display=true] svg').forEach((svg) => {
+          // 设置 math 的 min-width 阻止其缩放，只能 scroll
+          document.querySelectorAll('mjx-container[jax=SVG] svg').forEach((svg) => {
             svg.style.minWidth = svg.getAttribute('width')
           })
           // 排版完毕后页面大小可能会变化，

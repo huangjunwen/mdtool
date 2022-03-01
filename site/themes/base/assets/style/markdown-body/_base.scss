@@ -24,14 +24,13 @@ $table-font: 0.85rem $sans-ff;
 %block-container {
   display: block;
   overflow-x: auto;
-  & {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+}
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
+%inline-block-container {
+  display: inline-block;
+  vertical-align: top;
+  overflow-x: auto;
+  max-width: 100%;
 }
 
 /*****************
@@ -238,13 +237,10 @@ $table-font: 0.85rem $sans-ff;
     }
 
     &:not([display="true"]) {
-      display: inline-block;
+      @extend %inline-block-container;
       margin: $inline-margin;
       padding: $inline-padding;
       border-radius: $inline-border-radius;
-      svg {
-        max-width: 100%;
-      }
     }
   }
 
