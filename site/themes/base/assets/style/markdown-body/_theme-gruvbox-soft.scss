@@ -100,3 +100,13 @@ $dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language 
     dt:               $dark-color-base0A,
   ));
 }
+
+.mdb {
+  dt {
+    &:before {
+      font-size: 1.5rem;
+      content: "\273b";
+      padding-right: 0.5rem;
+    }
+  }
+}

@@ -1,3 +1,8 @@
+// 微信公众号一些过滤规则（不全）
+// 1. 不允许有 id （这导致 svg 里不能 use）
+// 2. 不允许 div
+// 3. span 如果没有 style 会被过滤掉
+
 // github.com/Automattic/juice inlines CSS into HTML source
 const juice = require('juice/client')
 // github.com/jrit/declassify remove any classes or IDs not found
@@ -9,24 +14,51 @@ function getStyle (id) {
   return Array.prototype.map.call(styleElem.sheet.cssRules, (x) => { return x.cssText}).join('\n')
 }
 
-// 将 <a> 变成 <alink href="">，因微信公众号对链接有限制，这里全部替换成自定义的 tag
-function inlineCSS(html) {
-  return declassify.process(juice(html)).trim()
-}
-
-function text2HTML(text) {
+function text2HTML (text) {
   var elem = document.createElement('template')
   elem.innerHTML = text
   return elem.content
 }
 
-function a2Link (root) {
-  [...root.getElementsByTagName('a')].forEach((e) => {
-    var elem = document.createElement('alink')
-    elem.setAttribute('href', e.getAttribute('href'))
-    elem.setAttribute('style', e.getAttribute('style'))
-    elem.innerHTML = e.innerHTML
-    e.parentElement.replaceChild(elem, e)
+function inlineCSS (html) {
+  return text2HTML(juice(html, {inlinePseudoElements: true}))
+}
+
+function cleanHTML (html) {
+  return declassify.process(html).trim()
+}
+
+function renameTag (node, tagName) {
+  // 不需要替换
+  if (node.tagName === tagName)
+    return node
+
+  // 复制属性
+  let newNode = document.createElement(tagName)
+  node.getAttributeNames().forEach((name) => {
+    newNode.setAttribute(name, node.getAttribute(name))
+  })
+
+  // 移动 children
+  Array.from(node.childNodes).forEach((child) => {
+    newNode.appendChild(child)
+  })
+
+  // 替换
+  node.parentElement.replaceChild(newNode, node)
+  return newNode
+}
+
+function replaceTableContainer (root) {
+  Array.from(root.querySelectorAll('div.table-container')).forEach((node) => {
+    renameTag(node, 'table-container')
+  })
+}
+
+// 替换 <a>
+function replaceLink (root) {
+  Array.from(root.querySelectorAll('a')).forEach((node) => {
+    renameTag(node, 'a-link')
   })
 }
 
@@ -39,10 +71,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     const markdownBodyStyle = getStyle('markdown-body-style')
     const mathjaxSVGStyle = getStyle('MJX-SVG-styles') // 这个是 mathjax 生成的
     let text = `<div class="${root.className}"><article class="mdb">${contentBody.innerHTML}</article></div><style>${markdownBodyStyle}\n${mathjaxSVGStyle}</style>`
-    text = inlineCSS(text)
-    let article = text2HTML(text).children[0].children[0] // 只需要 <article> 的内容即可
-    a2Link(article)
-    text = article.outerHTML
+    let article = inlineCSS(text).children[0].children[0] // 只需要 <article> 的内容即可
+    replaceTableContainer(article)
+    replaceLink(article)
+    text = cleanHTML(article.outerHTML)
     //console.log(text)
     copyToClipboard({'text/html': text, 'text/plain': text}).then(() => {
       alert('完成拷贝，请到公众号后台粘帖；如果卡死（例如公式太多，或样式不对），则可以使用 chrome/firefox inspect 替换大法')

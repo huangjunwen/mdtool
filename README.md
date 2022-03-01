@@ -90,7 +90,7 @@ $ mdtool
 
 ### 内容处理
 
-- 表格：会包裹在 `<section class="table-container">` 元素中以供超长时滑动
+- 表格：会包裹在 `.table-container` 中以供超长时滑动
 - 代码：inline code 和 code block 会经由 `highlightjs` 进行语法高亮，如：
   ~~~md
   `x=lambda:None`{.python}

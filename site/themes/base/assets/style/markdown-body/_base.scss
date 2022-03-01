@@ -142,7 +142,7 @@ $table-font: 0.85rem $sans-ff;
 
   /* Links */
 
-  a, alink {
+  a {
     display: inline;
     text-decoration: none;
     cursor: pointer;
@@ -154,7 +154,7 @@ $table-font: 0.85rem $sans-ff;
   }
 
   dt {
-    padding-left: 1rem;
+    display: flex;
     font-weight: bold;
   }
 
