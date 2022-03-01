@@ -67,6 +67,10 @@ html {
   height: -webkit-fill-available;
 }
 
+::selection, *::selection {
+  background-color: var(--mdb-selection-bg);
+}
+
 body {
   min-height: 100vh;
   min-height: -webkit-fill-available;
