@@ -28,7 +28,7 @@ $table-font: 0.85rem $sans-ff;
 
 %inline-block-container {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: text-top;
   overflow-x: auto;
   max-width: 100%;
 }
