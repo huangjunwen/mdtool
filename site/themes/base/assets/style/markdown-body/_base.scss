@@ -11,7 +11,7 @@ $cell-padding: 0.2rem 0.5rem;
 $serif-ff: serif;
 $sans-ff: sans-serif;
 $mono-ff: monospace;
-$body-font: 1rem/1.5 $sans-ff;
+$body-font: 1rem/1.6 $sans-ff;
 $h1-font: bold 1.65rem/1.25 $sans-ff;
 $h2-font: bold 1.375rem/1.25 $sans-ff;
 $h3-font: bold 1.25rem/1.25 $sans-ff;
@@ -28,7 +28,7 @@ $table-font: 0.85rem $sans-ff;
 
 %inline-block-container {
   display: inline-block;
-  vertical-align: text-top;
+  vertical-align: bottom;
   overflow-x: auto;
   max-width: 100%;
 }
@@ -42,7 +42,6 @@ $table-font: 0.85rem $sans-ff;
   padding: 1rem;
   font: $body-font;
   text-align: start;
-  line-height: 1.5rem;
   /* https://stackoverflow.com/questions/3226001/some-font-sizes-rendered-larger-on-safari-iphone */
   -webkit-text-size-adjust: none;
 
@@ -80,6 +79,7 @@ $table-font: 0.85rem $sans-ff;
   /* Blockquotes */
 
   blockquote {
+    font: $body-font; /* 冗余 */
     margin: $paragraph-margin;
     padding: 1px 1rem;
   }
@@ -147,7 +147,29 @@ $table-font: 0.85rem $sans-ff;
     cursor: pointer;
   }
 
+  /* Superscript/Subscript */
+
+  sup, sub {
+    /* 不要让 sup/sub 影响 line-height */
+    /* https://stackoverflow.com/a/6594576 */
+    line-height: 100%;
+  }
+
+  /* Footnotes */
+
+  .footnote-ref {
+    sup {
+      &:before {
+        content: '[';
+      }
+      &:after {
+        content: ']';
+      }
+    }
+  }
+
   /* Definition Lists */
+
   dl {
     margin: $paragraph-margin;
   }
