@@ -28,7 +28,7 @@
 
 {{ define "bodyEnd" }}
   {{ if not .Params.noTOC }}
-    <link rel="stylesheet" href="/tocbot/css/tocbot.css"></link>
+    <link rel="stylesheet" href="/res/libs/tocbot/css/tocbot.css"></link>
     <style>
     #content-toc {
       position: -webkit-sticky;
@@ -54,7 +54,7 @@
       background-color: var(--color-primary);
     }
     </style>
-    <script src="/tocbot/js/tocbot.min.js"></script>
+    <script src="/res/libs/tocbot/js/tocbot.min.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', (ev) => {
       tocbot.init({
@@ -70,7 +70,7 @@
     </script>
   {{ end }}
   {{ if (and (not .Params.noAnchor) (not (.Scratch.Get "noAnchor"))) }}
-    <script type="text/javascript" src="/anchorjs/js/anchor.min.js"></script>
+    <script type="text/javascript" src="/res/libs/anchorjs/js/anchor.min.js"></script>
     <script>anchors.add('#main-body h1, #main-body h2, #main-body h3, #main-body h4, #main-body h5, #main-body h6, #main-body dt');</script>
   {{ end }}
 {{ end }}

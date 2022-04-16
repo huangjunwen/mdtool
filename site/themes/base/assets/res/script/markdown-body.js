@@ -74,12 +74,12 @@ function loadScript (url, opts) {
       }
     }
   }
-  loadScript('/mathjax/es5/tex-svg.js', { async: true })
+  loadScript('/res/libs/mathjax/es5/tex-svg.js', { async: true })
 })();
 
 // 代码高亮 (highlightjs)
 (() => {
-  let hljsLoaded = loadScript('/highlightjs/highlight.min.js')
+  let hljsLoaded = loadScript('/res/libs/highlightjs/highlight.min.js')
   document.addEventListener('DOMContentLoaded', (ev) => {
     hljsLoaded.then(() => {
       hljs.configure({
@@ -97,7 +97,7 @@ function loadScript (url, opts) {
 
 // 如果 img 是 svg 且后缀为 '.embed.svg'，则将 svg 代码直接注入到 html 中
 (() => {
-  let svgInjectLoaded = loadScript('/svg-inject/svg-inject.min.js')
+  let svgInjectLoaded = loadScript('/res/libs/svg-inject/svg-inject.min.js')
   document.addEventListener('DOMContentLoaded', (ev) => {
     svgInjectLoaded.then(() => {
       SVGInject(document.querySelectorAll('img[src$=".embed.svg"]'), {

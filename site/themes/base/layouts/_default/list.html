@@ -11,7 +11,7 @@
     {{ range .Data.Pages -}}
       <li>
         <p>
-          <a href="{{ .Permalink }}">{{ .Title }}</a>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
           <small>
             {{ if len .Pages }}
               <span><i class="fa fa-fw fa-angle-double-right"></i>{{ len .Pages }}</span>

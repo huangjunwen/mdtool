@@ -6,19 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ .Title }}</title>
     {{ partial "ifex_partial" (slice "base-head" .) }}
-    <link rel="stylesheet" href="/fontawesome/css/all.min.css"></link>
-    <link rel="stylesheet" href="/chota/css/chota.min.css"></link>
-    <link rel="stylesheet" href="{{ (resources.Get "style/site.css" |
+    <link rel="stylesheet" href="/res/libs/fontawesome/css/all.min.css"></link>
+    <link rel="stylesheet" href="/res/libs/chota/css/chota.min.css"></link>
+    <link rel="stylesheet" href="{{ (resources.Get "res/style/site.css" |
       resources.Minify |
       resources.Fingerprint).RelPermalink }}"></link>
-    <script type="text/javascript" src="{{ (resources.Get "script/site.js" |
-      js.Build (dict "targetPath" "script/site.min.js" "minify" true) |
+    <script type="text/javascript" src="{{ (resources.Get "res/script/site.js" |
+      js.Build (dict "targetPath" "res/script/site.min.js" "minify" true) |
       resources.Fingerprint).RelPermalink }}"></script>
-    <link id="markdown-body-style" rel="stylesheet" href="{{ (resources.Get "style/markdown-body/markdown-body.scss" |
-      resources.ToCSS (dict "transpiler" "dartsass" "outputStyle" "compressed" "targetPath" "style/markdown-body.min.css") |
+    <link id="markdown-body-style" rel="stylesheet" href="{{ (resources.Get "res/style/markdown-body/markdown-body.scss" |
+      resources.ToCSS (dict "transpiler" "dartsass" "outputStyle" "compressed" "targetPath" "res/style/markdown-body.min.css") |
       resources.Fingerprint).RelPermalink }}"></link>
-    <script type="text/javascript" src="{{ (resources.Get "script/markdown-body.js" |
-      js.Build (dict "targetPath" "script/markdown-body.min.js" "minify" true) |
+    <script type="text/javascript" src="{{ (resources.Get "res/script/markdown-body.js" |
+      js.Build (dict "targetPath" "res/script/markdown-body.min.js" "minify" true) |
       resources.Fingerprint).RelPermalink }}"></script>
   </head>
 
