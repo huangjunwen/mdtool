@@ -11,25 +11,11 @@
 
 ### 快速使用
 
-安装：安装好 docker, 将 `mdtool` (bash script) 放置在 `PATH` 即可.
-
-`mdtool` 运行时会检查**当前目录**是否有 `content` 子目录，如果没有则会提示初始化当前目录: 新建 `config/content/public/resources` 目录;
-
-然后会 `docker run` 启动 hugo，并将上述目录 bind mount 到容器 site 相对应的目录下.
+安装：安装好 docker, 将 `mdtool` (bash script) 放置在 `PATH` 即可. 用法基本跟 hugo 一致
 
 #### 新建内容
 
-```bash
-$ cd my-blog
-$ tree
-.
-├── config
-│   └── _default
-│       └── config.toml
-└── content
-    └── posts
-        ├── second.md
-        └── first.md
+```shell
 $ mdtool new posts/third.md
 $ tree
 .
@@ -45,8 +31,7 @@ $ tree
 
 #### 写作
 
-```bash
-$ cd my-blog
+```shell
 $ mdtool serve -D
 Start building sites …
 hugo v0.86.0-41C6C52E+extended linux/amd64 BuildDate=2021-07-21T09:53:14Z VendorInfo=gohugoio
@@ -62,16 +47,20 @@ hugo v0.86.0-41C6C52E+extended linux/amd64 BuildDate=2021-07-21T09:53:14Z Vendor
   Sitemaps         |  1
   Cleaned          |  0
 
-Built in 4322 ms
 ...
 ```
 
 #### 生成最终页面
 
-```bash
-$ cd my-blog
+```shell
 $ mdtool
 ```
+
+#### 工作原理
+
+`mdtool` 运行时会检查**当前目录**是否有 `content` 子目录，如果没有则会提示初始化当前目录: 新建 `config/content/public/resources` 目录;
+
+然后会 `docker run` 启动 hugo，并将上述目录 bind mount 到容器 site 相对应的目录下.
 
 ### tool (工具目录)
 
@@ -111,6 +100,12 @@ $ mdtool
   ```
   ![XXX](xxx.embed.svg)
   ```
+- 微信公众号输出会做如下处理
+  - mathjax 的 fontCache 会设为 `none`，否则 svg 中会有 id 属性，而 id 属性是会被过滤掉的
+  - `<div class="table-container">` 元素会转换为 `<table-container>` 元素，因为貌似会过滤 `<div>`
+  - `<a>` 元素会转换为 `<a-link>` 元素，因为貌似会过滤 `<a>`
+  - 所有 `img` 会转换为 [Data URL](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
+  - css 会全部 inline 到元素中
 
 ### 参考
 
