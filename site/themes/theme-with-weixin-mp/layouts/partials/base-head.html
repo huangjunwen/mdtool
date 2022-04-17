@@ -1,3 +1,2 @@
-{{/* 微信公众号中不要出现 link，所以禁用 anchorjs；另外不能有 id，所以 mathjaxFontCache 只能设成 none */}}
-{{- .Scratch.Set "noAnchor" true -}}
+{{/* 微信公众号中 element 不能有 id，所以 mathjaxFontCache 只能设成 none */}}
 <script>window.mathjaxFontCache = 'none';</script>

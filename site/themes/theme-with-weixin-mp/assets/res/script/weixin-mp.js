@@ -62,18 +62,36 @@ function replaceLink (root) {
   })
 }
 
+// 将 img src 替换成 data url
+async function replaceImgSrc (root) {
+  const imgs = Array.from(root.querySelectorAll('img'))
+  for (const img of imgs) {
+    const resp = await fetch(img.src)
+    const blob = await resp.blob()
+    const reader = new FileReader()
+    const dataUrl = await new Promise((resolve, reject) => {
+      reader.onload = () => {
+        resolve(reader.result)
+      }
+      reader.readAsDataURL(blob)
+    })
+    img.src = dataUrl
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function(event) {
 
   const root = document.documentElement
   const copy = document.getElementById('copy-weixin-mp')
   const contentBody = document.getElementById('content-body')
-  copy.addEventListener('click', e => {
+  copy.addEventListener('click', async e => {
     const markdownBodyStyle = getStyle('markdown-body-style')
     const mathjaxSVGStyle = getStyle('MJX-SVG-styles') // 这个是 mathjax 生成的
     let text = `<div class="${root.className}"><article class="mdb">${contentBody.innerHTML}</article></div><style>${markdownBodyStyle}\n${mathjaxSVGStyle}</style>`
     let article = inlineCSS(text).children[0].children[0] // 只需要 <article> 的内容即可
     replaceTableContainer(article)
     replaceLink(article)
+    await replaceImgSrc(article)
     text = cleanHTML(article.outerHTML)
     //console.log(text)
     copyToClipboard({'text/html': text, 'text/plain': text}).then(() => {
