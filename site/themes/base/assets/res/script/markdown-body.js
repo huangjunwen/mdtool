@@ -79,18 +79,18 @@ function loadScript (url, opts) {
 
 // 代码高亮 (highlightjs)
 (() => {
-  let hljsLoaded = loadScript('/res/libs/highlightjs/highlight.min.js')
-  document.addEventListener('DOMContentLoaded', (ev) => {
-    hljsLoaded.then(() => {
-      hljs.configure({
-        ignoreUnescapedHTML: true
-      })
-      document.querySelectorAll('pre[class*=language-] > code, code[class*=language-]').forEach((el) => {
-        // 在 highlight 时将空格转换为 &nbsp; 换行符转成 <br>
-        el.textContent = el.textContent.replaceAll('\u0020', '\u00a0')
-        hljs.highlightElement(el)
-        el.innerHTML = el.innerHTML.split('\n').join('<br/>')
-      })
+  document.addEventListener('DOMContentLoaded', async (ev) => {
+    await loadScript('/res/libs/highlightjs/highlight.min.js')
+    // 额外语言
+    await loadScript('/res/libs/highlightjs-agda/agda.min.js')
+    hljs.configure({
+      ignoreUnescapedHTML: true
+    })
+    document.querySelectorAll('pre[class*=language-] > code, code[class*=language-]').forEach((el) => {
+      // 在 highlight 时将空格转换为 &nbsp; 换行符转成 <br>
+      el.textContent = el.textContent.replaceAll('\u0020', '\u00a0')
+      hljs.highlightElement(el)
+      el.innerHTML = el.innerHTML.split('\n').join('<br/>')
     })
   })
 })();
