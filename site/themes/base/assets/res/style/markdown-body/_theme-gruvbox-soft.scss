@@ -66,8 +66,14 @@ $dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language 
     dt:               $light-color-base0A,
   ));
 
+  /* Border box */
   pre[class*=language-], mjx-container[jax=SVG][display=true], .table-container {
     box-shadow: -2px 0px 10px 0px color.mix($light-color-base05, #fff, 50%);
+  }
+
+  /* Language specified */
+  .hljs.language-agda .hljs-operator {
+    color: $light-color-base0B;
   }
 }
 
@@ -99,6 +105,11 @@ $dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language 
     sep:              $dark-color-base03,
     dt:               $dark-color-base0A,
   ));
+
+  /* Language specified */
+  .hljs.language-agda .hljs-operator {
+    color: $dark-color-base0B;
+  }
 }
 
 .mdb {
