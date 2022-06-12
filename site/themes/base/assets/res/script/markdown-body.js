@@ -27,11 +27,14 @@ function loadScript (url, opts) {
       a = 'dark-mode', r = 'light-mode'
     root.classList.remove(r)
     root.classList.add(a)
+    // 发送 colorMode 事件
+    document.dispatchEvent(new Event('colorMode'))
   }
   const toggleColorMode = () => {
     setColorMode(getColorMode() === 'light' ? 'dark' : 'light')
   }
   window.toggleColorMode = toggleColorMode
+  window.getColorMode = getColorMode
   setColorMode(getColorMode())
 })();
 
