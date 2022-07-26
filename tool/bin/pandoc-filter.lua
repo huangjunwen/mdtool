@@ -30,4 +30,15 @@ if FORMAT:match 'html' then
     end
   end
 
+  -- 特殊 div
+  function Div (el)
+    -- proof div，可 expand/collapse
+    if el.classes[1] == 'proof' then
+      return pandoc.Div({
+        pandoc.Div(pandoc.Str('Proof'), {class = 'proof-label'}),
+        pandoc.Div(el.content, {class = 'proof-content'})
+      }, el.attr)
+    end
+  end
+
 end

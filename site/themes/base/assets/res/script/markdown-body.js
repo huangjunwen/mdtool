@@ -112,3 +112,25 @@ function loadScript (url, opts) {
     })
   })
 })();
+
+// Proof div expand/collapse
+(() => {
+  document.addEventListener('DOMContentLoaded', (ev) => {
+    let proofLabels = Array.from(document.getElementsByClassName('proof-label'))
+    let className = 'collapse'
+    proofLabels.forEach((el) => {
+      el.addEventListener('click', (ev) => {
+        // 没有按 alt 的时候则 toggle 该单个元素
+        if (!ev.altKey) {
+          el.classList.toggle(className)
+          return
+        }
+        // toggle 页面上全部证明
+        let collapse = !el.classList.contains(className)
+        proofLabels.forEach((e) => {
+          collapse ? e.classList.add(className) : e.classList.remove(className)
+        })
+      })
+    })
+  })
+})();
