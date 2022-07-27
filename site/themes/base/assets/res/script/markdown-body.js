@@ -122,9 +122,9 @@ function loadScript (url, opts) {
 
     // 合起来还是展开并返回因此造成的 document height 的变化
     let collapseOrExpand = (el, toCollapse) => {
-      let h = document.documentElement.scrollHeight
+      let h = el.parentElement.scrollHeight
       toCollapse ? el.classList.add(collapseClassName) : el.classList.remove(collapseClassName)
-      return document.documentElement.scrollHeight - h
+      return el.parentElement.scrollHeight - h
     }
 
     proofLabels.forEach((el, i) => {
