@@ -116,21 +116,35 @@ function loadScript (url, opts) {
 // Proof div expand/collapse
 (() => {
   document.addEventListener('DOMContentLoaded', (ev) => {
+
     let proofLabels = Array.from(document.getElementsByClassName('proof-label'))
-    let className = 'collapse'
-    proofLabels.forEach((el) => {
+    let collapseClassName = 'collapse'
+
+    // 合起来还是展开并返回因此造成的 document height 的变化
+    let collapseOrExpand = (el, toCollapse) => {
+      let h = document.documentElement.scrollHeight
+      toCollapse ? el.classList.add(collapseClassName) : el.classList.remove(collapseClassName)
+      return document.documentElement.scrollHeight - h
+    }
+
+    proofLabels.forEach((el, i) => {
       el.addEventListener('click', (ev) => {
-        // 没有按 alt 的时候则 toggle 该单个元素
         if (!ev.altKey) {
-          el.classList.toggle(className)
+          // 没有按 alt 的时候则 toggle 该单个元素
+          el.classList.toggle(collapseClassName)
           return
         }
-        // toggle 页面上全部证明
-        let collapse = !el.classList.contains(className)
-        proofLabels.forEach((e) => {
-          collapse ? e.classList.add(className) : e.classList.remove(className)
+        // 按了 alt 的时候则 toggle 页面上全部证明
+        let toCollapse = !el.classList.contains(collapseClassName)
+        proofLabels.forEach((e, j) => {
+          let y = collapseOrExpand(e, toCollapse)
+          // 关键，若变化的在当前点击的之前，则会影响到 scroll，相应得 scroll
+          if (j < i) {
+            window.scrollBy(0, y)
+          }
         })
       })
     })
+
   })
 })();
