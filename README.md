@@ -100,7 +100,7 @@ $ mdtool
   ```
   ![XXX](xxx.embed.svg)
   ```
-- `div.proof`：对带有 `proof` 的 `div` 添加一个 label，按之能 collapse/expand 证明
+- `div.proof`：对带有 `proof` class 的 `div` 添加一个 label，按之能 collapse/expand 证明
 - 微信公众号输出会做如下处理
   - mathjax 的 fontCache 会设为 `none`，否则 svg 中会有 id 属性，而 id 属性是会被过滤掉的
   - `<div class="table-container">` 元素会转换为 `<table-container>` 元素，因为貌似会过滤 `<div>`
