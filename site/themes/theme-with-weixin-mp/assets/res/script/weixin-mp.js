@@ -49,6 +49,7 @@ function renameTag (node, tagName) {
   return newNode
 }
 
+// 替换 div.table-container
 function replaceTableContainer (root) {
   Array.from(root.querySelectorAll('div.table-container')).forEach((node) => {
     renameTag(node, 'table-container')
@@ -59,6 +60,17 @@ function replaceTableContainer (root) {
 function replaceLink (root) {
   Array.from(root.querySelectorAll('a')).forEach((node) => {
     renameTag(node, 'a-link')
+  })
+}
+
+
+// 替换 div.proof
+function replaceProof (root) {
+  Array.from(root.querySelectorAll('div.proof')).forEach((node) => {
+    renameTag(node.getElementsByClassName('proof-label')[0], 'proof-label')
+    renameTag(node.getElementsByClassName('proof-content')[0], 'proof-content')
+    renameTag(node, 'proof')
+
   })
 }
 
@@ -91,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let article = inlineCSS(text).children[0].children[0] // 只需要 <article> 的内容即可
     replaceTableContainer(article)
     replaceLink(article)
+    replaceProof(article)
     await replaceImgSrc(article)
     text = cleanHTML(article.outerHTML)
     //console.log(text)

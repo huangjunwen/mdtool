@@ -289,13 +289,16 @@ $table-font: 0.85rem $sans-ff;
 
   /* Special div */
   div.proof {
+    /* div 本身就是 block 的，这里显式写出来是为了 inline css 时也能带上 */
+    display: block;
+
     .proof-label {
-      margin: $paragraph-margin;
-      font-weight: bold;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: start;
+      margin: $paragraph-margin;
+      font-weight: bold;
+      cursor: pointer;
 
       &:before {
         padding-right: 0.4rem;
@@ -320,6 +323,10 @@ $table-font: 0.85rem $sans-ff;
     }
 
     .proof-content {
+      display: block;
+      /* 下面两行用于在右下角（border 处）画一个 tombstone 用于标识 Q.E.D. */
+      border-right: 0.8rem solid transparent;
+      background: border-box no-repeat linear-gradient(currentColor, currentColor) right bottom/0.4rem 0.8rem;
 
       ol {
         li {
