@@ -1,5 +1,13 @@
 {{ define "mainTitle" }}
   <h5>{{ partial "breadcrumb.html" . }}</h5>
+  <p>
+    {{ range .Params.tags }}
+    <a href="/tags/{{ . | urlize }}/"><span class="tag is-small">{{ . }}</span></a>
+    {{- end }}
+    {{ range .Params.categories }}
+    <a href="/categories/{{ . | urlize }}/"><span class="tag is-small text-primary bd-primary">{{ . }}</span></a>
+    {{- end }}
+  </p>
 {{ end }}
 
 {{ define "mainBody" }}
