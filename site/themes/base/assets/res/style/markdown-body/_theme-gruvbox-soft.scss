@@ -66,15 +66,27 @@ $dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language 
     dt:               $light-color-base0A,
   ));
 
-  /* Border box */
-  pre[class*=language-], mjx-container[jax=SVG][display=true], .table-container {
-    box-shadow: -2px 0px 10px 0px color.mix($light-color-base05, #fff, 50%);
+  .mdb {
+    /* Border box */
+    pre[class*=language-], mjx-container[jax=SVG][display=true], .table-container {
+      box-shadow: -2px 0px 10px 0px color.mix($light-color-base05, #fff, 50%);
+    }
+
+    /* Language specified */
+    .hljs.language-agda .hljs-operator {
+      color: $light-color-base0B;
+    }
+
+    dd {
+      border-color: $light-color-base03;
+    }
+
+    blockquote {
+      border-left-color: $light-color-base03;
+    }
+
   }
 
-  /* Language specified */
-  .hljs.language-agda .hljs-operator {
-    color: $light-color-base0B;
-  }
 }
 
 .dark-mode {
@@ -106,10 +118,22 @@ $dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language 
     dt:               $dark-color-base0A,
   ));
 
-  /* Language specified */
-  .hljs.language-agda .hljs-operator {
-    color: $dark-color-base0B;
+  .mdb {
+    /* Language specified */
+    .hljs.language-agda .hljs-operator {
+      color: $dark-color-base0B;
+    }
+
+    dd {
+      border-color: $dark-color-base03;
+    }
+
+    blockquote {
+      border-left-color: $dark-color-base03;
+    }
+
   }
+
 }
 
 .mdb {
@@ -119,5 +143,14 @@ $dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language 
       content: "\273b";
       padding-right: 0.5rem;
     }
+  }
+  dd {
+    border-width: 0.2rem;
+    border-style: dashed;
+  }
+
+  blockquote {
+    border-left-width: 0.2rem;
+    border-left-style: solid;
   }
 }

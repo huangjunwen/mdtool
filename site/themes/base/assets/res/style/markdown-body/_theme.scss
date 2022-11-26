@@ -1,5 +1,6 @@
 @use "sass:map";
 
+/* 所有 theme 都需要定义以下 */
 @mixin themable($setting) {
 
   /* 主体颜色 */
@@ -21,12 +22,14 @@
   --mdb-blockquote-bg: #{$blockquote-bg};
 
   /* 定义块颜色 */
+  $dt: map.get($setting, dt);
   $dd-fg: map.get($setting, dd-fg);
   $dd-bg: map.get($setting, dd-bg);
+  --mdb-dt: #{$dt};
   --mdb-dd-fg: #{$dd-fg};
   --mdb-dd-bg: #{$dd-bg};
 
-  /* code 颜色 */
+  /* inline code 颜色 */
   $code-inline-fg: map.get($setting, code-inline-fg);
   $code-inline-bg: map.get($setting, code-inline-bg);
   --mdb-code-inline-fg: #{$code-inline-fg};
@@ -38,7 +41,7 @@
   --mdb-code-block-fg: #{$code-block-fg};
   --mdb-code-block-bg: #{$code-block-bg};
 
-  /* math 颜色 */
+  /* inline math 颜色 */
   $math-inline-fg: map.get($setting, math-inline-fg);
   $math-inline-bg: map.get($setting, math-inline-bg);
   --mdb-math-inline-fg: #{$math-inline-fg};
@@ -74,10 +77,6 @@
   $sep: map.get($setting, sep);
   --mdb-sep: #{$sep};
 
-  /* definition term 颜色 */
-  $dt: map.get($setting, dt);
-  --mdb-dt: #{$dt};
-
   .mdb {
 
     color: #{$body-fg};
@@ -111,13 +110,11 @@
     dd {
       color: #{$dd-fg};
       background-color: #{$dd-bg};
-      border: 0.2rem dashed #{$sep};
     }
 
     blockquote {
       color: #{$blockquote-fg};
       background-color: #{$blockquote-bg};
-      border-left: 0.2rem solid #{$sep};
     }
 
     pre[class*=language-] {
