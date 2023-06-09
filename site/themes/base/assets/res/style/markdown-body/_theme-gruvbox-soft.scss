@@ -1,4 +1,3 @@
-@use "sass:color";
 @use "theme";
 @use "../colors/gruvbox-soft" as *;
 
@@ -6,11 +5,11 @@
   @import "../../../../static/res/libs/highlightjs/styles/base16/gruvbox-light-soft.min";
   @include theme.themable((
     body-fg:          $light-color-base05,
-    body-bg:          color.mix($light-color-base01, #fff, 30%),
+    body-bg:          $light-color-b01-white-mix30,
     selection-fg:     currentColor,
     selection-bg:     $light-color-base02,
     blockquote-fg:    currentColor,
-    blockquote-bg:    rgba($light-color-base00, 0.3),
+    blockquote-bg:    $light-color-b00-alpha30,
     dd-fg:            $light-color-base05,
     dd-bg:            $light-color-base00,
     code-inline-fg:   $light-color-base05,
@@ -34,7 +33,7 @@
   .mdb {
     /* Border box */
     pre[class*=language-], mjx-container[jax=SVG][display=true], .table-container {
-      box-shadow: -2px 0px 10px 0px color.mix($light-color-base05, #fff, 50%);
+      box-shadow: -2px 0px 10px 0px $light-color-b05-white-mix50;
     }
 
     /* Language specified */
@@ -62,7 +61,7 @@
     selection-fg:     currentColor,
     selection-bg:     $dark-color-base02,
     blockquote-fg:    currentColor,
-    blockquote-bg:    rgba($dark-color-base00, 0.6),
+    blockquote-bg:    $dark-color-b00-alpha60,
     dd-fg:            $dark-color-base05,
     dd-bg:            $dark-color-base00,
     code-inline-fg:   $dark-color-base05,
