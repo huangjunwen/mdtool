@@ -29,14 +29,13 @@ code {
 /* chota 定制化 */
 
 :root {
-  --bg-color: var(--mdb-body-bg);
-  --bg-secondary-color: var(--mdb-code-block-bg);
-  --color-primary: var(--mdb-link);
-  --color-lightGrey: var(--mdb-sep);
-  --color-grey: var(--mdb-body-fg);
-  --color-darkGrey: var(--mdb-heading);
-  --font-color: var(--mdb-body-fg);
-
+  --bg-color:           var(--site-bg-color);
+  --bg-secondary-color: var(--site-bg-secondary-color);
+  --color-primary:      var(--site-color-primary);
+  --color-lightGrey:    var(--site-color-lightGrey);
+  --color-grey:         var(--site-color-grey);
+  --color-darkGrey:     var(--site-color-darkGrey);
+  --font-color:         var(--site-font-color);
   /* XXX
   --color-error: #d43939;
   --color-success: #28bd14;
@@ -80,7 +79,7 @@ html {
 }
 
 ::selection, *::selection {
-  background-color: var(--mdb-selection-bg);
+  background-color: var(--site-selection-bg);
 }
 
 body {
@@ -103,8 +102,8 @@ body {
   z-index: 3;
   font-size: 0.9rem;
   padding: 0rem;
-  background-color: var(--bg-secondary-color);
-  border-bottom: 1px solid var(--color-lightGrey);
+  background-color: var(--site-bg-secondary-color);
+  border-bottom: 1px solid var(--site-color-lightGrey);
 }
 
 #navbar a, #navbar label {
@@ -127,7 +126,7 @@ body {
   width: 1rem;
   height: 0.1rem;
   margin-top: 0.2rem;
-  background-color: var(--color-primary);
+  background-color: var(--site-color-primary);
 }
 
 #navbar-toggle-menu-state:checked ~ #navbar-menu {
@@ -152,8 +151,8 @@ body {
   flex: 1;
   /* 过长的需要 wrap */
   overflow-wrap: break-word;
-  background-color: var(--bg-color);
-  border-bottom: 1px solid var(--color-lightGrey);
+  background-color: var(--site-bg-color);
+  border-bottom: 1px solid var(--site-color-lightGrey);
 }
 
 #main small {
@@ -177,7 +176,7 @@ body {
   position: sticky;
   bottom: 0;
   z-index: 1;
-  background-color: var(--bg-secondary-color);
+  background-color: var(--site-bg-secondary-color);
   font-style: italic;
   font-weight: bold;
   font-size: 0.75rem;

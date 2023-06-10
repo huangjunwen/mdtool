@@ -1,0 +1,25 @@
+@use "../colors/gruvbox-soft" as *;
+
+.light-mode {
+  --site-bg-color:            #{$light-color-b01-white-mix30};  // --mdb-body-bg
+  --site-bg-secondary-color:  #{$light-color-base00};           // --mdb-code-block-bg
+  --site-color-primary:       #{$light-color-base0F};           // --mdb-link
+  --site-color-lightGrey:     #{$light-color-base03};           // --mdb-sep
+  --site-color-grey:          #{$light-color-base05};           // --mdb-body-fg
+  --site-color-darkGrey:      #{$light-color-base06};           // --mdb-heading
+  --site-font-color:          #{$light-color-base05};           // --mdb-body-fg
+  --site-selection-bg:        #{$light-color-base02};           // --mdb-selection-bg
+}
+
+.dark-mode {
+  --site-bg-color:            #{$dark-color-base01};
+  --site-bg-secondary-color:  #{$dark-color-base00};
+  --site-color-primary:       #{$dark-color-base09};
+  --site-color-lightGrey:     #{$dark-color-base03};
+  --site-color-grey:          #{$dark-color-base05};
+  --site-color-darkGrey:      #{$dark-color-base06};
+  --site-font-color:          #{$dark-color-base05};
+  --site-selection-bg:        #{$dark-color-base02};
+}
+
+@import "base";

@@ -11,8 +11,12 @@
 
     <link rel="stylesheet" href="{{
       (
-        resources.Get "res/style/site.css" |
-        resources.Minify |
+        resources.Get (printf "res/style/site/%s.scss" .Site.Params.SiteTheme) |
+        resources.ToCSS (dict
+          "transpiler" "dartsass"
+          "outputStyle" "compressed"
+          "targetPath" (printf "res/style/site-%s.min.css" .Site.Params.SiteTheme)
+        ) |
         resources.Fingerprint
       ).RelPermalink
     }}"></link>
@@ -29,7 +33,7 @@
 
     <link id="markdown-body-style" rel="stylesheet" href="{{
       (
-        resources.Get (printf "res/style/markdown-body/markdown-body-%s.scss" .Site.Params.SiteTheme) |
+        resources.Get (printf "res/style/markdown-body/%s.scss" .Site.Params.SiteTheme) |
         resources.ToCSS (dict
           "transpiler" "dartsass"
           "outputStyle" "compressed"

@@ -13,31 +13,6 @@ function loadScript (url, opts) {
   })
 }
 
-// 明暗模式
-// export: toggleColorMode
-(() => {
-  const getColorMode = () => {
-    return window.localStorage.getItem("colorMode") || 'light'
-  }
-  const setColorMode = (colorMode) => {
-    window.localStorage.setItem("colorMode", colorMode)
-    let root = document.documentElement
-    let a = 'light-mode', r = 'dark-mode'
-    if (colorMode === 'dark')
-      a = 'dark-mode', r = 'light-mode'
-    root.classList.remove(r)
-    root.classList.add(a)
-    // 发送 colorMode 事件
-    document.dispatchEvent(new Event('colorMode'))
-  }
-  const toggleColorMode = () => {
-    setColorMode(getColorMode() === 'light' ? 'dark' : 'light')
-  }
-  window.toggleColorMode = toggleColorMode
-  window.getColorMode = getColorMode
-  setColorMode(getColorMode())
-})();
-
 // tex 排版 (mathjax)
 (() => {
   window.MathJax = {
