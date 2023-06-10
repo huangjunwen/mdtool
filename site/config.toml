@@ -23,3 +23,10 @@ theme = ""
 [params]
   # 目前唯一一个 theme
   siteTheme = 'gruvbox-soft'
+
+
+[server]
+[[server.headers]]
+  for = '/**'
+  [server.headers.values]
+    Access-Control-Allow-Origin = '*'
