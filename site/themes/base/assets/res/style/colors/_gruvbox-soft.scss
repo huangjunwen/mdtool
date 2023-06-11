@@ -22,6 +22,7 @@ $light-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language
 $light-color-b00-alpha30:     rgba($light-color-base00, 0.3);
 $light-color-b01-white-mix30: color.mix($light-color-base01, #fff, 30%);
 $light-color-b05-white-mix50: color.mix($light-color-base05, #fff, 50%);
+$light-color-b0C-alpha50:     rgba($light-color-base0C, 0.5);
 
 /* From https://github.com/highlightjs/highlight.js/blob/main/src/styles/base16/gruvbox-dark-soft.css */    
 $dark-color-base00:  #32302f;  /* Default Background */
@@ -43,3 +44,4 @@ $dark-color-base0F:  #d65d0e;  /* Deprecated, Opening/Closing Embedded Language 
 
 /* Derived colors */
 $dark-color-b00-alpha60:     rgba($dark-color-base00, 0.6);
+$dark-color-b0C-alpha50:     rgba($dark-color-base0C, 0.5);

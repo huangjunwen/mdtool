@@ -44,8 +44,28 @@
           "strict":             "{{ .Site.Params.giscus.strict }}",
           "reactionsEnabled":   "{{ .Site.Params.giscus.reactionsEnabled }}",
           "inputPosition":      "{{ .Site.Params.giscus.inputPosition }}",
-          "lightTheme":         "light_high_contrast",
-          "darkTheme":          "dark_high_contrast",
+          "lightTheme":         "{{
+            (
+              resources.Get (printf "res/style/giscus/light-%s.scss" .Site.Params.SiteTheme) |
+              resources.ToCSS (dict
+                "transpiler" "dartsass"
+                "outputStyle" "compressed"
+                "targetPath" (printf "res/style/giscus-light-%s.min.css" .Site.Params.SiteTheme)
+              ) |
+              resources.Fingerprint
+            ).Permalink
+          }}",
+          "darkTheme":          "{{
+            (
+              resources.Get (printf "res/style/giscus/dark-%s.scss" .Site.Params.SiteTheme) |
+              resources.ToCSS (dict
+                "transpiler" "dartsass"
+                "outputStyle" "compressed"
+                "targetPath" (printf "res/style/giscus-dark-%s.min.css" .Site.Params.SiteTheme)
+              ) |
+              resources.Fingerprint
+            ).Permalink
+          }}",
           "containerId":        "content-comment"
         });
       </script>
