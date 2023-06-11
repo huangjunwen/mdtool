@@ -32,21 +32,27 @@
 
   .mdb {
     /* Border box */
-    pre[class*=language-], mjx-container[jax=SVG][display=true], .table-container {
+    pre[class*=language-],
+    mjx-container[jax=SVG][display=true],
+    .table-container,
+    blockquote,
+    dd {
       box-shadow: -2px 0px 10px 0px $light-color-b05-white-mix50;
     }
 
-    /* Language specified */
-    .hljs.language-agda .hljs-operator {
-      color: $light-color-base0B;
+    blockquote {
+      border-left-color: $light-color-base0F;
+      border-left-width: 0.2rem;
+      border-left-style: solid;
     }
 
     dd {
       border-color: $light-color-base03;
     }
 
-    blockquote {
-      border-left-color: $light-color-base03;
+    /* Language specified */
+    .hljs.language-agda .hljs-operator {
+      color: $light-color-base0B;
     }
 
   }
@@ -83,17 +89,27 @@
   ));
 
   .mdb {
-    /* Language specified */
-    .hljs.language-agda .hljs-operator {
-      color: $dark-color-base0B;
+    /* Border */
+    pre[class*=language-],
+    mjx-container[jax=SVG][display=true],
+    .table-container,
+    blockquote {
+      border: solid $dark-color-base03 1px;
+    }
+
+    blockquote {
+      border-left-color: $dark-color-base09;
+      border-left-width: 0.2rem;
+      border-left-style: solid;
     }
 
     dd {
       border-color: $dark-color-base03;
     }
 
-    blockquote {
-      border-left-color: $dark-color-base03;
+    /* Language specified */
+    .hljs.language-agda .hljs-operator {
+      color: $dark-color-base0B;
     }
 
   }
@@ -111,11 +127,6 @@
   dd {
     border-width: 0.2rem;
     border-style: dashed;
-  }
-
-  blockquote {
-    border-left-width: 0.2rem;
-    border-left-style: solid;
   }
 }
 

@@ -108,6 +108,59 @@ $ mdtool
   - 所有 `img` 会转换为 [Data URL](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
   - css 会全部 inline 到元素中
 
+### Theme
+
+```toml
+[params]
+  # 目前唯一一个 theme
+  siteTheme = 'gruvbox-soft'
+```
+
+### Giscus
+
+#### 前提
+
+**由于 giscus 是在第三方域名的 iframe 里呈现的，而 custom theme css 是由 host 提供的，
+故 host server 需要返回 `Access-Control-Allow-Origin: *` 以允许第三方域名的页面获取 host 的 css**
+
+例如本地跑的 hugo server 有以下配置
+
+```toml
+[server]
+[[server.headers]]
+  for = '/**'
+  [server.headers.values]
+    Access-Control-Allow-Origin = '*'
+```
+
+而幸运的是 Github Pages 的 server 也会返回这个 Response 头部
+
+#### 配置
+
+```toml
+# giscus 评论系统设置
+[params.giscus]
+  enable = false
+  # 用 https://giscus.app/ 获得以下参数
+  repo = ''
+  repoId = ''
+  category = ''
+  categoryId = ''
+  mapping = 'pathname'
+  strict = '0'
+  reactionsEnabled = '1'
+  inputPosition = 'top'
+
+```
+
+由 https://giscus.app/ 提供评论功能，如需要开启，则设置 `enable = true` 并填入 `repo/repoId/category/categoryId` 等参数
+
+如果一个单独页面不想要开启评论，可添加
+
+```
+disableGiscus: true
+```
+
 ### 参考
 
 - https://graemephi.github.io/posts/static-katex-with-hugo/

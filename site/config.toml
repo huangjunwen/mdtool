@@ -23,3 +23,23 @@ theme = ""
 [params]
   # 目前唯一一个 theme
   siteTheme = 'gruvbox-soft'
+
+  # giscus 评论系统设置
+  [params.giscus]
+    enable = false
+    # 用 https://giscus.app/ 获得以下参数
+    repo = ''
+    repoId = ''
+    category = ''
+    categoryId = ''
+    mapping = 'pathname'
+    strict = '0'
+    reactionsEnabled = '1'
+    inputPosition = 'top'
+
+
+[server]
+[[server.headers]]
+  for = '/**'
+  [server.headers.values]
+    Access-Control-Allow-Origin = '*'

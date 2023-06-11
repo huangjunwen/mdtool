@@ -10,6 +10,7 @@ noTitle: false
 noDate: false
 noToc: false
 showAtHome: true
+disableGiscus: false
 
 ---
 
