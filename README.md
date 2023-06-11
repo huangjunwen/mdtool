@@ -108,6 +108,41 @@ $ mdtool
   - 所有 `img` 会转换为 [Data URL](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)
   - css 会全部 inline 到元素中
 
+### Theme
+
+```toml
+[params]
+  # 目前唯一一个 theme
+  siteTheme = 'gruvbox-soft'
+```
+
+### Giscus
+
+```toml
+# giscus 评论系统设置
+[params.giscus]
+  enable = false
+  # 用 https://giscus.app/ 获得以下参数
+  repo = ''
+  repoId = ''
+  category = ''
+  categoryId = ''
+  mapping = 'pathname'
+  strict = '0'
+  reactionsEnabled = '1'
+  inputPosition = 'top'
+
+```
+
+由 https://giscus.app/ 提供评论功能，如需要开启，则设置 `enable = true` 并填入 `repo/repoId/category/categoryId` 等参数
+
+如果一个单独页面不想要开启评论，可添加
+
+```
+disableGiscus: true
+```
+
+
 ### 参考
 
 - https://graemephi.github.io/posts/static-katex-with-hugo/
