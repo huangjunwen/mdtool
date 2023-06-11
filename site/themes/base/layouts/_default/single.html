@@ -21,6 +21,37 @@
   <article id="content-body">
     {{ .Content }}
   </article>
+
+  <div id="content-comment">
+    {{ if (and .Site.Params.giscus.enable (not .Params.disableGiscus)) }}
+      <script type="text/javascript" src="{{
+        (
+          resources.Get "res/script/giscus.js" |
+          js.Build (dict
+            "targetPath" "res/script/giscus.min.js"
+            "minify" true
+          ) |
+          resources.Fingerprint
+        ).RelPermalink
+      }}"></script>
+      <script>
+        createGiscus({
+          "repo":               "{{ .Site.Params.giscus.repo }}",
+          "repoId":             "{{ .Site.Params.giscus.repoId }}",
+          "category":           "{{ .Site.Params.giscus.category }}",
+          "categoryId":         "{{ .Site.Params.giscus.categoryId }}",
+          "mapping":            "{{ .Site.Params.giscus.mapping }}",
+          "strict":             "{{ .Site.Params.giscus.strict }}",
+          "reactionsEnabled":   "{{ .Site.Params.giscus.reactionsEnabled }}",
+          "inputPosition":      "{{ .Site.Params.giscus.inputPosition }}",
+          "lightTheme":         "light_high_contrast",
+          "darkTheme":          "dark_high_contrast",
+          "containerId":        "content-comment"
+        });
+      </script>
+    {{ end }}
+  </div>
+
 {{ end }}
 
 {{ define "mainRight" }}
