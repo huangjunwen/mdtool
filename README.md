@@ -118,6 +118,25 @@ $ mdtool
 
 ### Giscus
 
+#### 前提
+
+**由于 giscus 是在第三方域名的 iframe 里呈现的，而 custom theme css 是由 host 提供的，
+故 host server 需要返回 `Access-Control-Allow-Origin: *` 以允许第三方域名的页面获取 host 的 css**
+
+例如本地跑的 hugo server 有以下配置
+
+```toml
+[server]
+[[server.headers]]
+  for = '/**'
+  [server.headers.values]
+    Access-Control-Allow-Origin = '*'
+```
+
+而幸运的是 Github Pages 的 server 也会返回这个 Response 头部
+
+#### 配置
+
 ```toml
 # giscus 评论系统设置
 [params.giscus]
@@ -141,7 +160,6 @@ $ mdtool
 ```
 disableGiscus: true
 ```
-
 
 ### 参考
 
