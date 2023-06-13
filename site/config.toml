@@ -37,6 +37,9 @@ theme = ""
     reactionsEnabled = '1'
     inputPosition = 'top'
 
+  # 额外的头部 html
+  extraHeaderHTML = ''
+
 
 [server]
 [[server.headers]]
