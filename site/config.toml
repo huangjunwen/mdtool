@@ -17,7 +17,7 @@ theme = ""
 
 [security]
 [security.exec]
-  allow = ['^dart-sass-embedded$', '^go$', '^npx$', '^postcss$', '^pandoc$']
+  allow = ['^sass$', '^go$', '^npx$', '^postcss$', '^pandoc$']
 
 
 [params]
